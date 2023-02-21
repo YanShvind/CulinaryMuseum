@@ -27,10 +27,20 @@ final class RHomeCollectionViewCell: UICollectionViewCell {
         
         contentView.addSubviews(imageView, nameLabel)
         addConstrants()
+        setUpLayer()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    // настройка теней
+    private func setUpLayer() {
+        contentView.layer.cornerRadius = 8
+        contentView.layer.shadowColor = UIColor.label.cgColor
+        contentView.layer.cornerRadius = 4
+        contentView.layer.shadowOffset = CGSize(width: -4, height: 4)
+        contentView.layer.shadowOpacity = 0.3
     }
     
     private func addConstrants() {

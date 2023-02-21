@@ -1,7 +1,14 @@
 
 import UIKit
 
+protocol RHomeListViewDelegate: AnyObject {
+    func rHomeListView(_ recipeListView: RHomeListView,
+                       didSelectRecipe recipe: RRecipe)
+}
+
 final class RHomeListView: UIView {
+    
+    public weak var delegate: RHomeListViewDelegate?
     
     private let viewModel = RRecipeListViewViewModel()
     
@@ -78,6 +85,10 @@ final class RHomeListView: UIView {
 }
 
 extension RHomeListView: RRecipeListViewViewModelDelegate {
+    func diSelectRecipes(_ recipe: RRecipe) {
+        delegate?.rHomeListView(self, didSelectRecipe: recipe)
+    }
+    
     func didLoadInitialRecipes() {
         DispatchQueue.main.async {
             self.spinner.stopAnimating()

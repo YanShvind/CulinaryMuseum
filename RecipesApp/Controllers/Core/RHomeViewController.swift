@@ -10,6 +10,7 @@ final class RHomeViewController: UIViewController {
         
         title = "Home"
         self.view.backgroundColor = .systemBackground
+        rHomeView.delegate = self
         setUpView()
     }
     
@@ -21,5 +22,13 @@ final class RHomeViewController: UIViewController {
             rHomeView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
             rHomeView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
         ])
+    }
+}
+
+extension RHomeViewController: RHomeListViewDelegate {
+    func rHomeListView(_ recipeListView: RHomeListView, didSelectRecipe recipe: RRecipe) {
+        let viewModel = RRecipeDetailViewViewModel(recipe: recipe)
+        let detailVC = RRecipeDetailViewController(viewModel: viewModel)
+        navigationController?.pushViewController(detailVC, animated: true)
     }
 }

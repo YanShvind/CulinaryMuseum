@@ -4,13 +4,14 @@ import UIKit
 
 protocol RRecipeListViewViewModelDelegate: AnyObject {
     func didLoadInitialRecipes()
+    func diSelectRecipes(_ recipe: RRecipe)
 }
 
 final class RRecipeListViewViewModel: NSObject {
     
     public weak var delegate: RRecipeListViewViewModelDelegate?
     
-    private var recipes: [Recipe] = [] {
+    private var recipes: [RRecipe] = [] {
         didSet {
             cellViewModels = []
             for recipe in recipes {
@@ -40,10 +41,7 @@ extension RRecipeListViewViewModel: UICollectionViewDelegate, UICollectionViewDa
                                                             for: indexPath) as? RHomeCollectionViewCell else {
             fatalError("Unsupported cell")
         }
-        
-        let recipe = recipes[indexPath.row]
-        
-        cell.nameLabel.text = recipe.title
+
         cell.configure(with: cellViewModels[indexPath.row])
         
         return cell
@@ -53,6 +51,12 @@ extension RRecipeListViewViewModel: UICollectionViewDelegate, UICollectionViewDa
         let bounds = UIScreen.main.bounds
         let width = (bounds.width-30)/2
         return CGSize(width: width, height: width * 0.9)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        collectionView.deselectItem(at: indexPath, animated: true)
+        let recipe = recipes[indexPath.row]
+        delegate?.diSelectRecipes(recipe)
     }
 }
 
