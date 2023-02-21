@@ -1,7 +1,7 @@
 
 import UIKit
 
-final class RHomeView: UIView {
+final class RHomeListView: UIView {
     
     private let viewModel = RRecipeListViewViewModel()
     
@@ -25,7 +25,7 @@ final class RHomeView: UIView {
     public var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
-        layout.sectionInset = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)
+        layout.sectionInset = UIEdgeInsets(top: 0, left: 10, bottom: 10, right: 10)
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.isHidden = true
         collectionView.alpha = 0
@@ -77,7 +77,7 @@ final class RHomeView: UIView {
     }
 }
 
-extension RHomeView: RRecipeListViewViewModelDelegate {
+extension RHomeListView: RRecipeListViewViewModelDelegate {
     func didLoadInitialRecipes() {
         DispatchQueue.main.async {
             self.spinner.stopAnimating()

@@ -1,7 +1,7 @@
 
 import Foundation
 
-struct Recipe: Codable {
+struct RRecipe: Codable {
     let id: Int
     let title: String
     let image: String

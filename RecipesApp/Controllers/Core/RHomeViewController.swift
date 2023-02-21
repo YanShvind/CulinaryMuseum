@@ -3,7 +3,7 @@ import UIKit
 
 final class RHomeViewController: UIViewController {
     
-    private let rHomeView = RHomeView()
+    private let rHomeView = RHomeListView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
