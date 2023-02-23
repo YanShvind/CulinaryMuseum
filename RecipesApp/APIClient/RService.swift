@@ -8,7 +8,7 @@ final class RService {
     private let apiKey = "b7ca7001f0ea4607add6eec8873b6f6f"
     
     func fetchRecipes(for ingredients: String, completion: @escaping ([RRecipe]) -> Void) {
-        guard let apiUrl = URL(string: "https://api.spoonacular.com/recipes/complexSearch?query=\(ingredients)&apiKey=\(apiKey)") else {
+        guard let apiUrl = URL(string: "https://api.spoonacular.com/recipes/complexSearch?query=\(ingredients)&apiKey=\(apiKey)&addRecipeInformation=true") else {
             print("Error: Invalid API URL")
             completion([])
             return
