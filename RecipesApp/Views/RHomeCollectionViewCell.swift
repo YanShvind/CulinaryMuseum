@@ -4,7 +4,7 @@ import UIKit
 final class RHomeCollectionViewCell: UICollectionViewCell {
     static let cellIdentifier = "RMCharacterCollectionViewCell"
     
-    let imageView: UIImageView = {
+    private let imageView: UIImageView = {
        let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
@@ -12,12 +12,30 @@ final class RHomeCollectionViewCell: UICollectionViewCell {
         return imageView
     }()
     
-    let nameLabel: UILabel = {
+    private let nameLabel: UILabel = {
        let label = UILabel()
         label.textColor = .label
         label.font = .systemFont(ofSize: 18, weight: .medium)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
+    }()
+    
+    private let viewBackgroundHeart: UIView = {
+       let view = UIView()
+        view.backgroundColor = .systemBackground
+        view.layer.cornerRadius = 10
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    
+    private let heartImageView: UIImageView = {
+       let imageView = UIImageView()
+        imageView.contentMode = .scaleAspectFill
+        imageView.clipsToBounds = true
+        imageView.image = UIImage(systemName: "heart")
+        imageView.tintColor = .label
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        return imageView
     }()
     
     override init(frame: CGRect) {
@@ -26,6 +44,8 @@ final class RHomeCollectionViewCell: UICollectionViewCell {
         contentView.backgroundColor = .secondarySystemBackground
         
         contentView.addSubviews(imageView, nameLabel)
+        imageView.addSubview(viewBackgroundHeart)
+        viewBackgroundHeart.addSubview(heartImageView)
         addConstrants()
         setUpLayer()
     }
@@ -54,6 +74,16 @@ final class RHomeCollectionViewCell: UICollectionViewCell {
             imageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
             imageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
             imageView.bottomAnchor.constraint(equalTo: nameLabel.topAnchor, constant: -3),
+            
+            viewBackgroundHeart.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -10),
+            viewBackgroundHeart.topAnchor.constraint(equalTo: topAnchor, constant: 7),
+            viewBackgroundHeart.widthAnchor.constraint(equalToConstant: 25),
+            viewBackgroundHeart.heightAnchor.constraint(equalToConstant: 30),
+            
+            heartImageView.topAnchor.constraint(equalTo: viewBackgroundHeart.topAnchor, constant: 3),
+            heartImageView.leadingAnchor.constraint(equalTo: viewBackgroundHeart.leadingAnchor, constant: 2),
+            heartImageView.trailingAnchor.constraint(equalTo: viewBackgroundHeart.trailingAnchor, constant: -2),
+            heartImageView.bottomAnchor.constraint(equalTo: viewBackgroundHeart.bottomAnchor, constant: -3)
         ])
     }
 

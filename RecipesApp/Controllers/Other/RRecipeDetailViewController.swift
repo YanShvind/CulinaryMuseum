@@ -18,5 +18,6 @@ final class RRecipeDetailViewController: UIViewController {
         super.viewDidLoad()
         
         view.backgroundColor = .systemBackground
+        title = viewModel.title
     }
 }

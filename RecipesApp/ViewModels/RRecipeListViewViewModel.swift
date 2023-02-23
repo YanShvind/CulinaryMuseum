@@ -60,6 +60,14 @@ extension RRecipeListViewViewModel: UICollectionViewDelegate, UICollectionViewDa
     }
 }
 
+// MARK: - ScrollView
+extension RRecipeListViewViewModel: UIScrollViewDelegate {
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        print("dd")
+    }
+}
+ 
+// MARK: - SearchBar
 extension RRecipeListViewViewModel: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange textSearched: String) {
         fetchRecipes(for: textSearched)
