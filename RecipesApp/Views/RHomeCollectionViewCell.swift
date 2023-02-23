@@ -5,7 +5,7 @@ final class RHomeCollectionViewCell: UICollectionViewCell {
     static let cellIdentifier = "RMCharacterCollectionViewCell"
     
     private let imageView: UIImageView = {
-       let imageView = UIImageView()
+        let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
         imageView.translatesAutoresizingMaskIntoConstraints = false
@@ -13,7 +13,7 @@ final class RHomeCollectionViewCell: UICollectionViewCell {
     }()
     
     private let nameLabel: UILabel = {
-       let label = UILabel()
+        let label = UILabel()
         label.textColor = .label
         label.font = .systemFont(ofSize: 18, weight: .medium)
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -21,7 +21,7 @@ final class RHomeCollectionViewCell: UICollectionViewCell {
     }()
     
     private let viewBackgroundHeart: UIView = {
-       let view = UIView()
+        let view = UIView()
         view.backgroundColor = .systemBackground
         view.layer.cornerRadius = 10
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -29,7 +29,7 @@ final class RHomeCollectionViewCell: UICollectionViewCell {
     }()
     
     private let heartImageView: UIImageView = {
-       let imageView = UIImageView()
+        let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
         imageView.image = UIImage(systemName: "heart")
@@ -38,14 +38,30 @@ final class RHomeCollectionViewCell: UICollectionViewCell {
         return imageView
     }()
     
+    private let viewBackgroundTime: UIView = {
+        let view = UIView()
+        view.backgroundColor = .systemBackground
+        view.layer.cornerRadius = 10
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    
+    private let readyInTimeLabel: UILabel = {
+        let label = UILabel()
+        label.text = "155 min."
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         
         contentView.backgroundColor = .secondarySystemBackground
         
-        contentView.addSubviews(imageView, nameLabel)
+        contentView.addSubviews(imageView, nameLabel, viewBackgroundTime)
         imageView.addSubview(viewBackgroundHeart)
         viewBackgroundHeart.addSubview(heartImageView)
+        viewBackgroundTime.addSubview(readyInTimeLabel)
         addConstrants()
         setUpLayer()
     }
@@ -77,16 +93,26 @@ final class RHomeCollectionViewCell: UICollectionViewCell {
             
             viewBackgroundHeart.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -10),
             viewBackgroundHeart.topAnchor.constraint(equalTo: topAnchor, constant: 7),
-            viewBackgroundHeart.widthAnchor.constraint(equalToConstant: 25),
-            viewBackgroundHeart.heightAnchor.constraint(equalToConstant: 30),
+            viewBackgroundHeart.widthAnchor.constraint(equalToConstant: 30),
+            viewBackgroundHeart.heightAnchor.constraint(equalToConstant: 35),
             
             heartImageView.topAnchor.constraint(equalTo: viewBackgroundHeart.topAnchor, constant: 3),
             heartImageView.leadingAnchor.constraint(equalTo: viewBackgroundHeart.leadingAnchor, constant: 2),
             heartImageView.trailingAnchor.constraint(equalTo: viewBackgroundHeart.trailingAnchor, constant: -2),
-            heartImageView.bottomAnchor.constraint(equalTo: viewBackgroundHeart.bottomAnchor, constant: -3)
+            heartImageView.bottomAnchor.constraint(equalTo: viewBackgroundHeart.bottomAnchor, constant: -3),
+            
+            viewBackgroundTime.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 10),
+            viewBackgroundTime.topAnchor.constraint(equalTo: topAnchor, constant: 11),
+            viewBackgroundTime.widthAnchor.constraint(equalToConstant: 70),
+            viewBackgroundTime.heightAnchor.constraint(equalToConstant: 27),
+            
+            readyInTimeLabel.topAnchor.constraint(equalTo: viewBackgroundTime.topAnchor, constant: 3),
+            readyInTimeLabel.leadingAnchor.constraint(equalTo: viewBackgroundTime.leadingAnchor, constant: 2),
+            readyInTimeLabel.trailingAnchor.constraint(equalTo: viewBackgroundTime.trailingAnchor, constant: -2),
+            readyInTimeLabel.bottomAnchor.constraint(equalTo: viewBackgroundTime.bottomAnchor, constant: -3),
         ])
     }
-
+    
     override func prepareForReuse() {
         super.prepareForReuse()
         imageView.image = nil

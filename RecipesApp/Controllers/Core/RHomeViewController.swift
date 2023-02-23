@@ -29,6 +29,7 @@ extension RHomeViewController: RHomeListViewDelegate {
     func rHomeListView(_ recipeListView: RHomeListView, didSelectRecipe recipe: RRecipe) {
         let viewModel = RRecipeDetailViewViewModel(recipe: recipe)
         let detailVC = RRecipeDetailViewController(viewModel: viewModel)
+        print(recipe.readyInMinutes)
         navigationController?.pushViewController(detailVC, animated: true)
     }
 }
