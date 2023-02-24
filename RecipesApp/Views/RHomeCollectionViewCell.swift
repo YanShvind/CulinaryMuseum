@@ -1,8 +1,14 @@
 
 import UIKit
 
+protocol RHomeCollectionViewCellDelegate: AnyObject {
+    func didTapHeartButton(in cell: RHomeCollectionViewCell)
+}
+
 final class RHomeCollectionViewCell: UICollectionViewCell {
     static let cellIdentifier = "RMCharacterCollectionViewCell"
+    
+    weak var delegate: RHomeCollectionViewCellDelegate?
     
     private let imageView: UIImageView = {
         let imageView = UIImageView()
@@ -24,13 +30,14 @@ final class RHomeCollectionViewCell: UICollectionViewCell {
         let view = UIView()
         view.backgroundColor = .systemBackground
         view.layer.cornerRadius = 10
+        view.isUserInteractionEnabled = true
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
     
     private let heartImageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.contentMode = .scaleAspectFill
+        imageView.contentMode = .scaleAspectFit
         imageView.clipsToBounds = true
         imageView.image = UIImage(systemName: "heart")
         imageView.tintColor = .label
@@ -59,27 +66,52 @@ final class RHomeCollectionViewCell: UICollectionViewCell {
         
         contentView.backgroundColor = .secondarySystemBackground
         
-        contentView.addSubviews(imageView, nameLabel, viewBackgroundTime)
-        imageView.addSubview(viewBackgroundHeart)
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(heartTap))
+        viewBackgroundHeart.addGestureRecognizer(tapGesture)
+        
+        contentView.addSubviews(imageView, nameLabel, viewBackgroundHeart, viewBackgroundTime)
         viewBackgroundHeart.addSubview(heartImageView)
         viewBackgroundTime.addSubview(readyInTimeLabel)
         addConstrants()
         setUpLayer()
     }
     
+    @objc
+    private func heartTap(_ sender: UITapGestureRecognizer) {
+        delegate?.didTapHeartButton(in: self)
+    }
+        
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        imageView.image = nil
+        nameLabel.text = nil
+        readyInTimeLabel.text = nil
+    }
+    
+    public func configure(with viewModel: RRecipeCollectionViewCellViewModel) {
+        nameLabel.text = viewModel.recipeName
+        readyInTimeLabel.text = "\(viewModel.recipeTime) min."
+        viewModel.fetchImage { [weak self] result in
+            switch result {
+            case .success(let data):
+                DispatchQueue.main.async {
+                    let image = UIImage(data: data)
+                    self?.imageView.image = image
+                }
+            case .failure(let error):
+                print(String(describing: error))
+                break
+            }
+        }
+    }
+    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
-    // настройка теней
-    private func setUpLayer() {
-        contentView.layer.cornerRadius = 8
-        contentView.layer.shadowColor = UIColor.label.cgColor
-        contentView.layer.cornerRadius = 4
-        contentView.layer.shadowOffset = CGSize(width: -4, height: 4)
-        contentView.layer.shadowOpacity = 0.3
-    }
-    
+}
+
+extension RHomeCollectionViewCell {
+    // MARK: - AddConstraints
     private func addConstrants() {
         NSLayoutConstraint.activate([
             nameLabel.heightAnchor.constraint(equalToConstant: 40),
@@ -114,27 +146,12 @@ final class RHomeCollectionViewCell: UICollectionViewCell {
         ])
     }
     
-    override func prepareForReuse() {
-        super.prepareForReuse()
-        imageView.image = nil
-        nameLabel.text = nil
-        readyInTimeLabel.text = nil
-    }
-    
-    public func configure(with viewModel: RRecipeCollectionViewCellViewModel) {
-        nameLabel.text = viewModel.recipeName
-        readyInTimeLabel.text = "\(viewModel.recipeTime) min."
-        viewModel.fetchImage { [weak self] result in
-            switch result {
-            case .success(let data):
-                DispatchQueue.main.async {
-                    let image = UIImage(data: data)
-                    self?.imageView.image = image
-                }
-            case .failure(let error):
-                print(String(describing: error))
-                break
-            }
-        }
+    // MARK: AddShadows
+    private func setUpLayer() {
+        contentView.layer.cornerRadius = 8
+        contentView.layer.shadowColor = UIColor.label.cgColor
+        contentView.layer.cornerRadius = 4
+        contentView.layer.shadowOffset = CGSize(width: -4, height: 4)
+        contentView.layer.shadowOpacity = 0.3
     }
 }
