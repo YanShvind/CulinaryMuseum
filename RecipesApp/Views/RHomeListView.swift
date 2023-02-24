@@ -12,7 +12,7 @@ final class RHomeListView: UIView {
     
     private let viewModel = RRecipeListViewViewModel()
     
-    lazy var searchBar: UISearchBar = {
+    private var searchBar: UISearchBar = {
         let searchBar = UISearchBar()
         searchBar.searchBarStyle = UISearchBar.Style.default
         searchBar.placeholder = "Enter ingredients"
@@ -29,7 +29,7 @@ final class RHomeListView: UIView {
         return spinner
     }()
     
-    public var collectionView: UICollectionView = {
+    private var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
         layout.sectionInset = UIEdgeInsets(top: 0, left: 10, bottom: 10, right: 10)

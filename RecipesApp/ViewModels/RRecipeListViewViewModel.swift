@@ -15,7 +15,7 @@ final class RRecipeListViewViewModel: NSObject {
         didSet {
             cellViewModels = []
             for recipe in recipes {
-                let viewModel = RRecipeCollectionViewCellViewModel(recipeName: recipe.title, recipeImageUrl: URL(string: recipe.image))
+                let viewModel = RRecipeCollectionViewCellViewModel(recipeName: recipe.title, recipeTime: recipe.readyInMinutes, recipeImageUrl: URL(string: recipe.image))
                 cellViewModels.append(viewModel)
             }
         }
