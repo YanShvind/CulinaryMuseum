@@ -49,6 +49,7 @@ final class RHomeCollectionViewCell: UICollectionViewCell {
     private let readyInTimeLabel: UILabel = {
         let label = UILabel()
         label.text = "155 min."
+        label.textAlignment = .center
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -103,7 +104,7 @@ final class RHomeCollectionViewCell: UICollectionViewCell {
             
             viewBackgroundTime.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 10),
             viewBackgroundTime.topAnchor.constraint(equalTo: topAnchor, constant: 11),
-            viewBackgroundTime.widthAnchor.constraint(equalToConstant: 70),
+            viewBackgroundTime.widthAnchor.constraint(equalToConstant: 75),
             viewBackgroundTime.heightAnchor.constraint(equalToConstant: 27),
             
             readyInTimeLabel.topAnchor.constraint(equalTo: viewBackgroundTime.topAnchor, constant: 3),
@@ -117,10 +118,12 @@ final class RHomeCollectionViewCell: UICollectionViewCell {
         super.prepareForReuse()
         imageView.image = nil
         nameLabel.text = nil
+        readyInTimeLabel.text = nil
     }
     
     public func configure(with viewModel: RRecipeCollectionViewCellViewModel) {
         nameLabel.text = viewModel.recipeName
+        readyInTimeLabel.text = "\(viewModel.recipeTime) min."
         viewModel.fetchImage { [weak self] result in
             switch result {
             case .success(let data):

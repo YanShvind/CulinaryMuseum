@@ -3,10 +3,12 @@ import Foundation
 
 final class RRecipeCollectionViewCellViewModel {
     public let recipeName: String
+    public let recipeTime: Int
     private let recipeImageUrl: URL?
     
-    init(recipeName: String, recipeImageUrl: URL?) {
+    init(recipeName: String, recipeTime: Int, recipeImageUrl: URL?) {
         self.recipeName = recipeName
+        self.recipeTime = recipeTime
         self.recipeImageUrl = recipeImageUrl
     }
     
