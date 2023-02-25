@@ -3,9 +3,9 @@ import Foundation
 import UIKit
 
 final class RRecipeDetailViewController: UIViewController {
-    private let viewModel: RRecipeDetailViewViewModel
+    private let viewModel: RHomeDetailViewViewModel
     
-    init(viewModel: RRecipeDetailViewViewModel){
+    init(viewModel: RHomeDetailViewViewModel){
         self.viewModel = viewModel
         super .init(nibName: nil, bundle: nil)
     }

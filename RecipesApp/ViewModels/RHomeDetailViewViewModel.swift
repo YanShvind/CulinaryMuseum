@@ -1,7 +1,7 @@
 
 import Foundation
 
-final class RRecipeDetailViewViewModel {
+final class RHomeDetailViewViewModel {
     private let recipe: RRecipe
     
     init(recipe: RRecipe) {

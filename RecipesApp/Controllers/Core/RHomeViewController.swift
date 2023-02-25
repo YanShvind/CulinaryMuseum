@@ -25,15 +25,11 @@ final class RHomeViewController: UIViewController {
     }
 }
 
-extension RHomeViewController: RHomeListViewDelegate, RHomeCollectionViewCellDelegate {
+extension RHomeViewController: RHomeListViewDelegate {
     func rHomeListView(_ recipeListView: RHomeListView, didSelectRecipe recipe: RRecipe) {
-        let viewModel = RRecipeDetailViewViewModel(recipe: recipe)
+        let viewModel = RHomeDetailViewViewModel(recipe: recipe)
         let detailVC = RRecipeDetailViewController(viewModel: viewModel)
         print(recipe.readyInMinutes)
         navigationController?.pushViewController(detailVC, animated: true)
-    }
-    
-    func didTapHeartButton(in cell: RHomeCollectionViewCell) {
-        
     }
 }

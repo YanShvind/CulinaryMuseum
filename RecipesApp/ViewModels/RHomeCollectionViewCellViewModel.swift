@@ -1,14 +1,16 @@
 
 import Foundation
 
-final class RRecipeCollectionViewCellViewModel {
+final class RHomeCollectionViewCellViewModel {
     public let recipeName: String
     public let recipeTime: Int
+    public var isFavorite: Bool
     private let recipeImageUrl: URL?
     
-    init(recipeName: String, recipeTime: Int, recipeImageUrl: URL?) {
+    init(recipeName: String, recipeTime: Int, recipeImageUrl: URL?, isFavorite: Bool) {
         self.recipeName = recipeName
         self.recipeTime = recipeTime
+        self.isFavorite = isFavorite
         self.recipeImageUrl = recipeImageUrl
     }
     

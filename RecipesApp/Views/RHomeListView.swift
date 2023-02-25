@@ -10,7 +10,7 @@ final class RHomeListView: UIView {
     
     public weak var delegate: RHomeListViewDelegate?
     
-    private let viewModel = RRecipeListViewViewModel()
+    private let viewModel = RHomeListViewViewModel()
     
     private var searchBar: UISearchBar = {
         let searchBar = UISearchBar()
@@ -39,6 +39,9 @@ final class RHomeListView: UIView {
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.register(RHomeCollectionViewCell.self,
                                 forCellWithReuseIdentifier: RHomeCollectionViewCell.cellIdentifier)
+        collectionView.register(RFooterLoadingCollectionReusableView.self,
+                                forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter,
+                                withReuseIdentifier: RFooterLoadingCollectionReusableView.identifier)
         return collectionView
     }()
     
@@ -84,7 +87,7 @@ final class RHomeListView: UIView {
     }
 }
 
-extension RHomeListView: RRecipeListViewViewModelDelegate {
+extension RHomeListView: RHomeListViewViewModelDelegate {
     func diSelectRecipes(_ recipe: RRecipe) {
         delegate?.rHomeListView(self, didSelectRecipe: recipe)
     }
