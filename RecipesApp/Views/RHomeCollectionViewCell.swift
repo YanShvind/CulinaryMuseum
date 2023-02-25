@@ -9,7 +9,7 @@ final class RHomeCollectionViewCell: UICollectionViewCell {
     static let cellIdentifier = "RMCharacterCollectionViewCell"
     
     weak var delegate: RHomeCollectionViewCellDelegate?
-    
+
     private let imageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFill
@@ -88,7 +88,7 @@ final class RHomeCollectionViewCell: UICollectionViewCell {
         readyInTimeLabel.text = nil
     }
     
-    public func configure(with viewModel: RRecipeCollectionViewCellViewModel) {
+    public func configure(with viewModel: RHomeCollectionViewCellViewModel) {
         nameLabel.text = viewModel.recipeName
         readyInTimeLabel.text = "\(viewModel.recipeTime) min."
         viewModel.fetchImage { [weak self] result in
@@ -102,6 +102,11 @@ final class RHomeCollectionViewCell: UICollectionViewCell {
                 print(String(describing: error))
                 break
             }
+        }
+        if viewModel.isFavorite {
+            heartImageView.tintColor = .systemRed
+        } else {
+            heartImageView.tintColor = .label
         }
     }
     
