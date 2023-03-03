@@ -26,7 +26,7 @@ final class RHomeListViewViewModel: NSObject {
     private var cellViewModels: [RHomeCollectionViewCellViewModel] = []
     
     func fetchRecipes(for ingredient: String) {
-        RService.shared.fetchRecipes(for: ingredient) { [weak self] results in
+        RService.shared.fetchRecipes(for: ingredient, random: true) { [weak self] results in
             self?.recipes = results
             self?.delegate?.didLoadInitialRecipes()
         }
@@ -90,13 +90,6 @@ extension RHomeListViewViewModel: UICollectionViewDelegate, UICollectionViewData
         return CGSize(width: collectionView.frame.width, height: 100)
     }
 }
- 
-// MARK: - SearchBar
-extension RHomeListViewViewModel: UISearchBarDelegate {
-    func searchBar(_ searchBar: UISearchBar, textDidChange textSearched: String) {
-        fetchRecipes(for: textSearched)
-    }
-}
 
 // MARK: - ScrollView
 // находимся ли мы внизу?
@@ -112,5 +105,12 @@ extension RHomeListViewViewModel: UIScrollViewDelegate {
         if offset >= (totalContentHeight - totalScrollViewFixedHeight - 120) {
             fetchAddicationalRecipes()
         }
+    }
+}
+
+// MARK: - SearchBar
+extension RHomeListViewViewModel: UISearchBarDelegate {
+    func searchBar(_ searchBar: UISearchBar, textDidChange textSearched: String) {
+        fetchRecipes(for: textSearched)
     }
 }
