@@ -5,6 +5,7 @@ import UIKit
 protocol RHomeListViewViewModelDelegate: AnyObject {
     func didLoadInitialRecipes()
     func diSelectRecipes(_ recipe: RRecipe)
+    func didLoadMoreRecipes(with newIndexPaths: [IndexPath])
 }
 
 final class RHomeListViewViewModel: NSObject {
@@ -15,10 +16,14 @@ final class RHomeListViewViewModel: NSObject {
     
     private var recipes: [RRecipe] = [] {
         didSet {
-            cellViewModels = []
             for recipe in recipes {
-                let viewModel = RHomeCollectionViewCellViewModel(recipeName: recipe.title, recipeTime: recipe.readyInMinutes, recipeImageUrl: URL(string: recipe.image), isFavorite: false)
-                cellViewModels.append(viewModel)
+                let viewModel = RHomeCollectionViewCellViewModel(recipeName: recipe.title,
+                                                                 recipeTime: recipe.readyInMinutes,
+                                                                 recipeImageUrl: URL(string: recipe.image),
+                                                                 isFavorite: false)
+                if !cellViewModels.contains(viewModel){
+                    cellViewModels.append(viewModel)
+                }
             }
         }
     }
@@ -26,7 +31,7 @@ final class RHomeListViewViewModel: NSObject {
     private var cellViewModels: [RHomeCollectionViewCellViewModel] = []
     
     func fetchRecipes(for ingredient: String) {
-        RService.shared.fetchRecipes(for: ingredient) { [weak self] results in
+        RService.shared.fetchRecipes(for: ingredient, random: true) { [weak self] results in
             self?.recipes = results
             self?.delegate?.didLoadInitialRecipes()
         }
@@ -34,7 +39,31 @@ final class RHomeListViewViewModel: NSObject {
     
     // добавление дополнительных рецептов, когда пользователь прокрутит вниз
     public func fetchAddicationalRecipes() {
+        guard !isLoadingMoreRecipes else {
+            return
+        }
         isLoadingMoreRecipes = true
+        
+        RService.shared.fetchRecipes(random: true) { [weak self] results in
+            guard let strongSelf = self else {
+                return
+            }
+            let moreResults = results
+            
+            let originalCount = strongSelf.recipes.count
+            let newCount = moreResults.count
+            let total = originalCount + newCount
+            let startingIndex = total - newCount
+            let indexPathsToAdd: [IndexPath] = Array(startingIndex..<(startingIndex + newCount)).compactMap {
+                return IndexPath(row: $0, section: 0)
+            }
+            
+            strongSelf.recipes.append(contentsOf: moreResults)
+            DispatchQueue.main.async {
+                strongSelf.delegate?.didLoadMoreRecipes(with: indexPathsToAdd)
+                strongSelf.isLoadingMoreRecipes = false
+            }
+        }
     }
     
     public var shouldShowLoadMoreIndicator: Bool {
@@ -44,7 +73,7 @@ final class RHomeListViewViewModel: NSObject {
 
 extension RHomeListViewViewModel: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return recipes.count
+        return cellViewModels.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -90,27 +119,33 @@ extension RHomeListViewViewModel: UICollectionViewDelegate, UICollectionViewData
         return CGSize(width: collectionView.frame.width, height: 100)
     }
 }
- 
-// MARK: - SearchBar
-extension RHomeListViewViewModel: UISearchBarDelegate {
-    func searchBar(_ searchBar: UISearchBar, textDidChange textSearched: String) {
-        fetchRecipes(for: textSearched)
-    }
-}
 
 // MARK: - ScrollView
 // находимся ли мы внизу?
 extension RHomeListViewViewModel: UIScrollViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        guard shouldShowLoadMoreIndicator, !isLoadingMoreRecipes else {
+        guard shouldShowLoadMoreIndicator,
+              !cellViewModels.isEmpty,
+              !isLoadingMoreRecipes else {
             return
         }
-        let offset = scrollView.contentOffset.y
-        let totalContentHeight = scrollView.contentSize.height
-        let totalScrollViewFixedHeight = scrollView.frame.size.height
         
-        if offset >= (totalContentHeight - totalScrollViewFixedHeight - 120) {
-            fetchAddicationalRecipes()
+        Timer.scheduledTimer(withTimeInterval: 0.2, repeats: false) { [weak self] timer in
+            let offset = scrollView.contentOffset.y
+            let totalContentHeight = scrollView.contentSize.height
+            let totalScrollViewFixedHeight = scrollView.frame.size.height
+            
+            if offset >= (totalContentHeight - totalScrollViewFixedHeight - 120) {
+                self?.fetchAddicationalRecipes()
+            }
+            timer.invalidate()
         }
+    }
+}
+
+// MARK: - SearchBar
+extension RHomeListViewViewModel: UISearchBarDelegate {
+    func searchBar(_ searchBar: UISearchBar, textDidChange textSearched: String) {
+        fetchRecipes(for: textSearched)
     }
 }

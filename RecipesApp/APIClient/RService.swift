@@ -5,10 +5,16 @@ final class RService {
     
     static let shared = RService()
     
-    private let apiKey = "b7ca7001f0ea4607add6eec8873b6f6f"
+    private let apiKey = "b7d3acc52a0c4055a402dba556564503"
     
-    func fetchRecipes(for ingredients: String, completion: @escaping ([RRecipe]) -> Void) {
-        guard let apiUrl = URL(string: "https://api.spoonacular.com/recipes/complexSearch?query=\(ingredients)&apiKey=\(apiKey)&addRecipeInformation=true") else {
+    func fetchRecipes(for ingredients: String = "", random: Bool = false, completion: @escaping ([RRecipe]) -> Void) {
+        var apiUrlString = "https://api.spoonacular.com/recipes/complexSearch?query=\(ingredients)&apiKey=\(apiKey)&addRecipeInformation=true&number=10"
+        
+        if random {
+            apiUrlString += "&offset=\(Int.random(in: 0..<100))"
+        }
+        
+        guard let apiUrl = URL(string: apiUrlString) else {
             print("Error: Invalid API URL")
             completion([])
             return

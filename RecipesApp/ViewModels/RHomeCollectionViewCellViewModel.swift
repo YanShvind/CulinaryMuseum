@@ -1,7 +1,7 @@
 
 import Foundation
 
-final class RHomeCollectionViewCellViewModel {
+final class RHomeCollectionViewCellViewModel: Hashable, Equatable {
     public let recipeName: String
     public let recipeTime: Int
     public var isFavorite: Bool
@@ -19,14 +19,18 @@ final class RHomeCollectionViewCellViewModel {
             print("Invalid image URL")
             return
         }
-        let request = URLRequest(url: imageUrl)
-        let task = URLSession.shared.dataTask(with: request) { data, response, error in
-            guard let data = data, error == nil else {
-                print("Error: \(error?.localizedDescription ?? "Unknown error")")
-                return
-            }
-            complection(.success(data))
-        }
-        task.resume()
+        RImageManager.shared.downloadImage(imageUrl, complection: complection)
+    }
+    
+    // MARK: - Hashable
+    static func == (lhs: RHomeCollectionViewCellViewModel, rhs: RHomeCollectionViewCellViewModel) -> Bool {
+        return lhs.hashValue == rhs.hashValue
+    }
+    
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(recipeName)
+        hasher.combine(recipeTime)
+        hasher.combine(isFavorite)
+        hasher.combine(recipeImageUrl)
     }
 }
