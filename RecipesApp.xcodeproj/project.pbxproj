@@ -28,6 +28,7 @@
 		6D8732F229A3C6D500AA8FE5 /* RRecipeDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D8732F129A3C6D500AA8FE5 /* RRecipeDetailViewController.swift */; };
 		6D8732F629AA2C3E00AA8FE5 /* RFooterLoadingCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D8732F529AA2C3E00AA8FE5 /* RFooterLoadingCollectionReusableView.swift */; };
 		6D8732F829AA2D1B00AA8FE5 /* RHomeDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D8732F729AA2D1B00AA8FE5 /* RHomeDetailView.swift */; };
+		6D87331029B2934200AA8FE5 /* RImageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D87330F29B2934200AA8FE5 /* RImageManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -54,6 +55,7 @@
 		6D8732F129A3C6D500AA8FE5 /* RRecipeDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RRecipeDetailViewController.swift; sourceTree = "<group>"; };
 		6D8732F529AA2C3E00AA8FE5 /* RFooterLoadingCollectionReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RFooterLoadingCollectionReusableView.swift; sourceTree = "<group>"; };
 		6D8732F729AA2D1B00AA8FE5 /* RHomeDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RHomeDetailView.swift; sourceTree = "<group>"; };
+		6D87330F29B2934200AA8FE5 /* RImageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RImageManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,6 +107,7 @@
 			isa = PBXGroup;
 			children = (
 				6D6E9E8A299B7DBE00A2A1D5 /* Application */,
+				6D87330E29B2932100AA8FE5 /* Managers */,
 				6D5EB2A829A170E4009529D4 /* APIClient */,
 				6D5EB2A729A170BA009529D4 /* ViewModels */,
 				6D6E9EE329A02CBE00A2A1D5 /* Views */,
@@ -182,6 +185,14 @@
 				6D8732F129A3C6D500AA8FE5 /* RRecipeDetailViewController.swift */,
 			);
 			path = Other;
+			sourceTree = "<group>";
+		};
+		6D87330E29B2932100AA8FE5 /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				6D87330F29B2934200AA8FE5 /* RImageManager.swift */,
+			);
+			path = Managers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -272,6 +283,7 @@
 				6D6E9E77299B7D2000A2A1D5 /* SceneDelegate.swift in Sources */,
 				6D8732F229A3C6D500AA8FE5 /* RRecipeDetailViewController.swift in Sources */,
 				6D8732F029A3C63200AA8FE5 /* RHomeDetailViewViewModel.swift in Sources */,
+				6D87331029B2934200AA8FE5 /* RImageManager.swift in Sources */,
 				6D5EB2AA29A1710B009529D4 /* RService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

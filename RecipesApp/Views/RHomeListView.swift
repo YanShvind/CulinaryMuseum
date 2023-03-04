@@ -88,6 +88,12 @@ final class RHomeListView: UIView {
 }
 
 extension RHomeListView: RHomeListViewViewModelDelegate {
+    func didLoadMoreRecipes(with newIndexPaths: [IndexPath]) {
+        collectionView.performBatchUpdates {
+            self.collectionView.insertItems(at: newIndexPaths)
+        }
+    }
+    
     func diSelectRecipes(_ recipe: RRecipe) {
         delegate?.rHomeListView(self, didSelectRecipe: recipe)
     }
