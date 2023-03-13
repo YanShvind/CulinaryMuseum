@@ -11,23 +11,23 @@ final class RTabBarViewController: UITabBarController {
     }
 
     private func setUpTabs() {
-        let homeVC = RHomeViewController()
+        let searchVC = RSearchViewController()
         let categoriesVC = RCategoriesViewController()
         let favoritesVC = RFavoritesViewController()
         let newRecipeVC = RNewRecipeViewController()
         
-        homeVC.navigationItem.largeTitleDisplayMode = .automatic
+        searchVC.navigationItem.largeTitleDisplayMode = .automatic
         categoriesVC.navigationItem.largeTitleDisplayMode = .automatic
         favoritesVC.navigationItem.largeTitleDisplayMode = .automatic
         newRecipeVC.navigationItem.largeTitleDisplayMode = .automatic
 
-        let nav1 = UINavigationController(rootViewController: homeVC)
+        let nav1 = UINavigationController(rootViewController: searchVC)
         let nav2 = UINavigationController(rootViewController: categoriesVC)
         let nav3 = UINavigationController(rootViewController: favoritesVC)
         let nav4 = UINavigationController(rootViewController: newRecipeVC)
         
-        nav1.tabBarItem = UITabBarItem(title: "Home",
-                                       image: UIImage(systemName: "house.fill"),
+        nav1.tabBarItem = UITabBarItem(title: "Search",
+                                       image: UIImage(systemName: "magnifyingglass"),
                                        tag: 1)
         nav2.tabBarItem = UITabBarItem(title: "Categories",
                                        image: UIImage(systemName: "bookmark.fill"),
