@@ -2,20 +2,23 @@
 import Foundation
 import UIKit
 
-protocol RHomeListViewViewModelDelegate: AnyObject {
+protocol RSearchListViewViewModelDelegate: AnyObject {
     func didLoadInitialRecipes()
     func diSelectRecipes(_ recipe: RRecipe)
     func didLoadMoreRecipes(with newIndexPaths: [IndexPath])
 }
 
-final class RHomeListViewViewModel: NSObject {
+final class RSearchListViewViewModel: NSObject {
     
-    public weak var delegate: RHomeListViewViewModelDelegate?
+    public weak var delegate: RSearchListViewViewModelDelegate?
+    
+    private var currentSearchText: String = ""
     
     private var isLoadingMoreRecipes = false
     
     private var recipes: [RRecipe] = [] {
         didSet {
+            cellViewModels = []
             for recipe in recipes {
                 let viewModel = RHomeCollectionViewCellViewModel(recipeName: recipe.title,
                                                                  recipeTime: recipe.readyInMinutes,
@@ -30,13 +33,17 @@ final class RHomeListViewViewModel: NSObject {
     
     private var cellViewModels: [RHomeCollectionViewCellViewModel] = []
     
-    func fetchRecipes(for ingredient: String) {
-        RService.shared.fetchRecipes(for: ingredient, random: true) { [weak self] results in
-            self?.recipes = results
-            self?.delegate?.didLoadInitialRecipes()
+    func fetchRecipes(for searchIngredient: String) {
+        currentSearchText = searchIngredient
+        RService.shared.fetchRecipes(for: searchIngredient, random: true) { [weak self] results in
+            guard let strongSelf = self else {
+                return
+            }
+            strongSelf.recipes = results
+            strongSelf.delegate?.didLoadInitialRecipes()
         }
     }
-    
+
     // добавление дополнительных рецептов, когда пользователь прокрутит вниз
     public func fetchAddicationalRecipes() {
         guard !isLoadingMoreRecipes else {
@@ -44,7 +51,7 @@ final class RHomeListViewViewModel: NSObject {
         }
         isLoadingMoreRecipes = true
         
-        RService.shared.fetchRecipes(random: true) { [weak self] results in
+        RService.shared.fetchRecipes(for: currentSearchText, random: true) { [weak self] results in
             guard let strongSelf = self else {
                 return
             }
@@ -71,7 +78,7 @@ final class RHomeListViewViewModel: NSObject {
     }
 }
 
-extension RHomeListViewViewModel: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+extension RSearchListViewViewModel: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return cellViewModels.count
     }
@@ -122,7 +129,7 @@ extension RHomeListViewViewModel: UICollectionViewDelegate, UICollectionViewData
 
 // MARK: - ScrollView
 // находимся ли мы внизу?
-extension RHomeListViewViewModel: UIScrollViewDelegate {
+extension RSearchListViewViewModel: UIScrollViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         guard shouldShowLoadMoreIndicator,
               !cellViewModels.isEmpty,
@@ -144,8 +151,8 @@ extension RHomeListViewViewModel: UIScrollViewDelegate {
 }
 
 // MARK: - SearchBar
-extension RHomeListViewViewModel: UISearchBarDelegate {
+extension RSearchListViewViewModel: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange textSearched: String) {
-        fetchRecipes(for: textSearched)
+            self.fetchRecipes(for: textSearched)
     }
 }

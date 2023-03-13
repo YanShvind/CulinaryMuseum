@@ -1,16 +1,16 @@
 
 import UIKit
 
-protocol RHomeListViewDelegate: AnyObject {
-    func rHomeListView(_ recipeListView: RHomeListView,
+protocol RSearchListViewDelegate: AnyObject {
+    func rHomeListView(_ recipeListView: RSearchListView,
                        didSelectRecipe recipe: RRecipe)
 }
 
-final class RHomeListView: UIView {
+final class RSearchListView: UIView {
     
-    public weak var delegate: RHomeListViewDelegate?
+    public weak var delegate: RSearchListViewDelegate?
     
-    private let viewModel = RHomeListViewViewModel()
+    private let viewModel = RSearchListViewViewModel()
     
     private var searchBar: UISearchBar = {
         let searchBar = UISearchBar()
@@ -87,7 +87,7 @@ final class RHomeListView: UIView {
     }
 }
 
-extension RHomeListView: RHomeListViewViewModelDelegate {
+extension RSearchListView: RSearchListViewViewModelDelegate {
     func didLoadMoreRecipes(with newIndexPaths: [IndexPath]) {
         collectionView.performBatchUpdates {
             self.collectionView.insertItems(at: newIndexPaths)

@@ -8,18 +8,18 @@
 
 /* Begin PBXBuildFile section */
 		6D5EB2AA29A1710B009529D4 /* RService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D5EB2A929A1710B009529D4 /* RService.swift */; };
-		6D5EB2AC29A17418009529D4 /* RHomeListViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D5EB2AB29A17418009529D4 /* RHomeListViewViewModel.swift */; };
+		6D5EB2AC29A17418009529D4 /* RSearchListViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D5EB2AB29A17418009529D4 /* RSearchListViewViewModel.swift */; };
 		6D5EB2AE29A24A99009529D4 /* RHomeCollectionViewCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D5EB2AD29A24A99009529D4 /* RHomeCollectionViewCellViewModel.swift */; };
 		6D6E9E75299B7D2000A2A1D5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D6E9E74299B7D2000A2A1D5 /* AppDelegate.swift */; };
 		6D6E9E77299B7D2000A2A1D5 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D6E9E76299B7D2000A2A1D5 /* SceneDelegate.swift */; };
 		6D6E9E79299B7D2000A2A1D5 /* RTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D6E9E78299B7D2000A2A1D5 /* RTabBarViewController.swift */; };
 		6D6E9E7E299B7D2000A2A1D5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6D6E9E7D299B7D2000A2A1D5 /* Assets.xcassets */; };
 		6D6E9E81299B7D2000A2A1D5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6D6E9E7F299B7D2000A2A1D5 /* LaunchScreen.storyboard */; };
-		6D6E9E8C299B7EE400A2A1D5 /* RHomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D6E9E8B299B7EE400A2A1D5 /* RHomeViewController.swift */; };
+		6D6E9E8C299B7EE400A2A1D5 /* RSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D6E9E8B299B7EE400A2A1D5 /* RSearchViewController.swift */; };
 		6D6E9E8E299B7F1800A2A1D5 /* RCategoriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D6E9E8D299B7F1800A2A1D5 /* RCategoriesViewController.swift */; };
 		6D6E9E90299B7F4000A2A1D5 /* RFavoritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D6E9E8F299B7F4000A2A1D5 /* RFavoritesViewController.swift */; };
 		6D6E9E92299B7F7000A2A1D5 /* RNewRecipeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D6E9E91299B7F7000A2A1D5 /* RNewRecipeViewController.swift */; };
-		6D6E9EE529A02CE400A2A1D5 /* RHomeListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D6E9EE429A02CE400A2A1D5 /* RHomeListView.swift */; };
+		6D6E9EE529A02CE400A2A1D5 /* RSearchListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D6E9EE429A02CE400A2A1D5 /* RSearchListView.swift */; };
 		6D6E9EE729A02D6800A2A1D5 /* RHomeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D6E9EE629A02D6800A2A1D5 /* RHomeCollectionViewCell.swift */; };
 		6D6E9EEA29A02DD900A2A1D5 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D6E9EE929A02DD900A2A1D5 /* Extensions.swift */; };
 		6D6E9EED29A0312000A2A1D5 /* RRecipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D6E9EEC29A0312000A2A1D5 /* RRecipe.swift */; };
@@ -33,7 +33,7 @@
 
 /* Begin PBXFileReference section */
 		6D5EB2A929A1710B009529D4 /* RService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RService.swift; sourceTree = "<group>"; };
-		6D5EB2AB29A17418009529D4 /* RHomeListViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RHomeListViewViewModel.swift; sourceTree = "<group>"; };
+		6D5EB2AB29A17418009529D4 /* RSearchListViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RSearchListViewViewModel.swift; sourceTree = "<group>"; };
 		6D5EB2AD29A24A99009529D4 /* RHomeCollectionViewCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RHomeCollectionViewCellViewModel.swift; sourceTree = "<group>"; };
 		6D6E9E71299B7D2000A2A1D5 /* RecipesApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RecipesApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6D6E9E74299B7D2000A2A1D5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -42,11 +42,11 @@
 		6D6E9E7D299B7D2000A2A1D5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		6D6E9E80299B7D2000A2A1D5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		6D6E9E82299B7D2000A2A1D5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		6D6E9E8B299B7EE400A2A1D5 /* RHomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RHomeViewController.swift; sourceTree = "<group>"; };
+		6D6E9E8B299B7EE400A2A1D5 /* RSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RSearchViewController.swift; sourceTree = "<group>"; };
 		6D6E9E8D299B7F1800A2A1D5 /* RCategoriesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RCategoriesViewController.swift; sourceTree = "<group>"; };
 		6D6E9E8F299B7F4000A2A1D5 /* RFavoritesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RFavoritesViewController.swift; sourceTree = "<group>"; };
 		6D6E9E91299B7F7000A2A1D5 /* RNewRecipeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RNewRecipeViewController.swift; sourceTree = "<group>"; };
-		6D6E9EE429A02CE400A2A1D5 /* RHomeListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RHomeListView.swift; sourceTree = "<group>"; };
+		6D6E9EE429A02CE400A2A1D5 /* RSearchListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RSearchListView.swift; sourceTree = "<group>"; };
 		6D6E9EE629A02D6800A2A1D5 /* RHomeCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RHomeCollectionViewCell.swift; sourceTree = "<group>"; };
 		6D6E9EE929A02DD900A2A1D5 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		6D6E9EEC29A0312000A2A1D5 /* RRecipe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RRecipe.swift; sourceTree = "<group>"; };
@@ -72,7 +72,7 @@
 		6D5EB2A729A170BA009529D4 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
-				6D5EB2AB29A17418009529D4 /* RHomeListViewViewModel.swift */,
+				6D5EB2AB29A17418009529D4 /* RSearchListViewViewModel.swift */,
 				6D5EB2AD29A24A99009529D4 /* RHomeCollectionViewCellViewModel.swift */,
 				6D8732EF29A3C63200AA8FE5 /* RHomeDetailViewViewModel.swift */,
 			);
@@ -150,7 +150,7 @@
 		6D6E9EE329A02CBE00A2A1D5 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				6D6E9EE429A02CE400A2A1D5 /* RHomeListView.swift */,
+				6D6E9EE429A02CE400A2A1D5 /* RSearchListView.swift */,
 				6D6E9EE629A02D6800A2A1D5 /* RHomeCollectionViewCell.swift */,
 				6D8732F729AA2D1B00AA8FE5 /* RHomeDetailView.swift */,
 				6D8732F529AA2C3E00AA8FE5 /* RFooterLoadingCollectionReusableView.swift */,
@@ -171,7 +171,7 @@
 			isa = PBXGroup;
 			children = (
 				6D6E9E78299B7D2000A2A1D5 /* RTabBarViewController.swift */,
-				6D6E9E8B299B7EE400A2A1D5 /* RHomeViewController.swift */,
+				6D6E9E8B299B7EE400A2A1D5 /* RSearchViewController.swift */,
 				6D6E9E8D299B7F1800A2A1D5 /* RCategoriesViewController.swift */,
 				6D6E9E8F299B7F4000A2A1D5 /* RFavoritesViewController.swift */,
 				6D6E9E91299B7F7000A2A1D5 /* RNewRecipeViewController.swift */,
@@ -275,11 +275,11 @@
 				6D6E9EEF29A031DC00A2A1D5 /* RSearchResults.swift in Sources */,
 				6D8732F829AA2D1B00AA8FE5 /* RHomeDetailView.swift in Sources */,
 				6D6E9EEA29A02DD900A2A1D5 /* Extensions.swift in Sources */,
-				6D6E9EE529A02CE400A2A1D5 /* RHomeListView.swift in Sources */,
-				6D5EB2AC29A17418009529D4 /* RHomeListViewViewModel.swift in Sources */,
+				6D6E9EE529A02CE400A2A1D5 /* RSearchListView.swift in Sources */,
+				6D5EB2AC29A17418009529D4 /* RSearchListViewViewModel.swift in Sources */,
 				6D6E9EE729A02D6800A2A1D5 /* RHomeCollectionViewCell.swift in Sources */,
 				6D6E9E90299B7F4000A2A1D5 /* RFavoritesViewController.swift in Sources */,
-				6D6E9E8C299B7EE400A2A1D5 /* RHomeViewController.swift in Sources */,
+				6D6E9E8C299B7EE400A2A1D5 /* RSearchViewController.swift in Sources */,
 				6D6E9E77299B7D2000A2A1D5 /* SceneDelegate.swift in Sources */,
 				6D8732F229A3C6D500AA8FE5 /* RRecipeDetailViewController.swift in Sources */,
 				6D8732F029A3C63200AA8FE5 /* RHomeDetailViewViewModel.swift in Sources */,
