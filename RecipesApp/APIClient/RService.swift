@@ -5,7 +5,7 @@ final class RService {
     
     static let shared = RService()
     
-    private let apiKey = "b7d3acc52a0c4055a402dba556564503"
+    private let apiKey = "b7ca7001f0ea4607add6eec8873b6f6f"
     
     func fetchRecipes(for ingredients: String = "", random: Bool = false, completion: @escaping ([RRecipe]) -> Void) {
         var apiUrlString = "https://api.spoonacular.com/recipes/complexSearch?query=\(ingredients)&apiKey=\(apiKey)&addRecipeInformation=true&number=10"
@@ -34,6 +34,34 @@ final class RService {
             } catch {
                 print("Error: \(error)")
                 completion([])
+            }
+        }
+        task.resume()
+    }
+    
+    func fetchRecipeInformation(for recipeId: Int, completion: @escaping (RRecipeInformation?) -> Void) {
+        let apiUrlString = "https://api.spoonacular.com/recipes/\(recipeId)/information?apiKey=\(apiKey)"
+        
+        guard let apiUrl = URL(string: apiUrlString) else {
+            print("Error: Invalid API URL")
+            completion(nil)
+            return
+        }
+        
+        let task = URLSession.shared.dataTask(with: apiUrl) { data, response, error in
+            guard let data = data, error == nil else {
+                print("Error: \(error?.localizedDescription ?? "Unknown error")")
+                completion(nil)
+                return
+            }
+            
+            do {
+                let decoder = JSONDecoder()
+                let recipeInfo = try decoder.decode(RRecipeInformation.self, from: data)
+                completion(recipeInfo)
+            } catch {
+                print("Error: \(error)")
+                completion(nil)
             }
         }
         task.resume()

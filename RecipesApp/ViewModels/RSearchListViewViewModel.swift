@@ -20,7 +20,7 @@ final class RSearchListViewViewModel: NSObject {
         didSet {
             cellViewModels = []
             for recipe in recipes {
-                let viewModel = RHomeCollectionViewCellViewModel(recipeName: recipe.title,
+                let viewModel = RSearchCollectionViewCellViewModel(recipeName: recipe.title,
                                                                  recipeTime: recipe.readyInMinutes,
                                                                  recipeImageUrl: URL(string: recipe.image),
                                                                  isFavorite: false)
@@ -31,9 +31,9 @@ final class RSearchListViewViewModel: NSObject {
         }
     }
     
-    private var cellViewModels: [RHomeCollectionViewCellViewModel] = []
+    private var cellViewModels: [RSearchCollectionViewCellViewModel] = []
     
-    func fetchRecipes(for searchIngredient: String) {
+    public func fetchRecipes(for searchIngredient: String) {
         currentSearchText = searchIngredient
         RService.shared.fetchRecipes(for: searchIngredient, random: true) { [weak self] results in
             guard let strongSelf = self else {
@@ -84,8 +84,8 @@ extension RSearchListViewViewModel: UICollectionViewDelegate, UICollectionViewDa
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: RHomeCollectionViewCell.cellIdentifier,
-                                                            for: indexPath) as? RHomeCollectionViewCell else {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: RSearchCollectionViewCell.cellIdentifier,
+                                                            for: indexPath) as? RSearchCollectionViewCell else {
             fatalError("Unsupported cell")
         }
 

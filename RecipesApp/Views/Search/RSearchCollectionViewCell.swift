@@ -1,14 +1,15 @@
 
 import UIKit
 
-protocol RHomeCollectionViewCellDelegate: AnyObject {
-    func didTapHeartButton(in cell: RHomeCollectionViewCell)
+protocol RSearchCollectionViewCellDelegate: AnyObject {
+    func didTapHeartButton(in cell: RSearchCollectionViewCell)
 }
 
-final class RHomeCollectionViewCell: UICollectionViewCell {
-    static let cellIdentifier = "RMCharacterCollectionViewCell"
+final class RSearchCollectionViewCell: UICollectionViewCell {
     
-    weak var delegate: RHomeCollectionViewCellDelegate?
+    static let cellIdentifier = "RSearchCollectionViewCell"
+    
+    weak var delegate: RSearchCollectionViewCellDelegate?
 
     private let imageView: UIImageView = {
         let imageView = UIImageView()
@@ -88,7 +89,7 @@ final class RHomeCollectionViewCell: UICollectionViewCell {
         readyInTimeLabel.text = nil
     }
     
-    public func configure(with viewModel: RHomeCollectionViewCellViewModel) {
+    public func configure(with viewModel: RSearchCollectionViewCellViewModel) {
         nameLabel.text = viewModel.recipeName
         readyInTimeLabel.text = "\(viewModel.recipeTime) min."
         viewModel.fetchImage { [weak self] result in
@@ -115,7 +116,7 @@ final class RHomeCollectionViewCell: UICollectionViewCell {
     }
 }
 
-extension RHomeCollectionViewCell {
+extension RSearchCollectionViewCell {
     // MARK: - AddConstraints
     private func addConstrants() {
         NSLayoutConstraint.activate([
