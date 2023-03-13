@@ -2,7 +2,7 @@
 import UIKit
 
 protocol RSearchListViewDelegate: AnyObject {
-    func rHomeListView(_ recipeListView: RSearchListView,
+    func rSearchListView(_ recipeListView: RSearchListView,
                        didSelectRecipe recipe: RRecipe)
 }
 
@@ -37,8 +37,8 @@ final class RSearchListView: UIView {
         collectionView.isHidden = true
         collectionView.alpha = 0
         collectionView.translatesAutoresizingMaskIntoConstraints = false
-        collectionView.register(RHomeCollectionViewCell.self,
-                                forCellWithReuseIdentifier: RHomeCollectionViewCell.cellIdentifier)
+        collectionView.register(RSearchCollectionViewCell.self,
+                                forCellWithReuseIdentifier: RSearchCollectionViewCell.cellIdentifier)
         collectionView.register(RFooterLoadingCollectionReusableView.self,
                                 forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter,
                                 withReuseIdentifier: RFooterLoadingCollectionReusableView.identifier)
@@ -53,8 +53,8 @@ final class RSearchListView: UIView {
         addConstraints()
         
         spinner.startAnimating()
-        viewModel.delegate = self
         viewModel.fetchRecipes(for: "")
+        viewModel.delegate = self
         setUpCollectionView()
     }
     
@@ -95,7 +95,7 @@ extension RSearchListView: RSearchListViewViewModelDelegate {
     }
     
     func diSelectRecipes(_ recipe: RRecipe) {
-        delegate?.rHomeListView(self, didSelectRecipe: recipe)
+        delegate?.rSearchListView(self, didSelectRecipe: recipe)
     }
     
     func didLoadInitialRecipes() {

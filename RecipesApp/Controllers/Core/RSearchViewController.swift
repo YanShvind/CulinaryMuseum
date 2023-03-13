@@ -26,10 +26,10 @@ final class RSearchViewController: UIViewController {
 }
 
 extension RSearchViewController: RSearchListViewDelegate {
-    func rHomeListView(_ recipeListView: RSearchListView, didSelectRecipe recipe: RRecipe) {
-        let viewModel = RHomeDetailViewViewModel(recipe: recipe)
+    func rSearchListView(_ recipeListView: RSearchListView, didSelectRecipe recipe: RRecipe) {
+        let viewModel = RRecipeDetailViewViewModel(recipe: recipe)
         let detailVC = RRecipeDetailViewController(viewModel: viewModel)
-        print(recipe.readyInMinutes)
+        viewModel.fetchRecipeInformation(forId: recipe.id)
         navigationController?.pushViewController(detailVC, animated: true)
     }
 }
