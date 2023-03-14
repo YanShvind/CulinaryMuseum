@@ -2,6 +2,7 @@
 import Foundation
 
 final class RSearchCollectionViewCellViewModel: Hashable, Equatable {
+    
     public let recipeName: String
     public let recipeTime: Int
     public var isFavorite: Bool

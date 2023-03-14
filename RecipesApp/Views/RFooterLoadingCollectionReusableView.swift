@@ -2,6 +2,7 @@
 import UIKit
 
 final class RFooterLoadingCollectionReusableView: UICollectionReusableView {
+    
     static let identifier = "RFooterLoadingCollectionReusableView"
     
     private let spinner: UIActivityIndicatorView = {

@@ -31,12 +31,25 @@ final class RRecipeDetailView: UIView {
         return label
     }()
     
+    private let tableView: UITableView = {
+        let tableView = UITableView()
+        tableView.rowHeight = 30
+        tableView.layer.cornerRadius = 10
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+        return tableView
+    }()
+    
     init(frame: CGRect, viewModel: RRecipeDetailViewViewModel) {
         self.viewModel = viewModel
         super.init(frame: frame)
         translatesAutoresizingMaskIntoConstraints = false
         
         nameRecipeLabel.text = viewModel.title
+        
+        tableView.register(RRecipeDetailTableViewCell.self, forCellReuseIdentifier: RRecipeDetailTableViewCell.cellIdentifier)
+        tableView.dataSource = viewModel
+        tableView.delegate = viewModel
+        
         addConstrants()
     }
     
@@ -52,7 +65,7 @@ final class RRecipeDetailView: UIView {
 extension RRecipeDetailView {
     private func addConstrants() {
         addSubviews(imageView, view)
-        view.addSubviews(nameRecipeLabel)
+        view.addSubviews(nameRecipeLabel, tableView)
         
         NSLayoutConstraint.activate([
             imageView.topAnchor.constraint(equalTo: topAnchor),
@@ -69,6 +82,11 @@ extension RRecipeDetailView {
             nameRecipeLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
             nameRecipeLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
             nameRecipeLabel.heightAnchor.constraint(equalToConstant: 50),
+            
+            tableView.topAnchor.constraint(equalTo: nameRecipeLabel.bottomAnchor, constant: 10),
+            tableView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
+            tableView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
+            tableView.bottomAnchor.constraint(equalTo: bottomAnchor)
         ])
     }
 }
