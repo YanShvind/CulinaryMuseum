@@ -2,6 +2,7 @@
 import Foundation
 
 final class RImageManager {
+    
     static let shared = RImageManager()
     
     // Добавляем кеш, для того, чтобы

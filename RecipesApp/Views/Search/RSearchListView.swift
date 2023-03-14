@@ -14,7 +14,7 @@ final class RSearchListView: UIView {
     
     private var searchBar: UISearchBar = {
         let searchBar = UISearchBar()
-        searchBar.searchBarStyle = UISearchBar.Style.default
+        searchBar.backgroundColor = .systemBackground
         searchBar.placeholder = "Enter ingredients"
         searchBar.sizeToFit()
         searchBar.isTranslucent = false
@@ -22,7 +22,7 @@ final class RSearchListView: UIView {
         return searchBar
     }()
     
-    private let spinner: UIActivityIndicatorView = {
+    let spinner: UIActivityIndicatorView = {
         let spinner = UIActivityIndicatorView(style: .large)
         spinner.hidesWhenStopped = true
         spinner.translatesAutoresizingMaskIntoConstraints = false

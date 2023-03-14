@@ -29,7 +29,11 @@ extension RSearchViewController: RSearchListViewDelegate {
     func rSearchListView(_ recipeListView: RSearchListView, didSelectRecipe recipe: RRecipe) {
         let viewModel = RRecipeDetailViewViewModel(recipe: recipe)
         let detailVC = RRecipeDetailViewController(viewModel: viewModel)
+        rSearchView.spinner.startAnimating()
         viewModel.fetchRecipeInformation(forId: recipe.id)
-        navigationController?.pushViewController(detailVC, animated: true)
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+            self.rSearchView.spinner.stopAnimating()
+            self.navigationController?.pushViewController(detailVC, animated: true)
+        }
     }
 }
