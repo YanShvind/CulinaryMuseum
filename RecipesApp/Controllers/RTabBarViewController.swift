@@ -2,14 +2,15 @@
 import UIKit
 
 final class RTabBarViewController: UITabBarController {
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         self.view.backgroundColor = .systemRed
+        self.tabBar.backgroundColor = .secondarySystemBackground
         setUpTabs()
     }
-
+    
     private func setUpTabs() {
         let homeVC = RHomeViewController()
         let searchVC = RSearchViewController()
@@ -22,7 +23,7 @@ final class RTabBarViewController: UITabBarController {
         categoriesVC.navigationItem.largeTitleDisplayMode = .automatic
         favoritesVC.navigationItem.largeTitleDisplayMode = .automatic
         newRecipeVC.navigationItem.largeTitleDisplayMode = .automatic
-
+        
         let nav1 = UINavigationController(rootViewController: homeVC)
         let nav2 = UINavigationController(rootViewController: searchVC)
         let nav3 = UINavigationController(rootViewController: categoriesVC)
@@ -44,6 +45,11 @@ final class RTabBarViewController: UITabBarController {
         nav5.tabBarItem = UITabBarItem(title: "New Recipe",
                                        image: UIImage(systemName: "plus"),
                                        tag: 4)
+        
+        for nav in [nav1, nav2, nav3, nav4, nav5] {
+            nav.navigationBar.scrollEdgeAppearance = nav.navigationBar.standardAppearance
+            
+        }
         
         setViewControllers([nav1, nav2, nav3, nav4, nav5], animated: true)
     }

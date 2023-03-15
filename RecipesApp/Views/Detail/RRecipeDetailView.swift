@@ -86,7 +86,7 @@ extension RRecipeDetailView {
             tableView.topAnchor.constraint(equalTo: nameRecipeLabel.bottomAnchor, constant: 10),
             tableView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
             tableView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
-            tableView.bottomAnchor.constraint(equalTo: bottomAnchor)
+            tableView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -10)
         ])
     }
 }
