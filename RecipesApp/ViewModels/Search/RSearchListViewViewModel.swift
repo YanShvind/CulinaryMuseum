@@ -21,9 +21,9 @@ final class RSearchListViewViewModel: NSObject {
             cellViewModels = []
             for recipe in recipes {
                 let viewModel = RSearchCollectionViewCellViewModel(recipeName: recipe.title,
-                                                                 recipeTime: recipe.readyInMinutes,
-                                                                 recipeImageUrl: URL(string: recipe.image),
-                                                                 isFavorite: false)
+                                                                   recipeTime: recipe.readyInMinutes,
+                                                                   recipeImageUrl: URL(string: recipe.image),
+                                                                   isFavorite: false)
                 if !cellViewModels.contains(viewModel){
                     cellViewModels.append(viewModel)
                 }
@@ -43,7 +43,7 @@ final class RSearchListViewViewModel: NSObject {
             strongSelf.delegate?.didLoadInitialRecipes()
         }
     }
-
+    
     // добавление дополнительных рецептов, когда пользователь прокрутит вниз
     public func fetchAddicationalRecipes() {
         guard !isLoadingMoreRecipes else {
@@ -88,7 +88,7 @@ extension RSearchListViewViewModel: UICollectionViewDelegate, UICollectionViewDa
                                                             for: indexPath) as? RSearchCollectionViewCell else {
             fatalError("Unsupported cell")
         }
-
+        
         cell.configure(with: cellViewModels[indexPath.row])
         
         return cell
@@ -153,6 +153,6 @@ extension RSearchListViewViewModel: UIScrollViewDelegate {
 // MARK: - SearchBar
 extension RSearchListViewViewModel: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange textSearched: String) {
-            self.fetchRecipes(for: textSearched)
+        self.fetchRecipes(for: textSearched)
     }
 }

@@ -6,15 +6,16 @@ final class RService {
     static let shared = RService()
     
     private let apiKey = "1493d2e9e5c3481fa49fa00c46c7c72f"
+    private let baseURL = "https://api.spoonacular.com"
     
     func fetchRecipes(for ingredients: String = "", random: Bool = false, completion: @escaping ([RRecipe]) -> Void) {
-        var apiUrlString = "https://api.spoonacular.com/recipes/complexSearch?query=\(ingredients)&apiKey=\(apiKey)&addRecipeInformation=true&number=10"
+        var apiUrlStringForSearch = "\(baseURL)/recipes/complexSearch?query=\(ingredients)&apiKey=\(apiKey)&addRecipeInformation=true&number=10"
         
         if random {
-            apiUrlString += "&offset=\(Int.random(in: 0..<100))"
+            apiUrlStringForSearch += "&offset=\(Int.random(in: 0..<100))"
         }
         
-        guard let apiUrl = URL(string: apiUrlString) else {
+        guard let apiUrl = URL(string: apiUrlStringForSearch) else {
             print("Error: Invalid API URL")
             completion([])
             return
@@ -40,9 +41,9 @@ final class RService {
     }
     
     func fetchRecipeInformation(for recipeId: Int, completion: @escaping (RRecipeInformation?) -> Void) {
-        let apiUrlString = "https://api.spoonacular.com/recipes/\(recipeId)/information?apiKey=\(apiKey)"
+        let apiUrlStringForInformation = "\(baseURL)/recipes/\(recipeId)/information?apiKey=\(apiKey)"
         
-        guard let apiUrl = URL(string: apiUrlString) else {
+        guard let apiUrl = URL(string: apiUrlStringForInformation) else {
             print("Error: Invalid API URL")
             completion(nil)
             return

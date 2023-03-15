@@ -15,6 +15,9 @@ final class RSearchListView: UIView {
     private var searchBar: UISearchBar = {
         let searchBar = UISearchBar()
         searchBar.backgroundColor = .systemBackground
+        searchBar.searchTextField.backgroundColor = .systemGray5
+        searchBar.searchTextField.textColor = .label
+        searchBar.barStyle = .default
         searchBar.placeholder = "Enter ingredients"
         searchBar.sizeToFit()
         searchBar.isTranslucent = false
@@ -56,6 +59,15 @@ final class RSearchListView: UIView {
         viewModel.fetchRecipes(for: "")
         viewModel.delegate = self
         setUpCollectionView()
+    }
+    
+    // меняем стиль searchBar при переходе на темную тему
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+        
+        if traitCollection.hasDifferentColorAppearance(comparedTo: previousTraitCollection) {
+            searchBar.barStyle = traitCollection.userInterfaceStyle == .dark ? .black : .default
+        }
     }
     
     required init?(coder: NSCoder) {
