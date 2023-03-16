@@ -73,7 +73,7 @@ final class RSearchCollectionViewCell: UICollectionViewCell {
         contentView.addSubviews(imageView, nameLabel, viewBackgroundHeart, viewBackgroundTime)
         viewBackgroundHeart.addSubview(heartImageView)
         viewBackgroundTime.addSubview(readyInTimeLabel)
-        addConstrants()
+        addConstraints()
         setUpLayer()
     }
     
@@ -118,7 +118,7 @@ final class RSearchCollectionViewCell: UICollectionViewCell {
 
 extension RSearchCollectionViewCell {
     // MARK: - AddConstraints
-    private func addConstrants() {
+    private func addConstraints() {
         NSLayoutConstraint.activate([
             nameLabel.heightAnchor.constraint(equalToConstant: 40),
             nameLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 5),

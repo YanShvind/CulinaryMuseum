@@ -12,6 +12,8 @@
 		6D40149F29BF5957009CA206 /* RRecipeInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D40149E29BF5957009CA206 /* RRecipeInformation.swift */; };
 		6D4014A229BF87A2009CA206 /* RRecipeDetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D4014A129BF87A2009CA206 /* RRecipeDetailTableViewCell.swift */; };
 		6D4014A829C05F27009CA206 /* RHomeViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D4014A729C05F27009CA206 /* RHomeViewViewModel.swift */; };
+		6D413D6329C2607300848C53 /* PopularityCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D413D6229C2607300848C53 /* PopularityCollectionViewCell.swift */; };
+		6D413D6529C2608800848C53 /* VegetarianCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D413D6429C2608800848C53 /* VegetarianCollectionViewCell.swift */; };
 		6D5EB2AA29A1710B009529D4 /* RService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D5EB2A929A1710B009529D4 /* RService.swift */; };
 		6D5EB2AC29A17418009529D4 /* RSearchListViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D5EB2AB29A17418009529D4 /* RSearchListViewViewModel.swift */; };
 		6D5EB2AE29A24A99009529D4 /* RSearchCollectionViewCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D5EB2AD29A24A99009529D4 /* RSearchCollectionViewCellViewModel.swift */; };
@@ -42,6 +44,8 @@
 		6D40149E29BF5957009CA206 /* RRecipeInformation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RRecipeInformation.swift; sourceTree = "<group>"; };
 		6D4014A129BF87A2009CA206 /* RRecipeDetailTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RRecipeDetailTableViewCell.swift; sourceTree = "<group>"; };
 		6D4014A729C05F27009CA206 /* RHomeViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RHomeViewViewModel.swift; sourceTree = "<group>"; };
+		6D413D6229C2607300848C53 /* PopularityCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularityCollectionViewCell.swift; sourceTree = "<group>"; };
+		6D413D6429C2608800848C53 /* VegetarianCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VegetarianCollectionViewCell.swift; sourceTree = "<group>"; };
 		6D5EB2A929A1710B009529D4 /* RService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RService.swift; sourceTree = "<group>"; };
 		6D5EB2AB29A17418009529D4 /* RSearchListViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RSearchListViewViewModel.swift; sourceTree = "<group>"; };
 		6D5EB2AD29A24A99009529D4 /* RSearchCollectionViewCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RSearchCollectionViewCellViewModel.swift; sourceTree = "<group>"; };
@@ -101,6 +105,7 @@
 			isa = PBXGroup;
 			children = (
 				6D40149629BF3692009CA206 /* RHomeView.swift */,
+				6D413D6129C2605000848C53 /* Cells */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -128,6 +133,15 @@
 				6D4014A729C05F27009CA206 /* RHomeViewViewModel.swift */,
 			);
 			path = Home;
+			sourceTree = "<group>";
+		};
+		6D413D6129C2605000848C53 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				6D413D6229C2607300848C53 /* PopularityCollectionViewCell.swift */,
+				6D413D6429C2608800848C53 /* VegetarianCollectionViewCell.swift */,
+			);
+			path = Cells;
 			sourceTree = "<group>";
 		};
 		6D5EB2A729A170BA009529D4 /* ViewModels */ = {
@@ -339,6 +353,7 @@
 				6D6E9E75299B7D2000A2A1D5 /* AppDelegate.swift in Sources */,
 				6D8732F629AA2C3E00AA8FE5 /* RFooterLoadingCollectionReusableView.swift in Sources */,
 				6D6E9EEF29A031DC00A2A1D5 /* RSearchResults.swift in Sources */,
+				6D413D6329C2607300848C53 /* PopularityCollectionViewCell.swift in Sources */,
 				6D8732F829AA2D1B00AA8FE5 /* RRecipeDetailView.swift in Sources */,
 				6D6E9EEA29A02DD900A2A1D5 /* Extensions.swift in Sources */,
 				6D40149F29BF5957009CA206 /* RRecipeInformation.swift in Sources */,
@@ -351,6 +366,7 @@
 				6D8732F229A3C6D500AA8FE5 /* RRecipeDetailViewController.swift in Sources */,
 				6D40149429BF35FA009CA206 /* RHomeViewController.swift in Sources */,
 				6D8732F029A3C63200AA8FE5 /* RRecipeDetailViewViewModel.swift in Sources */,
+				6D413D6529C2608800848C53 /* VegetarianCollectionViewCell.swift in Sources */,
 				6D87331029B2934200AA8FE5 /* RImageManager.swift in Sources */,
 				6D5EB2AA29A1710B009529D4 /* RService.swift in Sources */,
 			);
