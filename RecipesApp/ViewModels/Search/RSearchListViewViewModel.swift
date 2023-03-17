@@ -12,6 +12,7 @@ final class RSearchListViewViewModel: NSObject {
     
     public weak var delegate: RSearchListViewViewModelDelegate?
     
+    var onDataUpdate: ((_ index: [IndexPath]) -> Void)? // наблюдатель для обновления ячейки
     private var currentSearchText: String = ""
     
     private var isLoadingMoreRecipes = false
@@ -88,7 +89,8 @@ extension RSearchListViewViewModel: UICollectionViewDelegate, UICollectionViewDa
                                                             for: indexPath) as? RSearchCollectionViewCell else {
             fatalError("Unsupported cell")
         }
-        
+        cell.delegate = self
+        cell.index = indexPath
         cell.configure(with: cellViewModels[indexPath.row])
         
         return cell
@@ -147,6 +149,14 @@ extension RSearchListViewViewModel: UIScrollViewDelegate {
             }
             timer.invalidate()
         }
+    }
+}
+
+extension RSearchListViewViewModel: RSearchCollectionViewCellDelegate {
+    func didTapHeartButton(in indexPath: IndexPath) {
+        let cell = cellViewModels[indexPath.row]
+        cell.isFavorite = !cell.isFavorite
+        onDataUpdate?([indexPath])
     }
 }
 

@@ -2,7 +2,7 @@
 import UIKit
 
 protocol RSearchCollectionViewCellDelegate: AnyObject {
-    func didTapHeartButton(in cell: RSearchCollectionViewCell)
+    func didTapHeartButton(in indexPath: IndexPath)
 }
 
 final class RSearchCollectionViewCell: UICollectionViewCell {
@@ -10,6 +10,7 @@ final class RSearchCollectionViewCell: UICollectionViewCell {
     static let cellIdentifier = "RSearchCollectionViewCell"
     
     weak var delegate: RSearchCollectionViewCellDelegate?
+    var index: IndexPath?
 
     private let imageView: UIImageView = {
         let imageView = UIImageView()
@@ -79,7 +80,8 @@ final class RSearchCollectionViewCell: UICollectionViewCell {
     
     @objc
     private func heartTap(_ sender: UITapGestureRecognizer) {
-        delegate?.didTapHeartButton(in: self)
+        guard let index = index else { return }
+        delegate?.didTapHeartButton(in: index)
     }
         
     override func prepareForReuse() {
