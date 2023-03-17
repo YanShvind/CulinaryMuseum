@@ -127,12 +127,12 @@
 			path = Detail;
 			sourceTree = "<group>";
 		};
-		6D4014A629C05E94009CA206 /* Home */ = {
+		6D4014A629C05E94009CA206 /* Home  */ = {
 			isa = PBXGroup;
 			children = (
 				6D4014A729C05F27009CA206 /* RHomeViewViewModel.swift */,
 			);
-			path = Home;
+			path = "Home ";
 			sourceTree = "<group>";
 		};
 		6D413D6129C2605000848C53 /* Cells */ = {
@@ -147,7 +147,7 @@
 		6D5EB2A729A170BA009529D4 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
-				6D4014A629C05E94009CA206 /* Home */,
+				6D4014A629C05E94009CA206 /* Home  */,
 				6D4014A529C05E8C009CA206 /* Detail */,
 				6D4014A429C05E79009CA206 /* Search */,
 			);

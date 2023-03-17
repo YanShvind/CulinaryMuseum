@@ -55,6 +55,16 @@ final class RSearchListView: UIView {
         addSubviews(searchBar, collectionView, spinner)
         addConstraints()
         
+        // Обновление ячейки коллекции для добавления в избранное
+        viewModel.onDataUpdate = { [weak self] index in
+            DispatchQueue.main.async {
+                self?.collectionView.performBatchUpdates({
+                    let indexPathsToUpdate = index
+                    self?.collectionView.reloadItems(at: indexPathsToUpdate)
+                }, completion: nil)
+            }
+        }
+        
         spinner.startAnimating()
         viewModel.fetchRecipes(for: "")
         viewModel.delegate = self
