@@ -32,4 +32,8 @@ final class PopularityCollectionViewCell: UICollectionViewCell {
             popularImageView.bottomAnchor.constraint(equalTo: bottomAnchor)
         ])
     }
+    
+    public func configure() {
+        
+    }
 }

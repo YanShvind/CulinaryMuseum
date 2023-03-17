@@ -12,7 +12,7 @@ final class RSearchListViewViewModel: NSObject {
     
     public weak var delegate: RSearchListViewViewModelDelegate?
     
-    var onDataUpdate: ((_ index: [IndexPath]) -> Void)? // наблюдатель для обновления ячейки
+    public var onDataUpdate: ((_ index: [IndexPath]) -> Void)? // наблюдатель для обновления ячейки
     private var currentSearchText: String = ""
     
     private var isLoadingMoreRecipes = false
@@ -157,6 +157,7 @@ extension RSearchListViewViewModel: RSearchCollectionViewCellDelegate {
         let cell = cellViewModels[indexPath.row]
         cell.isFavorite = !cell.isFavorite
         onDataUpdate?([indexPath])
+        print(recipes[indexPath.row].id) // ид по которому нужно сохранять рецепты
     }
 }
 
