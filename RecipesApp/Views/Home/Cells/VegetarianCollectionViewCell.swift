@@ -2,6 +2,7 @@
 import UIKit
 
 final class VegetarianCollectionViewCell: UICollectionViewCell {
+    
     private let veganImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFit
@@ -30,5 +31,9 @@ final class VegetarianCollectionViewCell: UICollectionViewCell {
             veganImageView.trailingAnchor.constraint(equalTo: trailingAnchor),
             veganImageView.bottomAnchor.constraint(equalTo: bottomAnchor)
         ])
+    }
+    
+    public func configure() {
+        
     }
 }

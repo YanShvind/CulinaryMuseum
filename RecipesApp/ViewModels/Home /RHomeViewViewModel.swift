@@ -81,11 +81,13 @@ extension RHomeViewViewModel: UICollectionViewDelegate, UICollectionViewDataSour
         case .populatity(let popular):
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PopularityCollectionViewCell", for: indexPath) as? PopularityCollectionViewCell
             else { return UICollectionViewCell() }
+            cell.configure()
             return cell
             
         case .vegetarian(let vegan):
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "VegetarianCollectionViewCell", for: indexPath) as? VegetarianCollectionViewCell
             else { return UICollectionViewCell() }
+            cell.configure()
             return cell
         }
     }
@@ -93,7 +95,8 @@ extension RHomeViewViewModel: UICollectionViewDelegate, UICollectionViewDataSour
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         switch kind {
         case UICollectionView.elementKindSectionHeader:
-            let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "header", for: indexPath)
+            let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "HeaderCollectionReusableView", for: indexPath) as! HeaderCollectionReusableView
+            header.configureHeader(categoryName: sections[indexPath.section].title)
             return header
         default:
             return UICollectionReusableView()
