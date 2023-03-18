@@ -1,7 +1,7 @@
 
 import UIKit
 
-final class VegetarianCollectionViewCell: UICollectionViewCell {
+final class GlutenFreeCollectionViewCell: UICollectionViewCell {
     
     private let vegetarianImageView: UIImageView = {
         let imageView = UIImageView()
@@ -9,16 +9,6 @@ final class VegetarianCollectionViewCell: UICollectionViewCell {
         imageView.clipsToBounds = true
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
-    }()
-    
-    private let nameLabel: UILabel = {
-        let label = UILabel()
-        label.textColor = .label
-        label.font = .systemFont(ofSize: 18, weight: .medium)
-        label.text = "DDDD"
-        label.textAlignment = .center
-        label.translatesAutoresizingMaskIntoConstraints = false
-        return label
     }()
     
     override init(frame: CGRect) {
@@ -33,22 +23,17 @@ final class VegetarianCollectionViewCell: UICollectionViewCell {
     }
     
     private func addConstraints() {
-        addSubviews(vegetarianImageView, nameLabel)
+        addSubview(vegetarianImageView)
         
         NSLayoutConstraint.activate([
             vegetarianImageView.topAnchor.constraint(equalTo: topAnchor),
             vegetarianImageView.leadingAnchor.constraint(equalTo: leadingAnchor),
             vegetarianImageView.trailingAnchor.constraint(equalTo: trailingAnchor),
-            vegetarianImageView.bottomAnchor.constraint(equalTo: bottomAnchor),
-            
-            nameLabel.bottomAnchor.constraint(equalTo: bottomAnchor),
-            nameLabel.heightAnchor.constraint(equalToConstant: 60),
-            nameLabel.leadingAnchor.constraint(equalTo: leadingAnchor),
-            nameLabel.trailingAnchor.constraint(equalTo: trailingAnchor)
+            vegetarianImageView.bottomAnchor.constraint(equalTo: bottomAnchor)
         ])
     }
     
-    public func configure(title: String) {
-        nameLabel.text = title
+    public func configure() {
+        
     }
 }
