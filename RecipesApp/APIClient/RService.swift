@@ -5,9 +5,10 @@ final class RService {
     
     static let shared = RService()
     
-    private let apiKey = "1493d2e9e5c3481fa49fa00c46c7c72f"
+    private let apiKey = "b7ca7001f0ea4607add6eec8873b6f6f"
     private let baseURL = "https://api.spoonacular.com"
-    
+
+    // Запрос для поиска рецептов
     func fetchRecipes(for ingredients: String = "", random: Bool = false, completion: @escaping ([RRecipe]) -> Void) {
         var apiUrlStringForSearch = "\(baseURL)/recipes/complexSearch?query=\(ingredients)&apiKey=\(apiKey)&addRecipeInformation=true&number=10"
         
@@ -40,6 +41,7 @@ final class RService {
         task.resume()
     }
     
+    // Запрос для получения информации о рецепте
     func fetchRecipeInformation(for recipeId: Int, completion: @escaping (RRecipeInformation?) -> Void) {
         let apiUrlStringForInformation = "\(baseURL)/recipes/\(recipeId)/information?apiKey=\(apiKey)"
         
@@ -63,6 +65,35 @@ final class RService {
             } catch {
                 print("Error: \(error)")
                 completion(nil)
+            }
+        }
+        task.resume()
+    }
+    
+    // Запрос для разных категорий
+    func fetchRecipesByUrl(for apiUrlString: String, completion: @escaping ([RRecipe]) -> Void) {
+        let apiUrlStringForSearch = apiUrlString
+        
+        guard let apiUrl = URL(string: apiUrlStringForSearch) else {
+            print("Error: Invalid API URL")
+            completion([])
+            return
+        }
+        
+        let task = URLSession.shared.dataTask(with: apiUrl) { data, response, error in
+            guard let data = data, error == nil else {
+                print("Error: \(error?.localizedDescription ?? "Unknown error")")
+                completion([])
+                return
+            }
+            
+            do {
+                let decoder = JSONDecoder()
+                let results = try decoder.decode(RSearchResults.self, from: data)
+                completion(results.results)
+            } catch {
+                print("Error: \(error)")
+                completion([])
             }
         }
         task.resume()

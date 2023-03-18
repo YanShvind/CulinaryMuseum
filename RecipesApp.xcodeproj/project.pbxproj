@@ -15,6 +15,9 @@
 		6D413D6329C2607300848C53 /* PopularityCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D413D6229C2607300848C53 /* PopularityCollectionViewCell.swift */; };
 		6D413D6529C2608800848C53 /* VegetarianCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D413D6429C2608800848C53 /* VegetarianCollectionViewCell.swift */; };
 		6D474D7C29C4892A0089D5A4 /* HeaderCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D474D7B29C4892A0089D5A4 /* HeaderCollectionReusableView.swift */; };
+		6D474D7E29C4E3E70089D5A4 /* NutFreeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D474D7D29C4E3E70089D5A4 /* NutFreeCollectionViewCell.swift */; };
+		6D474D8029C4E8460089D5A4 /* GlutenFreeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D474D7F29C4E8460089D5A4 /* GlutenFreeCollectionViewCell.swift */; };
+		6D474D8229C4E86F0089D5A4 /* LowCalorieCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D474D8129C4E86F0089D5A4 /* LowCalorieCollectionViewCell.swift */; };
 		6D5EB2AA29A1710B009529D4 /* RService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D5EB2A929A1710B009529D4 /* RService.swift */; };
 		6D5EB2AC29A17418009529D4 /* RSearchListViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D5EB2AB29A17418009529D4 /* RSearchListViewViewModel.swift */; };
 		6D5EB2AE29A24A99009529D4 /* RSearchCollectionViewCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D5EB2AD29A24A99009529D4 /* RSearchCollectionViewCellViewModel.swift */; };
@@ -48,6 +51,9 @@
 		6D413D6229C2607300848C53 /* PopularityCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularityCollectionViewCell.swift; sourceTree = "<group>"; };
 		6D413D6429C2608800848C53 /* VegetarianCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VegetarianCollectionViewCell.swift; sourceTree = "<group>"; };
 		6D474D7B29C4892A0089D5A4 /* HeaderCollectionReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderCollectionReusableView.swift; sourceTree = "<group>"; };
+		6D474D7D29C4E3E70089D5A4 /* NutFreeCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NutFreeCollectionViewCell.swift; sourceTree = "<group>"; };
+		6D474D7F29C4E8460089D5A4 /* GlutenFreeCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlutenFreeCollectionViewCell.swift; sourceTree = "<group>"; };
+		6D474D8129C4E86F0089D5A4 /* LowCalorieCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LowCalorieCollectionViewCell.swift; sourceTree = "<group>"; };
 		6D5EB2A929A1710B009529D4 /* RService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RService.swift; sourceTree = "<group>"; };
 		6D5EB2AB29A17418009529D4 /* RSearchListViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RSearchListViewViewModel.swift; sourceTree = "<group>"; };
 		6D5EB2AD29A24A99009529D4 /* RSearchCollectionViewCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RSearchCollectionViewCellViewModel.swift; sourceTree = "<group>"; };
@@ -143,6 +149,9 @@
 			children = (
 				6D413D6229C2607300848C53 /* PopularityCollectionViewCell.swift */,
 				6D413D6429C2608800848C53 /* VegetarianCollectionViewCell.swift */,
+				6D474D7D29C4E3E70089D5A4 /* NutFreeCollectionViewCell.swift */,
+				6D474D7F29C4E8460089D5A4 /* GlutenFreeCollectionViewCell.swift */,
+				6D474D8129C4E86F0089D5A4 /* LowCalorieCollectionViewCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -352,9 +361,12 @@
 				6D40149729BF3692009CA206 /* RHomeView.swift in Sources */,
 				6D6E9E79299B7D2000A2A1D5 /* RTabBarViewController.swift in Sources */,
 				6D6E9EED29A0312000A2A1D5 /* RRecipe.swift in Sources */,
+				6D474D8029C4E8460089D5A4 /* GlutenFreeCollectionViewCell.swift in Sources */,
+				6D474D8229C4E86F0089D5A4 /* LowCalorieCollectionViewCell.swift in Sources */,
 				6D5EB2AE29A24A99009529D4 /* RSearchCollectionViewCellViewModel.swift in Sources */,
 				6D4014A229BF87A2009CA206 /* RRecipeDetailTableViewCell.swift in Sources */,
 				6D6E9E75299B7D2000A2A1D5 /* AppDelegate.swift in Sources */,
+				6D474D7E29C4E3E70089D5A4 /* NutFreeCollectionViewCell.swift in Sources */,
 				6D8732F629AA2C3E00AA8FE5 /* RFooterLoadingCollectionReusableView.swift in Sources */,
 				6D6E9EEF29A031DC00A2A1D5 /* RSearchResults.swift in Sources */,
 				6D413D6329C2607300848C53 /* PopularityCollectionViewCell.swift in Sources */,

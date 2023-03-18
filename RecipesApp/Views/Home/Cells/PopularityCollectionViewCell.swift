@@ -11,6 +11,16 @@ final class PopularityCollectionViewCell: UICollectionViewCell {
         return imageView
     }()
     
+    private let nameLabel: UILabel = {
+        let label = UILabel()
+        label.textColor = .label
+        label.font = .systemFont(ofSize: 18, weight: .medium)
+        label.text = "DDDD"
+        label.textAlignment = .center
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    
     override init(frame: CGRect) {
         super .init(frame: frame)
         
@@ -23,17 +33,21 @@ final class PopularityCollectionViewCell: UICollectionViewCell {
     }
     
     private func addConstraints() {
-        addSubview(popularImageView)
+        addSubviews(popularImageView, nameLabel)
         
         NSLayoutConstraint.activate([
             popularImageView.topAnchor.constraint(equalTo: topAnchor),
             popularImageView.leadingAnchor.constraint(equalTo: leadingAnchor),
             popularImageView.trailingAnchor.constraint(equalTo: trailingAnchor),
-            popularImageView.bottomAnchor.constraint(equalTo: bottomAnchor)
+            popularImageView.bottomAnchor.constraint(equalTo: nameLabel.topAnchor),
+            
+            nameLabel.bottomAnchor.constraint(equalTo: bottomAnchor),
+            nameLabel.heightAnchor.constraint(equalToConstant: 60),
+            nameLabel.leadingAnchor.constraint(equalTo: leadingAnchor),
+            nameLabel.trailingAnchor.constraint(equalTo: trailingAnchor)
         ])
     }
     
-    public func configure() {
-        
+    public func configure(imageName: String) {
     }
 }
