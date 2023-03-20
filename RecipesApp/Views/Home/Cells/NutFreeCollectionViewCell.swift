@@ -3,7 +3,7 @@ import UIKit
 
 final class NutFreeCollectionViewCell: UICollectionViewCell {
     
-    private let vegetarianImageView: UIImageView = {
+    private let nutFreeImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFit
         imageView.clipsToBounds = true
@@ -23,13 +23,13 @@ final class NutFreeCollectionViewCell: UICollectionViewCell {
     }
     
     private func addConstraints() {
-        addSubview(vegetarianImageView)
+        addSubview(nutFreeImageView)
         
         NSLayoutConstraint.activate([
-            vegetarianImageView.topAnchor.constraint(equalTo: topAnchor),
-            vegetarianImageView.leadingAnchor.constraint(equalTo: leadingAnchor),
-            vegetarianImageView.trailingAnchor.constraint(equalTo: trailingAnchor),
-            vegetarianImageView.bottomAnchor.constraint(equalTo: bottomAnchor)
+            nutFreeImageView.topAnchor.constraint(equalTo: topAnchor),
+            nutFreeImageView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            nutFreeImageView.trailingAnchor.constraint(equalTo: trailingAnchor),
+            nutFreeImageView.bottomAnchor.constraint(equalTo: bottomAnchor)
         ])
     }
     

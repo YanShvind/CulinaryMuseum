@@ -9,8 +9,7 @@ protocol RHomeViewViewModelDelegate: AnyObject {
 final class RHomeViewViewModel: NSObject {
     
     public weak var delegate: RHomeViewViewModelDelegate?
-    
-    var recipes: [RRecipe] = []
+    private var vegetarianRecipes: [RRecipe]?
     
     struct ListItem {
         let title: String
@@ -18,7 +17,7 @@ final class RHomeViewViewModel: NSObject {
     }
     
     enum ListSection {
-        case populatity([ListItem])
+        case popularity([ListItem])
         case vegetarian([ListItem])
         case nutFree([ListItem])
         case glutenFree([ListItem])
@@ -26,7 +25,7 @@ final class RHomeViewViewModel: NSObject {
         
         var items: [ListItem] {
             switch self {
-            case .populatity(let items),
+            case .popularity(let items),
                     .vegetarian(let items),
                     .nutFree(let items),
                     .glutenFree(let items),
@@ -41,7 +40,7 @@ final class RHomeViewViewModel: NSObject {
         
         var title: String {
             switch self {
-            case .populatity(_):
+            case .popularity(_):
                 return "Populatity"
             case .vegetarian(_):
                 return "Vegetarian"
@@ -56,7 +55,7 @@ final class RHomeViewViewModel: NSObject {
     }
     
     private var popularity: ListSection {
-        .populatity([.init(title: "", image: ""),
+        .popularity([.init(title: "", image: ""),
                      .init(title: "", image: ""),
                      .init(title: "", image: ""),
                      .init(title: "", image: ""),
@@ -130,11 +129,11 @@ final class RHomeViewViewModel: NSObject {
     }
     
     public func fetchVegetarianRecipes() {
-        RService.shared.fetchRecipesByUrl(for: "https://api.spoonacular.com/recipes/complexSearch?apiKey=b7ca7001f0ea4607add6eec8873b6f6f&diet=vegetarian&addRecipeInformation=true&number=10") { [weak self] results in
+        RService.shared.fetchRecipesByUrl(for: "https://api.spoonacular.com/recipes/complexSearch?apiKey=b7ca7001f0ea4607add6eec8873b6f6f&diet=vegetarian&addRecipeInformation=true&offset=\(Int.random(in: 0..<100))&number=10") { [weak self] results in
             guard let strongSelf = self else {
                 return
             }
-            strongSelf.recipes = results
+            strongSelf.vegetarianRecipes = results
             strongSelf.delegate?.didLoadInitialRecipes()
         }
     }
@@ -151,32 +150,42 @@ extension RHomeViewViewModel: UICollectionViewDelegate, UICollectionViewDataSour
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         switch sections[indexPath.section]{
-        case .populatity(let popular):
+        case .popularity(_):
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PopularityCollectionViewCell", for: indexPath) as? PopularityCollectionViewCell
             else { return UICollectionViewCell() }
-            cell.configure(imageName: popular[indexPath.row].image)
+            //cell.configure(imageName: popular[indexPath.row].image)
             return cell
             
-        case .vegetarian(let vegetarian):
+        case .vegetarian(_):
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "VegetarianCollectionViewCell", for: indexPath) as? VegetarianCollectionViewCell
             else { return UICollectionViewCell() }
-            cell.configure(title: self.recipes[indexPath.row].title)
-            
+            if let vegRecipes = vegetarianRecipes {
+                RImageManager.shared.downloadImage(URL(string: vegRecipes[indexPath.row].image)!) { result in
+                    switch result {
+                    case .success(let data):
+                        DispatchQueue.main.async {
+                            cell.configure(viewModel: vegRecipes[indexPath.row], image: data)
+                        }
+                    case .failure(let error):
+                        print("Error downloading image: \(error.localizedDescription)")
+                    }
+                }
+            }
             return cell
             
-        case .nutFree(let nutFree):
+        case .nutFree(_):
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "NutFreeCollectionViewCell", for: indexPath) as? NutFreeCollectionViewCell
             else { return UICollectionViewCell() }
             cell.configure()
             return cell
             
-        case .glutenFree(let glutenFree):
+        case .glutenFree(_):
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "GlutenFreeCollectionViewCell", for: indexPath) as? GlutenFreeCollectionViewCell
             else { return UICollectionViewCell() }
             cell.configure()
             return cell
             
-        case .lowCalorie(let lowCalorie):
+        case .lowCalorie(_):
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "LowCalorieCollectionViewCell", for: indexPath) as? LowCalorieCollectionViewCell
             else { return UICollectionViewCell() }
             cell.configure()

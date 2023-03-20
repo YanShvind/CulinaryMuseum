@@ -57,7 +57,7 @@ final class RSearchCollectionViewCell: UICollectionViewCell {
     
     private let readyInTimeLabel: UILabel = {
         let label = UILabel()
-        label.text = "155 min."
+        label.text = ""
         label.textAlignment = .center
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
