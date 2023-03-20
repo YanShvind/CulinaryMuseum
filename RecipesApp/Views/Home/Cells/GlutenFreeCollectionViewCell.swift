@@ -3,7 +3,7 @@ import UIKit
 
 final class GlutenFreeCollectionViewCell: UICollectionViewCell {
     
-    private let vegetarianImageView: UIImageView = {
+    private let glutenFreeImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFit
         imageView.clipsToBounds = true
@@ -23,13 +23,13 @@ final class GlutenFreeCollectionViewCell: UICollectionViewCell {
     }
     
     private func addConstraints() {
-        addSubview(vegetarianImageView)
+        addSubview(glutenFreeImageView)
         
         NSLayoutConstraint.activate([
-            vegetarianImageView.topAnchor.constraint(equalTo: topAnchor),
-            vegetarianImageView.leadingAnchor.constraint(equalTo: leadingAnchor),
-            vegetarianImageView.trailingAnchor.constraint(equalTo: trailingAnchor),
-            vegetarianImageView.bottomAnchor.constraint(equalTo: bottomAnchor)
+            glutenFreeImageView.topAnchor.constraint(equalTo: topAnchor),
+            glutenFreeImageView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            glutenFreeImageView.trailingAnchor.constraint(equalTo: trailingAnchor),
+            glutenFreeImageView.bottomAnchor.constraint(equalTo: bottomAnchor)
         ])
     }
     

@@ -67,7 +67,7 @@ extension RHomeView {
             guard let self = self else { return nil }
             let section = self.viewModel.sections[sectionIndex]
             switch section {
-            case .populatity(_):
+            case .popularity(_):
                 return self.createPopularSection()
             case .vegetarian(_):
                 return self.createPopularSection()

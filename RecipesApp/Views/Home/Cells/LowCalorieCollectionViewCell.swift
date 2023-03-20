@@ -3,7 +3,7 @@ import UIKit
 
 final class LowCalorieCollectionViewCell: UICollectionViewCell {
     
-    private let vegetarianImageView: UIImageView = {
+    private let lowCalorieImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFit
         imageView.clipsToBounds = true
@@ -23,13 +23,13 @@ final class LowCalorieCollectionViewCell: UICollectionViewCell {
     }
     
     private func addConstraints() {
-        addSubview(vegetarianImageView)
+        addSubview(lowCalorieImageView)
         
         NSLayoutConstraint.activate([
-            vegetarianImageView.topAnchor.constraint(equalTo: topAnchor),
-            vegetarianImageView.leadingAnchor.constraint(equalTo: leadingAnchor),
-            vegetarianImageView.trailingAnchor.constraint(equalTo: trailingAnchor),
-            vegetarianImageView.bottomAnchor.constraint(equalTo: bottomAnchor)
+            lowCalorieImageView.topAnchor.constraint(equalTo: topAnchor),
+            lowCalorieImageView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            lowCalorieImageView.trailingAnchor.constraint(equalTo: trailingAnchor),
+            lowCalorieImageView.bottomAnchor.constraint(equalTo: bottomAnchor)
         ])
     }
     

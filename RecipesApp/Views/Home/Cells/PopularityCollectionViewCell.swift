@@ -44,7 +44,7 @@ final class PopularityCollectionViewCell: UICollectionViewCell {
             nameLabel.bottomAnchor.constraint(equalTo: bottomAnchor),
             nameLabel.heightAnchor.constraint(equalToConstant: 60),
             nameLabel.leadingAnchor.constraint(equalTo: leadingAnchor),
-            nameLabel.trailingAnchor.constraint(equalTo: trailingAnchor)
+            nameLabel.trailingAnchor.constraint(equalTo: trailingAnchor),
         ])
     }
     
