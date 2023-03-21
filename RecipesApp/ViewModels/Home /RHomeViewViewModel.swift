@@ -9,124 +9,9 @@ protocol RHomeViewViewModelDelegate: AnyObject {
 final class RHomeViewViewModel: NSObject {
     
     public weak var delegate: RHomeViewViewModelDelegate?
-    private var vegetarianRecipes: [RRecipe]?
+    private var vegetarianRecipes: [RRecipe] = []
     
-    struct ListItem {
-        let title: String
-        let image: String
-    }
-    
-    enum ListSection {
-        case popularity([ListItem])
-        case vegetarian([ListItem])
-        case nutFree([ListItem])
-        case glutenFree([ListItem])
-        case lowCalorie([ListItem])
-        
-        var items: [ListItem] {
-            switch self {
-            case .popularity(let items),
-                    .vegetarian(let items),
-                    .nutFree(let items),
-                    .glutenFree(let items),
-                    .lowCalorie(let items):
-                return items
-            }
-        }
-        
-        var count: Int {
-            items.count
-        }
-        
-        var title: String {
-            switch self {
-            case .popularity(_):
-                return "Populatity"
-            case .vegetarian(_):
-                return "Vegetarian"
-            case .nutFree(_):
-                return "Nut Free"
-            case .glutenFree(_):
-                return "Gluten Free"
-            case .lowCalorie(_):
-                return "Low Calorie"
-            }
-        }
-    }
-    
-    private var popularity: ListSection {
-        .popularity([.init(title: "", image: ""),
-                     .init(title: "", image: ""),
-                     .init(title: "", image: ""),
-                     .init(title: "", image: ""),
-                     .init(title: "", image: ""),
-                     .init(title: "", image: ""),
-                     .init(title: "", image: ""),
-                     .init(title: "", image: ""),
-                     .init(title: "", image: ""),
-                     .init(title: "", image: "")
-        ])
-    }
-    
-    private var vegetarian: ListSection {
-        .vegetarian([.init(title: "", image: ""),
-                     .init(title: "", image: ""),
-                     .init(title: "", image: ""),
-                     .init(title: "", image: ""),
-                     .init(title: "", image: ""),
-                     .init(title: "", image: ""),
-                     .init(title: "", image: ""),
-                     .init(title: "", image: ""),
-                     .init(title: "", image: ""),
-                     .init(title: "", image: "")
-        ])
-    }
-    
-    private var nutFree: ListSection {
-        .nutFree([.init(title: "", image: ""),
-                  .init(title: "", image: ""),
-                  .init(title: "", image: ""),
-                  .init(title: "", image: ""),
-                  .init(title: "", image: ""),
-                  .init(title: "", image: ""),
-                  .init(title: "", image: ""),
-                  .init(title: "", image: ""),
-                  .init(title: "", image: ""),
-                  .init(title: "", image: "")
-        ])
-    }
-    
-    private var glutenFree: ListSection {
-        .glutenFree([.init(title: "", image: ""),
-                     .init(title: "", image: ""),
-                     .init(title: "", image: ""),
-                     .init(title: "", image: ""),
-                     .init(title: "", image: ""),
-                     .init(title: "", image: ""),
-                     .init(title: "", image: ""),
-                     .init(title: "", image: ""),
-                     .init(title: "", image: ""),
-                     .init(title: "", image: "")
-        ])
-    }
-    
-    private var lowCalorie: ListSection {
-        .lowCalorie([.init(title: "", image: ""),
-                     .init(title: "", image: ""),
-                     .init(title: "", image: ""),
-                     .init(title: "", image: ""),
-                     .init(title: "", image: ""),
-                     .init(title: "", image: ""),
-                     .init(title: "", image: ""),
-                     .init(title: "", image: ""),
-                     .init(title: "", image: ""),
-                     .init(title: "", image: "")
-        ])
-    }
-    
-    var sections: [ListSection] {
-        [popularity, vegetarian, nutFree, glutenFree, lowCalorie]
-    }
+    let sections = MockData.shared.sections
     
     public func fetchVegetarianRecipes() {
         RService.shared.fetchRecipesByUrl(for: "https://api.spoonacular.com/recipes/complexSearch?apiKey=b7ca7001f0ea4607add6eec8873b6f6f&diet=vegetarian&addRecipeInformation=true&offset=\(Int.random(in: 0..<100))&number=10") { [weak self] results in
@@ -159,12 +44,12 @@ extension RHomeViewViewModel: UICollectionViewDelegate, UICollectionViewDataSour
         case .vegetarian(_):
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "VegetarianCollectionViewCell", for: indexPath) as? VegetarianCollectionViewCell
             else { return UICollectionViewCell() }
-            if let vegRecipes = vegetarianRecipes {
-                RImageManager.shared.downloadImage(URL(string: vegRecipes[indexPath.row].image)!) { result in
+            if !vegetarianRecipes.isEmpty {
+                RImageManager.shared.downloadImage(URL(string: vegetarianRecipes[indexPath.row].image)!) { result in
                     switch result {
                     case .success(let data):
                         DispatchQueue.main.async {
-                            cell.configure(viewModel: vegRecipes[indexPath.row], image: data)
+                            cell.configure(viewModel: self.vegetarianRecipes[indexPath.row], image: data)
                         }
                     case .failure(let error):
                         print("Error downloading image: \(error.localizedDescription)")
