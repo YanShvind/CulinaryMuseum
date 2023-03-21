@@ -3,7 +3,7 @@ import UIKit
 
 final class VegetarianCollectionViewCell: UICollectionViewCell {
     
-    private let vegetarianImageView: UIImageView = {
+    private let imageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
@@ -57,32 +57,77 @@ final class VegetarianCollectionViewCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super .init(frame: frame)
         
-        backgroundColor = .secondarySystemBackground
+        contentView.backgroundColor = .secondarySystemBackground
+        
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(heartTap))
+        viewBackgroundHeart.addGestureRecognizer(tapGesture)
+        
+        contentView.addSubviews(imageView, nameLabel, viewBackgroundHeart, viewBackgroundTime)
+        viewBackgroundHeart.addSubview(heartImageView)
+        viewBackgroundTime.addSubview(readyInTimeLabel)
         addConstraints()
+        setUpLayer()
+    }
+    
+    @objc
+    private func heartTap(_ sender: UITapGestureRecognizer) {
+        print("DDD")
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
-    private func addConstraints() {
-        addSubviews(vegetarianImageView, nameLabel)
         
+    public func configure(viewModel: RRecipe, image: Data) {
+        nameLabel.text = viewModel.title
+        imageView.image = UIImage(data: image)
+        readyInTimeLabel.text = "\(viewModel.readyInMinutes) min."
+    }
+}
+
+extension VegetarianCollectionViewCell {
+    // MARK: AddConstraints
+    private func addConstraints() {
         NSLayoutConstraint.activate([
-            vegetarianImageView.topAnchor.constraint(equalTo: topAnchor),
-            vegetarianImageView.leadingAnchor.constraint(equalTo: leadingAnchor),
-            vegetarianImageView.trailingAnchor.constraint(equalTo: trailingAnchor),
-            vegetarianImageView.bottomAnchor.constraint(equalTo: bottomAnchor),
+            nameLabel.heightAnchor.constraint(equalToConstant: 40),
+            nameLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 5),
+            nameLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -5),
+            nameLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -3),
             
-            nameLabel.bottomAnchor.constraint(equalTo: bottomAnchor),
-            nameLabel.heightAnchor.constraint(equalToConstant: 60),
-            nameLabel.leadingAnchor.constraint(equalTo: leadingAnchor),
-            nameLabel.trailingAnchor.constraint(equalTo: trailingAnchor),
+            imageView.topAnchor.constraint(equalTo: contentView.topAnchor),
+            imageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+            imageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
+            imageView.bottomAnchor.constraint(equalTo: nameLabel.topAnchor, constant: -3),
+            
+            viewBackgroundHeart.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -10),
+            viewBackgroundHeart.topAnchor.constraint(equalTo: topAnchor, constant: 7),
+            viewBackgroundHeart.widthAnchor.constraint(equalToConstant: 30),
+            viewBackgroundHeart.heightAnchor.constraint(equalToConstant: 35),
+            
+            heartImageView.topAnchor.constraint(equalTo: viewBackgroundHeart.topAnchor, constant: 3),
+            heartImageView.leadingAnchor.constraint(equalTo: viewBackgroundHeart.leadingAnchor, constant: 2),
+            heartImageView.trailingAnchor.constraint(equalTo: viewBackgroundHeart.trailingAnchor, constant: -2),
+            heartImageView.bottomAnchor.constraint(equalTo: viewBackgroundHeart.bottomAnchor, constant: -3),
+            
+            viewBackgroundTime.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 10),
+            viewBackgroundTime.topAnchor.constraint(equalTo: topAnchor, constant: 11),
+            viewBackgroundTime.widthAnchor.constraint(equalToConstant: 75),
+            viewBackgroundTime.heightAnchor.constraint(equalToConstant: 27),
+            
+            readyInTimeLabel.topAnchor.constraint(equalTo: viewBackgroundTime.topAnchor, constant: 3),
+            readyInTimeLabel.leadingAnchor.constraint(equalTo: viewBackgroundTime.leadingAnchor, constant: 2),
+            readyInTimeLabel.trailingAnchor.constraint(equalTo: viewBackgroundTime.trailingAnchor, constant: -2),
+            readyInTimeLabel.bottomAnchor.constraint(equalTo: viewBackgroundTime.bottomAnchor, constant: -3),
         ])
     }
     
-    public func configure(viewModel: RRecipe, image: Data) {
-        nameLabel.text = viewModel.title
-        vegetarianImageView.image = UIImage(data: image)
+    // MARK: AddShadows
+    private func setUpLayer() {
+        contentView.layer.cornerRadius = 8
+        contentView.layer.shadowColor = UIColor.label.cgColor
+        contentView.layer.cornerRadius = 4
+        contentView.layer.shadowOffset = CGSize(width: -4, height: 4)
+        contentView.layer.shadowOpacity = 0.3
     }
 }
+
