@@ -54,6 +54,13 @@ final class VegetarianCollectionViewCell: UICollectionViewCell {
         return label
     }()
     
+    private let spinner: UIActivityIndicatorView = {
+        let spinner = UIActivityIndicatorView(style: .large)
+        spinner.hidesWhenStopped = true
+        spinner.translatesAutoresizingMaskIntoConstraints = false
+        return spinner
+    }()
+    
     override init(frame: CGRect) {
         super .init(frame: frame)
         
@@ -62,7 +69,7 @@ final class VegetarianCollectionViewCell: UICollectionViewCell {
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(heartTap))
         viewBackgroundHeart.addGestureRecognizer(tapGesture)
         
-        contentView.addSubviews(imageView, nameLabel, viewBackgroundHeart, viewBackgroundTime)
+        contentView.addSubviews(imageView, nameLabel, viewBackgroundHeart, viewBackgroundTime, spinner)
         viewBackgroundHeart.addSubview(heartImageView)
         viewBackgroundTime.addSubview(readyInTimeLabel)
         addConstraints()
@@ -82,6 +89,14 @@ final class VegetarianCollectionViewCell: UICollectionViewCell {
         nameLabel.text = viewModel.title
         imageView.image = UIImage(data: image)
         readyInTimeLabel.text = "\(viewModel.readyInMinutes) min."
+    }
+    
+    public func spinnerAnimating(animate: Bool) {
+        if animate {
+            spinner.startAnimating()
+        } else {
+            spinner.stopAnimating()
+        }
     }
 }
 
@@ -118,6 +133,11 @@ extension VegetarianCollectionViewCell {
             readyInTimeLabel.leadingAnchor.constraint(equalTo: viewBackgroundTime.leadingAnchor, constant: 2),
             readyInTimeLabel.trailingAnchor.constraint(equalTo: viewBackgroundTime.trailingAnchor, constant: -2),
             readyInTimeLabel.bottomAnchor.constraint(equalTo: viewBackgroundTime.bottomAnchor, constant: -3),
+            
+            spinner.widthAnchor.constraint(equalToConstant: 100),
+            spinner.heightAnchor.constraint(equalToConstant: 100),
+            spinner.centerXAnchor.constraint(equalTo: centerXAnchor),
+            spinner.centerYAnchor.constraint(equalTo: centerYAnchor),
         ])
     }
     

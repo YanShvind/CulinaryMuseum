@@ -44,7 +44,9 @@ extension RHomeViewViewModel: UICollectionViewDelegate, UICollectionViewDataSour
         case .vegetarian(_):
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "VegetarianCollectionViewCell", for: indexPath) as? VegetarianCollectionViewCell
             else { return UICollectionViewCell() }
+            cell.spinnerAnimating(animate: true)
             if !vegetarianRecipes.isEmpty {
+                cell.spinnerAnimating(animate: false)
                 RImageManager.shared.downloadImage(URL(string: vegetarianRecipes[indexPath.row].image)!) { result in
                     switch result {
                     case .success(let data):
