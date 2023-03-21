@@ -9,12 +9,28 @@ protocol RHomeViewViewModelDelegate: AnyObject {
 final class RHomeViewViewModel: NSObject {
     
     public weak var delegate: RHomeViewViewModelDelegate?
-    private var vegetarianRecipes: [RRecipe] = []
+    
+    // Vegetarian
+    private var vegetarianRecipes: [RRecipe] = [] {
+        didSet {
+            vegetarianRecipesCell = []
+            for recipe in vegetarianRecipes {
+                let viewModel = RSearchCollectionViewCellViewModel(recipeName: recipe.title,
+                                                                   recipeTime: recipe.readyInMinutes,
+                                                                   recipeImageUrl: URL(string: recipe.image),
+                                                                   isFavorite: false)
+                if !vegetarianRecipesCell.contains(viewModel){
+                    vegetarianRecipesCell.append(viewModel)
+                }
+            }
+        }
+    }
+    private var vegetarianRecipesCell: [RSearchCollectionViewCellViewModel] = []
     
     let sections = MockData.shared.sections
     
     public func fetchVegetarianRecipes() {
-        RService.shared.fetchRecipesByUrl(for: "https://api.spoonacular.com/recipes/complexSearch?apiKey=b7ca7001f0ea4607add6eec8873b6f6f&diet=vegetarian&addRecipeInformation=true&offset=\(Int.random(in: 0..<100))&number=10") { [weak self] results in
+        RService.shared.fetchRecipesByUrl(for: Constants.shared.vegetarianRecipesPath) { [weak self] results in
             guard let strongSelf = self else {
                 return
             }
@@ -46,11 +62,11 @@ extension RHomeViewViewModel: UICollectionViewDelegate, UICollectionViewDataSour
             else { return UICollectionViewCell() }
             cell.spinnerAnimating(animate: true)
             if !vegetarianRecipes.isEmpty {
-                cell.spinnerAnimating(animate: false)
                 RImageManager.shared.downloadImage(URL(string: vegetarianRecipes[indexPath.row].image)!) { result in
                     switch result {
                     case .success(let data):
                         DispatchQueue.main.async {
+                            cell.spinnerAnimating(animate: false)
                             cell.configure(viewModel: self.vegetarianRecipes[indexPath.row], image: data)
                         }
                     case .failure(let error):
@@ -63,13 +79,13 @@ extension RHomeViewViewModel: UICollectionViewDelegate, UICollectionViewDataSour
         case .nutFree(_):
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "NutFreeCollectionViewCell", for: indexPath) as? NutFreeCollectionViewCell
             else { return UICollectionViewCell() }
-            cell.configure()
+            //cell.configure(viewModel: <#RRecipe#>, image: <#Data#>)
             return cell
             
         case .glutenFree(_):
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "GlutenFreeCollectionViewCell", for: indexPath) as? GlutenFreeCollectionViewCell
             else { return UICollectionViewCell() }
-            cell.configure()
+            //cell.configure()
             return cell
             
         case .lowCalorie(_):

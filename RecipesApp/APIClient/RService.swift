@@ -5,8 +5,8 @@ final class RService {
     
     static let shared = RService()
     
-    private let apiKey = "b7ca7001f0ea4607add6eec8873b6f6f"
-    private let baseURL = "https://api.spoonacular.com"
+    private let apiKey = Constants.shared.apiKey
+    private let baseURL = Constants.shared.baseUrl
 
     // Запрос для поиска рецептов
     func fetchRecipes(for ingredients: String = "", random: Bool = false, completion: @escaping ([RRecipe]) -> Void) {
