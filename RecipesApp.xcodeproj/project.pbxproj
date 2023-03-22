@@ -44,6 +44,7 @@
 		6D8732F629AA2C3E00AA8FE5 /* RFooterLoadingCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D8732F529AA2C3E00AA8FE5 /* RFooterLoadingCollectionReusableView.swift */; };
 		6D8732F829AA2D1B00AA8FE5 /* RRecipeDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D8732F729AA2D1B00AA8FE5 /* RRecipeDetailView.swift */; };
 		6D87331029B2934200AA8FE5 /* RImageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D87330F29B2934200AA8FE5 /* RImageManager.swift */; };
+		6D9B5FBB29CB892000EDC90A /* CustomVeiwCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D9B5FBA29CB892000EDC90A /* CustomVeiwCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -86,6 +87,7 @@
 		6D8732F529AA2C3E00AA8FE5 /* RFooterLoadingCollectionReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RFooterLoadingCollectionReusableView.swift; sourceTree = "<group>"; };
 		6D8732F729AA2D1B00AA8FE5 /* RRecipeDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RRecipeDetailView.swift; sourceTree = "<group>"; };
 		6D87330F29B2934200AA8FE5 /* RImageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RImageManager.swift; sourceTree = "<group>"; };
+		6D9B5FBA29CB892000EDC90A /* CustomVeiwCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomVeiwCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -270,6 +272,7 @@
 				6D4014A029BF6C20009CA206 /* Detail */,
 				6D40149529BF366C009CA206 /* Search */,
 				6D0D7C4329C8438D000179F8 /* Other */,
+				6D9B5FBA29CB892000EDC90A /* CustomVeiwCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -383,6 +386,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6D474D7C29C4892A0089D5A4 /* HeaderCollectionReusableView.swift in Sources */,
+				6D9B5FBB29CB892000EDC90A /* CustomVeiwCell.swift in Sources */,
 				6D4014A829C05F27009CA206 /* RHomeViewViewModel.swift in Sources */,
 				6D6E9E92299B7F7000A2A1D5 /* RNewRecipeViewController.swift in Sources */,
 				6D3ED97829C9977D00748004 /* MockData.swift in Sources */,
