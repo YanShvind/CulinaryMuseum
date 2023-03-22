@@ -6,7 +6,7 @@ final class RImageManager {
     static let shared = RImageManager()
     
     // Добавляем кеш, для того, чтобы
-    // Когда мы пролистываем вниз, данные не загружались снова
+    // Данные не загружались снова
     private var imageDataCache = NSCache<NSString, NSData>()
     
     private init() {}

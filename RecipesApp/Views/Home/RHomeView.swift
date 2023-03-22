@@ -98,7 +98,7 @@ extension RHomeView {
         let item = NSCollectionLayoutItem(layoutSize: .init(widthDimension: .fractionalWidth(1),
                                                             heightDimension: .fractionalHeight (1)))
         let group = NSCollectionLayoutGroup.horizontal(layoutSize:.init(widthDimension: .fractionalWidth(0.8),
-                                                                        heightDimension: .fractionalHeight(0.3)),
+                                                                        heightDimension: .fractionalHeight(0.37)),
                                                        subitems: [item])
         let section = createLayoutSection(group: group,
                                           behavior: .groupPaging,
