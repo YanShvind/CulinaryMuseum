@@ -176,6 +176,7 @@
 		6D413D6129C2605000848C53 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				6D9B5FBA29CB892000EDC90A /* CustomVeiwCell.swift */,
 				6D413D6229C2607300848C53 /* PopularityCollectionViewCell.swift */,
 				6D413D6429C2608800848C53 /* VegetarianCollectionViewCell.swift */,
 				6D474D7D29C4E3E70089D5A4 /* NutFreeCollectionViewCell.swift */,
@@ -272,7 +273,6 @@
 				6D4014A029BF6C20009CA206 /* Detail */,
 				6D40149529BF366C009CA206 /* Search */,
 				6D0D7C4329C8438D000179F8 /* Other */,
-				6D9B5FBA29CB892000EDC90A /* CustomVeiwCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
