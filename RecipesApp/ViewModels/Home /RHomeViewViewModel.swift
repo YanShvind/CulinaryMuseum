@@ -60,13 +60,13 @@ extension RHomeViewViewModel: UICollectionViewDelegate, UICollectionViewDataSour
         case .vegetarian(_):
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "VegetarianCollectionViewCell", for: indexPath) as? VegetarianCollectionViewCell
             else { return UICollectionViewCell() }
-            cell.spinnerAnimating(animate: true)
+            cell.vegetarianView.spinnerAnimating(animate: true)
             if !vegetarianRecipes.isEmpty {
                 RImageManager.shared.downloadImage(URL(string: vegetarianRecipes[indexPath.row].image)!) { result in
                     switch result {
                     case .success(let data):
                         DispatchQueue.main.async {
-                            cell.spinnerAnimating(animate: false)
+                            cell.vegetarianView.spinnerAnimating(animate: false)
                             cell.configure(viewModel: self.vegetarianRecipes[indexPath.row], image: data)
                         }
                     case .failure(let error):
@@ -85,13 +85,13 @@ extension RHomeViewViewModel: UICollectionViewDelegate, UICollectionViewDataSour
         case .glutenFree(_):
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "GlutenFreeCollectionViewCell", for: indexPath) as? GlutenFreeCollectionViewCell
             else { return UICollectionViewCell() }
-            //cell.configure()
+            //cell.configure(viewModel: <#RRecipe#>, image: <#Data#>)
             return cell
             
         case .lowCalorie(_):
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "LowCalorieCollectionViewCell", for: indexPath) as? LowCalorieCollectionViewCell
             else { return UICollectionViewCell() }
-            cell.configure()
+            //cell.configure(viewModel: <#RRecipe#>, image: <#Data#>)
             return cell
         }
     }
