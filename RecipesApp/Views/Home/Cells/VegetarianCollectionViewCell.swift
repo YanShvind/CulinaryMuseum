@@ -11,15 +11,38 @@ final class VegetarianCollectionViewCell: UICollectionViewCell {
         contentView.backgroundColor = .secondarySystemBackground
         setUpView()
     }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
         
-    public func configure(viewModel: RRecipe, image: Data) {
-        vegetarianView.nameLabel.text = viewModel.title
-        vegetarianView.imageView.image = UIImage(data: image)
-        vegetarianView.readyInTimeLabel.text = "\(viewModel.readyInMinutes) min."
+    public func configure(viewModel: RSearchCollectionViewCellViewModel) {
+        vegetarianView.nameLabel.text = viewModel.recipeName
+        vegetarianView.readyInTimeLabel.text = "\(viewModel.recipeTime) min."
+        vegetarianView.imageView.image = nil
+        
+        viewModel.fetchImage { [weak self] result in
+            switch result {
+            case .success(let data):
+                DispatchQueue.main.async {
+                    let image = UIImage(data: data)
+                    self?.vegetarianView.imageView.image = image
+                    self?.vegetarianView.spinnerAnimating(animate: false)
+                }
+            case .failure(let error):
+                print(String(describing: error))
+                break
+            }
+        }
+        if viewModel.isFavorite {
+            vegetarianView.heartImageView.tintColor = .systemRed
+        } else {
+            vegetarianView.heartImageView.tintColor = .label
+        }
+    }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        vegetarianView.imageView.image = nil
+        vegetarianView.nameLabel.text = nil
+        vegetarianView.readyInTimeLabel.text = nil
+        vegetarianView.heartImageView.tintColor = .label
     }
     
     private func setUpView() {
@@ -30,5 +53,9 @@ final class VegetarianCollectionViewCell: UICollectionViewCell {
             vegetarianView.trailingAnchor.constraint(equalTo: trailingAnchor),
             vegetarianView.bottomAnchor.constraint(equalTo: bottomAnchor),
         ])
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
 }

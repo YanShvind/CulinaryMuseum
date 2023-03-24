@@ -18,7 +18,7 @@ final class RHomeView: UIView {
         super.init(frame: frame)
         translatesAutoresizingMaskIntoConstraints = false
         
-        viewModel.fetchVegetarianRecipes()
+        viewModel.fetchRecipes()
         viewModel.delegate = self
         createCollectionView()
         addConstraints()

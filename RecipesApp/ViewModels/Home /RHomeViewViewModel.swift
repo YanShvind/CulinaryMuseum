@@ -10,7 +10,26 @@ final class RHomeViewViewModel: NSObject {
     
     public weak var delegate: RHomeViewViewModelDelegate?
     
-    // Vegetarian
+    let sections = MockData.shared.sections
+    
+    //MARK: - Popularity
+    private var popularRecipes: [RRecipe] = [] {
+        didSet {
+            popularRecipesCell = []
+            for recipe in popularRecipes {
+                let viewModel = RSearchCollectionViewCellViewModel(recipeName: recipe.title,
+                                                                   recipeTime: recipe.readyInMinutes,
+                                                                   recipeImageUrl: URL(string: recipe.image),
+                                                                   isFavorite: false)
+                if !popularRecipesCell.contains(viewModel){
+                    popularRecipesCell.append(viewModel)
+                }
+            }
+        }
+    }
+    private var popularRecipesCell: [RSearchCollectionViewCellViewModel] = []
+    
+    //MARK: - Vegetarian
     private var vegetarianRecipes: [RRecipe] = [] {
         didSet {
             vegetarianRecipesCell = []
@@ -26,16 +45,31 @@ final class RHomeViewViewModel: NSObject {
         }
     }
     private var vegetarianRecipesCell: [RSearchCollectionViewCellViewModel] = []
-    
-    let sections = MockData.shared.sections
-    
-    public func fetchVegetarianRecipes() {
+
+    public func fetchRecipes() {
+        // проверяем, чтобы запросы выполнялись последовательно, а не параллельно
+        let group = DispatchGroup()
+        
+        group.enter()
         RService.shared.fetchRecipesByUrl(for: Constants.shared.vegetarianRecipesPath) { [weak self] results in
             guard let strongSelf = self else {
                 return
             }
             strongSelf.vegetarianRecipes = results
-            strongSelf.delegate?.didLoadInitialRecipes()
+            group.leave()
+        }
+        
+        group.enter()
+        RService.shared.fetchRecipesByUrl(for: Constants.shared.popularRecipesPath) { [weak self] results in
+            guard let strongSelf = self else {
+                return
+            }
+            strongSelf.popularRecipes = results
+            group.leave()
+        }
+        
+        group.notify(queue: .main) {
+            self.delegate?.didLoadInitialRecipes()
         }
     }
 }
@@ -54,24 +88,21 @@ extension RHomeViewViewModel: UICollectionViewDelegate, UICollectionViewDataSour
         case .popularity(_):
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PopularityCollectionViewCell", for: indexPath) as? PopularityCollectionViewCell
             else { return UICollectionViewCell() }
-            //cell.configure(imageName: popular[indexPath.row].image)
+            cell.popularView.spinnerAnimating(animate: true)
+            if !popularRecipesCell.isEmpty {
+                DispatchQueue.main.async {
+                    cell.configure(viewModel: self.popularRecipesCell[indexPath.row])
+                }
+            }
             return cell
             
         case .vegetarian(_):
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "VegetarianCollectionViewCell", for: indexPath) as? VegetarianCollectionViewCell
             else { return UICollectionViewCell() }
             cell.vegetarianView.spinnerAnimating(animate: true)
-            if !vegetarianRecipes.isEmpty {
-                RImageManager.shared.downloadImage(URL(string: vegetarianRecipes[indexPath.row].image)!) { result in
-                    switch result {
-                    case .success(let data):
-                        DispatchQueue.main.async {
-                            cell.vegetarianView.spinnerAnimating(animate: false)
-                            cell.configure(viewModel: self.vegetarianRecipes[indexPath.row], image: data)
-                        }
-                    case .failure(let error):
-                        print("Error downloading image: \(error.localizedDescription)")
-                    }
+            if !vegetarianRecipesCell.isEmpty {
+                DispatchQueue.main.async {
+                    cell.configure(viewModel: self.vegetarianRecipesCell[indexPath.row])
                 }
             }
             return cell
