@@ -12,43 +12,74 @@ final class RHomeViewViewModel: NSObject {
     
     let sections = MockData.shared.sections
     
+    private func convertToCollectionViewCellViewModels(recipes: [RRecipe]) -> [RCollectionViewCellViewModel] {
+        var cellViewModels: [RCollectionViewCellViewModel] = []
+        for recipe in recipes {
+            let viewModel = RCollectionViewCellViewModel(recipeName: recipe.title,
+                                                         recipeTime: recipe.readyInMinutes,
+                                                         recipeImageUrl: URL(string: recipe.image),
+                                                         isFavorite: false)
+            if !cellViewModels.contains(viewModel) {
+                cellViewModels.append(viewModel)
+            }
+        }
+        return cellViewModels
+    }
+    
     //MARK: - Popularity
     private var popularRecipes: [RRecipe] = [] {
         didSet {
-            popularRecipesCell = []
-            for recipe in popularRecipes {
-                let viewModel = RSearchCollectionViewCellViewModel(recipeName: recipe.title,
-                                                                   recipeTime: recipe.readyInMinutes,
-                                                                   recipeImageUrl: URL(string: recipe.image),
-                                                                   isFavorite: false)
-                if !popularRecipesCell.contains(viewModel){
-                    popularRecipesCell.append(viewModel)
-                }
-            }
+            popularRecipesCell = convertToCollectionViewCellViewModels(recipes: popularRecipes)
         }
     }
-    private var popularRecipesCell: [RSearchCollectionViewCellViewModel] = []
+    private var popularRecipesCell: [RCollectionViewCellViewModel] = []
     
     //MARK: - Vegetarian
     private var vegetarianRecipes: [RRecipe] = [] {
         didSet {
-            vegetarianRecipesCell = []
-            for recipe in vegetarianRecipes {
-                let viewModel = RSearchCollectionViewCellViewModel(recipeName: recipe.title,
-                                                                   recipeTime: recipe.readyInMinutes,
-                                                                   recipeImageUrl: URL(string: recipe.image),
-                                                                   isFavorite: false)
-                if !vegetarianRecipesCell.contains(viewModel){
-                    vegetarianRecipesCell.append(viewModel)
-                }
-            }
+            vegetarianRecipesCell = convertToCollectionViewCellViewModels(recipes: vegetarianRecipes)
         }
     }
-    private var vegetarianRecipesCell: [RSearchCollectionViewCellViewModel] = []
-
+    private var vegetarianRecipesCell: [RCollectionViewCellViewModel] = []
+    
+    //MARK: - Short Cooking Time
+    private var shortCookingTimeRecipes: [RRecipe] = [] {
+        didSet {
+            shortCookingTimeRecipesCell = convertToCollectionViewCellViewModels(recipes: shortCookingTimeRecipes)
+        }
+    }
+    private var shortCookingTimeRecipesCell: [RCollectionViewCellViewModel] = []
+    
+    //MARK: - Healthy
+    private var healthyRecipes: [RRecipe] = [] {
+        didSet {
+            healthyRecipesCell = convertToCollectionViewCellViewModels(recipes: healthyRecipes)
+        }
+    }
+    private var healthyRecipesCell: [RCollectionViewCellViewModel] = []
+    
+    //MARK: - Low Calorie
+    private var lowCalorieRecipes: [RRecipe] = [] {
+        didSet {
+            lowCalorieRecipesCell = convertToCollectionViewCellViewModels(recipes: lowCalorieRecipes)
+        }
+    }
+    private var lowCalorieRecipesCell: [RCollectionViewCellViewModel] = []
+    
+    //MARK: - Requests
     public func fetchRecipes() {
         // проверяем, чтобы запросы выполнялись последовательно, а не параллельно
+        // тем самым избегаем дублирование и мигание
         let group = DispatchGroup()
+        
+        group.enter()
+        RService.shared.fetchRecipesByUrl(for: Constants.shared.popularRecipesPath) { [weak self] results in
+            guard let strongSelf = self else {
+                return
+            }
+            strongSelf.popularRecipes = results
+            group.leave()
+        }
         
         group.enter()
         RService.shared.fetchRecipesByUrl(for: Constants.shared.vegetarianRecipesPath) { [weak self] results in
@@ -60,11 +91,29 @@ final class RHomeViewViewModel: NSObject {
         }
         
         group.enter()
-        RService.shared.fetchRecipesByUrl(for: Constants.shared.popularRecipesPath) { [weak self] results in
+        RService.shared.fetchRecipesByUrl(for: Constants.shared.shortCookingTime) { [weak self] results in
             guard let strongSelf = self else {
                 return
             }
-            strongSelf.popularRecipes = results
+            strongSelf.shortCookingTimeRecipes = results
+            group.leave()
+        }
+        
+        group.enter()
+        RService.shared.fetchRecipesByUrl(for: Constants.shared.healthyRecipes) { [weak self] results in
+            guard let strongSelf = self else {
+                return
+            }
+            strongSelf.healthyRecipes = results
+            group.leave()
+        }
+        
+        group.enter()
+        RService.shared.fetchRecipesByUrl(for: Constants.shared.lowCalorieRecipesPath) { [weak self] results in
+            guard let strongSelf = self else {
+                return
+            }
+            strongSelf.lowCalorieRecipes = results
             group.leave()
         }
         
@@ -107,22 +156,36 @@ extension RHomeViewViewModel: UICollectionViewDelegate, UICollectionViewDataSour
             }
             return cell
             
-        case .nutFree(_):
-            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "NutFreeCollectionViewCell", for: indexPath) as? NutFreeCollectionViewCell
+        case .shortCookingTime(_):
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "NutFreeCollectionViewCell", for: indexPath) as? ShortCookingTimeCollectionViewCell
             else { return UICollectionViewCell() }
-            //cell.configure(viewModel: <#RRecipe#>, image: <#Data#>)
+            cell.shortCookingTimeView.spinnerAnimating(animate: true)
+            if !shortCookingTimeRecipesCell.isEmpty {
+                DispatchQueue.main.async {
+                    cell.configure(viewModel: self.shortCookingTimeRecipesCell[indexPath.row])
+                }
+            }
             return cell
             
-        case .glutenFree(_):
-            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "GlutenFreeCollectionViewCell", for: indexPath) as? GlutenFreeCollectionViewCell
+        case .healthy(_):
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "GlutenFreeCollectionViewCell", for: indexPath) as? HealthyCollectionViewCell
             else { return UICollectionViewCell() }
-            //cell.configure(viewModel: <#RRecipe#>, image: <#Data#>)
+            if !healthyRecipesCell.isEmpty {
+                DispatchQueue.main.async {
+                    cell.configure(viewModel: self.healthyRecipesCell[indexPath.row])
+                }
+            }
             return cell
             
         case .lowCalorie(_):
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "LowCalorieCollectionViewCell", for: indexPath) as? LowCalorieCollectionViewCell
             else { return UICollectionViewCell() }
-            //cell.configure(viewModel: <#RRecipe#>, image: <#Data#>)
+            cell.lowCalorieView.spinnerAnimating(animate: true)
+            if !lowCalorieRecipesCell.isEmpty {
+                DispatchQueue.main.async {
+                    cell.configure(viewModel: self.lowCalorieRecipesCell[indexPath.row])
+                }
+            }
             return cell
         }
     }

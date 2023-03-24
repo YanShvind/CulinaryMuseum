@@ -1,7 +1,7 @@
 
 import UIKit
 
-final class CustomVeiwCell: UIView {
+final class CustomViewCell: UIView {
     
     lazy var imageView: UIImageView = {
         let imageView = UIImageView()
@@ -81,10 +81,6 @@ final class CustomVeiwCell: UIView {
         print("DDD")
     }
     
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
     public func spinnerAnimating(animate: Bool) {
         if animate {
             spinner.startAnimating()
@@ -92,9 +88,13 @@ final class CustomVeiwCell: UIView {
             spinner.stopAnimating()
         }
     }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
 }
 
-extension CustomVeiwCell {
+extension CustomViewCell {
     // MARK: AddConstraints
     private func addConstraints() {
         NSLayoutConstraint.activate([

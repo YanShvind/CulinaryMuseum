@@ -33,8 +33,8 @@ struct MockData {
         ])
     }
     
-    private var nutFree: ListSection {
-        .nutFree([.init(title: "", image: ""),
+    private var shortCookingTime: ListSection {
+        .shortCookingTime([.init(title: "", image: ""),
                   .init(title: "", image: ""),
                   .init(title: "", image: ""),
                   .init(title: "", image: ""),
@@ -47,8 +47,8 @@ struct MockData {
         ])
     }
     
-    private var glutenFree: ListSection {
-        .glutenFree([.init(title: "", image: ""),
+    private var healthy: ListSection {
+        .healthy([.init(title: "", image: ""),
                      .init(title: "", image: ""),
                      .init(title: "", image: ""),
                      .init(title: "", image: ""),
@@ -76,6 +76,6 @@ struct MockData {
     }
     
     var sections: [ListSection] {
-        [popularity, vegetarian, nutFree, glutenFree, lowCalorie]
+        [popularity, vegetarian, shortCookingTime, healthy, lowCalorie]
     }
 }

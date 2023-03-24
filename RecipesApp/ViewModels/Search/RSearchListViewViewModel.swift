@@ -21,7 +21,7 @@ final class RSearchListViewViewModel: NSObject {
         didSet {
             cellViewModels = []
             for recipe in recipes {
-                let viewModel = RSearchCollectionViewCellViewModel(recipeName: recipe.title,
+                let viewModel = RCollectionViewCellViewModel(recipeName: recipe.title,
                                                                    recipeTime: recipe.readyInMinutes,
                                                                    recipeImageUrl: URL(string: recipe.image),
                                                                    isFavorite: false)
@@ -32,7 +32,7 @@ final class RSearchListViewViewModel: NSObject {
         }
     }
     
-    private var cellViewModels: [RSearchCollectionViewCellViewModel] = []
+    private var cellViewModels: [RCollectionViewCellViewModel] = []
     
     public func fetchRecipes(for searchIngredient: String) {
         currentSearchText = searchIngredient
@@ -163,7 +163,8 @@ extension RSearchListViewViewModel: RSearchCollectionViewCellDelegate {
 
 // MARK: - SearchBar
 extension RSearchListViewViewModel: UISearchBarDelegate {
-    func searchBar(_ searchBar: UISearchBar, textDidChange textSearched: String) {
-        self.fetchRecipes(for: textSearched)
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        guard let searchText = searchBar.text else { return }
+        self.fetchRecipes(for: searchText)
     }
 }
