@@ -83,15 +83,16 @@ final class RSearchCollectionViewCell: UICollectionViewCell {
         guard let index = index else { return }
         delegate?.didTapHeartButton(in: index)
     }
-        
+    
     override func prepareForReuse() {
         super.prepareForReuse()
         imageView.image = nil
         nameLabel.text = nil
         readyInTimeLabel.text = nil
+        heartImageView.tintColor = .label
     }
     
-    public func configure(with viewModel: RSearchCollectionViewCellViewModel) {
+    public func configure(with viewModel: RCollectionViewCellViewModel) {
         nameLabel.text = viewModel.recipeName
         readyInTimeLabel.text = "\(viewModel.recipeTime) min."
         viewModel.fetchImage { [weak self] result in

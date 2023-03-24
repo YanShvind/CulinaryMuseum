@@ -1,7 +1,7 @@
 
 import Foundation
 
-final class RSearchCollectionViewCellViewModel: Hashable, Equatable {
+final class RCollectionViewCellViewModel: Hashable, Equatable {
     
     public let recipeName: String
     public let recipeTime: Int
@@ -24,7 +24,7 @@ final class RSearchCollectionViewCellViewModel: Hashable, Equatable {
     }
     
     // MARK: - Hashable
-    static func == (lhs: RSearchCollectionViewCellViewModel, rhs: RSearchCollectionViewCellViewModel) -> Bool {
+    static func == (lhs: RCollectionViewCellViewModel, rhs: RCollectionViewCellViewModel) -> Bool {
         return lhs.hashValue == rhs.hashValue
     }
     

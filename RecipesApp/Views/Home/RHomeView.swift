@@ -29,9 +29,9 @@ final class RHomeView: UIView {
                                 forCellWithReuseIdentifier: "PopularityCollectionViewCell")
         collectionView.register(VegetarianCollectionViewCell.self,
                                 forCellWithReuseIdentifier: "VegetarianCollectionViewCell")
-        collectionView.register(NutFreeCollectionViewCell.self,
+        collectionView.register(ShortCookingTimeCollectionViewCell.self,
                                 forCellWithReuseIdentifier: "NutFreeCollectionViewCell")
-        collectionView.register(GlutenFreeCollectionViewCell.self,
+        collectionView.register(HealthyCollectionViewCell.self,
                                 forCellWithReuseIdentifier: "GlutenFreeCollectionViewCell")
         collectionView.register(LowCalorieCollectionViewCell.self,
                                 forCellWithReuseIdentifier: "LowCalorieCollectionViewCell")
@@ -71,9 +71,9 @@ extension RHomeView {
                 return self.createPopularSection()
             case .vegetarian(_):
                 return self.createPopularSection()
-            case .nutFree(_):
+            case .shortCookingTime(_):
                 return self.createPopularSection()
-            case .glutenFree(_):
+            case .healthy(_):
                 return self.createPopularSection()
             case .lowCalorie(_):
                 return self.createPopularSection()

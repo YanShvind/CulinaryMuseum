@@ -3,17 +3,13 @@ import UIKit
 
 final class PopularityCollectionViewCell: UICollectionViewCell {
     
-    lazy var popularView = CustomVeiwCell()
+    lazy var popularView = CustomViewCell()
     
     override init(frame: CGRect) {
         super .init(frame: frame)
         
-        backgroundColor = .secondarySystemBackground
+        contentView.backgroundColor = .secondarySystemBackground
         setUpView()
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
     }
     
     // очищаем изображение в ячейке перед ее повторным использованием
@@ -25,7 +21,7 @@ final class PopularityCollectionViewCell: UICollectionViewCell {
         popularView.heartImageView.tintColor = .label
     }
     
-    func configure(viewModel: RSearchCollectionViewCellViewModel) {
+    public func configure(viewModel: RCollectionViewCellViewModel) {
        popularView.nameLabel.text = viewModel.recipeName
        popularView.readyInTimeLabel.text = "\(viewModel.recipeTime) min."
        popularView.imageView.image = nil
@@ -58,5 +54,9 @@ final class PopularityCollectionViewCell: UICollectionViewCell {
             popularView.trailingAnchor.constraint(equalTo: trailingAnchor),
             popularView.bottomAnchor.constraint(equalTo: bottomAnchor),
         ])
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
 }
