@@ -200,6 +200,7 @@
 			isa = PBXGroup;
 			children = (
 				6D5EB2A929A1710B009529D4 /* RService.swift */,
+				6D3ED97929C9A5BD00748004 /* Constants.swift */,
 			);
 			path = APIClient;
 			sourceTree = "<group>";
@@ -261,7 +262,6 @@
 				6D6E9E76299B7D2000A2A1D5 /* SceneDelegate.swift */,
 				6D6E9E7F299B7D2000A2A1D5 /* LaunchScreen.storyboard */,
 				6D6E9EE929A02DD900A2A1D5 /* Extensions.swift */,
-				6D3ED97929C9A5BD00748004 /* Constants.swift */,
 			);
 			path = Application;
 			sourceTree = "<group>";
