@@ -95,6 +95,7 @@ final class RSearchCollectionViewCell: UICollectionViewCell {
     public func configure(with viewModel: RCollectionViewCellViewModel) {
         nameLabel.text = viewModel.recipeName
         readyInTimeLabel.text = "\(viewModel.recipeTime) min."
+        
         viewModel.fetchImage { [weak self] result in
             switch result {
             case .success(let data):

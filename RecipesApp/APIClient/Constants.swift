@@ -14,12 +14,12 @@ struct Constants {
     
     static let shared = Constants()
 
-    let apiKey = "ecf8fe545f5c484aa9dba8388a900f3c"
+    let apiKey = "2da9ac50090e42c3a10c7fb6cdb55e87"
     let baseUrl = "https://api.spoonacular.com"
     
-    let popularRecipesPath = "https://api.spoonacular.com/recipes/complexSearch?apiKey=ecf8fe545f5c484aa9dba8388a900f3c&addRecipeInformation=true&offset=\(Int.random(in: 0..<100))&number=10&sort=popularity"
-    let vegetarianRecipesPath = "https://api.spoonacular.com/recipes/complexSearch?apiKey=ecf8fe545f5c484aa9dba8388a900f3c&diet=vegetarian&sort=popularity&addRecipeInformation=true&offset=\(Int.random(in: 0..<100))&number=10"
-    let shortCookingTime = "https://api.spoonacular.com/recipes/complexSearch?apiKey=ecf8fe545f5c484aa9dba8388a900f3c&maxReadyTime=20&addRecipeInformation=true&offset=\(Int.random(in: 0..<100))&number=10"
-    let lowCalorieRecipesPath = "https://api.spoonacular.com/recipes/complexSearch?apiKey=ecf8fe545f5c484aa9dba8388a900f3c&maxCalories=500&addRecipeInformation=true&offset=\(Int.random(in: 0..<100))&number=10"
-    let healthyRecipes = "https://api.spoonacular.com/recipes/complexSearch?apiKey=ecf8fe545f5c484aa9dba8388a900f3c&health=healthy&addRecipeInformation=true&offset=\(Int.random(in: 0..<100))&number=10"
+    let popularRecipesPath = "https://api.spoonacular.com/recipes/complexSearch?apiKey=2da9ac50090e42c3a10c7fb6cdb55e87&addRecipeInformation=true&offset=\(Int.random(in: 0..<100))&number=10&sort=popularity"
+    let vegetarianRecipesPath = "https://api.spoonacular.com/recipes/complexSearch?apiKey=2da9ac50090e42c3a10c7fb6cdb55e87&diet=vegetarian&sort=popularity&addRecipeInformation=true&offset=\(Int.random(in: 0..<100))&number=10"
+    let shortCookingTime = "https://api.spoonacular.com/recipes/complexSearch?apiKey=2da9ac50090e42c3a10c7fb6cdb55e87&maxReadyTime=20&addRecipeInformation=true&offset=\(Int.random(in: 0..<100))&number=10"
+    let lowCalorieRecipesPath = "https://api.spoonacular.com/recipes/complexSearch?apiKey=2da9ac50090e42c3a10c7fb6cdb55e87&maxCalories=500&addRecipeInformation=true&offset=\(Int.random(in: 0..<100))&number=10"
+    let healthyRecipes = "https://api.spoonacular.com/recipes/complexSearch?apiKey=2da9ac50090e42c3a10c7fb6cdb55e87&health=healthy&addRecipeInformation=true&offset=\(Int.random(in: 0..<100))&number=10"
 }

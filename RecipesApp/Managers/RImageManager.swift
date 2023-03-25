@@ -24,6 +24,7 @@ final class RImageManager {
                 print("Error: \(error?.localizedDescription ?? "Unknown error")")
                 return
             }
+            
             let value = data as NSData
             self?.imageDataCache.setObject(value, forKey: key)
             complection(.success(data))
@@ -31,3 +32,4 @@ final class RImageManager {
         task.resume()
     }
 }
+

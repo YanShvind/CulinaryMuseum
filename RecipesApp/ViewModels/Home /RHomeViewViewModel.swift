@@ -139,9 +139,7 @@ extension RHomeViewViewModel: UICollectionViewDelegate, UICollectionViewDataSour
             else { return UICollectionViewCell() }
             cell.popularView.spinnerAnimating(animate: true)
             if !popularRecipesCell.isEmpty {
-                DispatchQueue.main.async {
-                    cell.configure(viewModel: self.popularRecipesCell[indexPath.row])
-                }
+                cell.configure(viewModel: self.popularRecipesCell[indexPath.row])
             }
             return cell
             
@@ -150,9 +148,7 @@ extension RHomeViewViewModel: UICollectionViewDelegate, UICollectionViewDataSour
             else { return UICollectionViewCell() }
             cell.vegetarianView.spinnerAnimating(animate: true)
             if !vegetarianRecipesCell.isEmpty {
-                DispatchQueue.main.async {
-                    cell.configure(viewModel: self.vegetarianRecipesCell[indexPath.row])
-                }
+                cell.configure(viewModel: self.vegetarianRecipesCell[indexPath.row])
             }
             return cell
             
@@ -161,9 +157,7 @@ extension RHomeViewViewModel: UICollectionViewDelegate, UICollectionViewDataSour
             else { return UICollectionViewCell() }
             cell.shortCookingTimeView.spinnerAnimating(animate: true)
             if !shortCookingTimeRecipesCell.isEmpty {
-                DispatchQueue.main.async {
-                    cell.configure(viewModel: self.shortCookingTimeRecipesCell[indexPath.row])
-                }
+                cell.configure(viewModel: self.shortCookingTimeRecipesCell[indexPath.row])
             }
             return cell
             
@@ -171,9 +165,7 @@ extension RHomeViewViewModel: UICollectionViewDelegate, UICollectionViewDataSour
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "GlutenFreeCollectionViewCell", for: indexPath) as? HealthyCollectionViewCell
             else { return UICollectionViewCell() }
             if !healthyRecipesCell.isEmpty {
-                DispatchQueue.main.async {
-                    cell.configure(viewModel: self.healthyRecipesCell[indexPath.row])
-                }
+                cell.configure(viewModel: self.healthyRecipesCell[indexPath.row])
             }
             return cell
             
@@ -182,11 +174,33 @@ extension RHomeViewViewModel: UICollectionViewDelegate, UICollectionViewDataSour
             else { return UICollectionViewCell() }
             cell.lowCalorieView.spinnerAnimating(animate: true)
             if !lowCalorieRecipesCell.isEmpty {
-                DispatchQueue.main.async {
-                    cell.configure(viewModel: self.lowCalorieRecipesCell[indexPath.row])
-                }
+                cell.configure(viewModel: self.lowCalorieRecipesCell[indexPath.row])
             }
             return cell
+        }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        switch sections[indexPath.section]{
+        case .popularity(_):
+            let recipe = popularRecipes[indexPath.row]
+            
+
+        case .vegetarian(_):
+            let recipe = vegetarianRecipes[indexPath.row]
+            // Handle selection for vegetarian section
+
+        case .shortCookingTime(_):
+            let recipe = shortCookingTimeRecipes[indexPath.row]
+            // Handle selection for short cooking time section
+
+        case .healthy(_):
+            let recipe = healthyRecipes[indexPath.row]
+            // Handle selection for healthy section
+
+        case .lowCalorie(_):
+            let recipe = lowCalorieRecipes[indexPath.row]
+            // Handle selection for low calorie section
         }
     }
     

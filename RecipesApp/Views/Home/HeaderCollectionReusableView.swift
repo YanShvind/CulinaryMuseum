@@ -8,7 +8,7 @@ final class HeaderCollectionReusableView: UICollectionReusableView {
         label.text = "header"
         label.textAlignment = .center
         label.font = .systemFont(ofSize: 18)
-        label.textColor = .systemGray2
+        label.textColor = .systemGray
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
