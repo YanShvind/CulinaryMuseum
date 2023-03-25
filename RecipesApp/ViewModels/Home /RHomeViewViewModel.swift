@@ -4,6 +4,7 @@ import UIKit
 
 protocol RHomeViewViewModelDelegate: AnyObject {
     func didLoadInitialRecipes()
+    func didSelectRecipes(_ recipe: RRecipe)
 }
 
 final class RHomeViewViewModel: NSObject {
@@ -184,23 +185,23 @@ extension RHomeViewViewModel: UICollectionViewDelegate, UICollectionViewDataSour
         switch sections[indexPath.section]{
         case .popularity(_):
             let recipe = popularRecipes[indexPath.row]
-            
+            delegate?.didSelectRecipes(recipe)
 
         case .vegetarian(_):
             let recipe = vegetarianRecipes[indexPath.row]
-            // Handle selection for vegetarian section
+            delegate?.didSelectRecipes(recipe)
 
         case .shortCookingTime(_):
             let recipe = shortCookingTimeRecipes[indexPath.row]
-            // Handle selection for short cooking time section
+            delegate?.didSelectRecipes(recipe)
 
         case .healthy(_):
             let recipe = healthyRecipes[indexPath.row]
-            // Handle selection for healthy section
+            delegate?.didSelectRecipes(recipe)
 
         case .lowCalorie(_):
             let recipe = lowCalorieRecipes[indexPath.row]
-            // Handle selection for low calorie section
+            delegate?.didSelectRecipes(recipe)
         }
     }
     

@@ -4,7 +4,7 @@ import UIKit
 
 protocol RSearchListViewViewModelDelegate: AnyObject {
     func didLoadInitialRecipes()
-    func diSelectRecipes(_ recipe: RRecipe)
+    func didSelectRecipes(_ recipe: RRecipe)
     func didLoadMoreRecipes(with newIndexPaths: [IndexPath])
 }
 
@@ -105,7 +105,7 @@ extension RSearchListViewViewModel: UICollectionViewDelegate, UICollectionViewDa
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         collectionView.deselectItem(at: indexPath, animated: true)
         let recipe = recipes[indexPath.row]
-        delegate?.diSelectRecipes(recipe)
+        delegate?.didSelectRecipes(recipe)
     }
     
     // Настройка нижнего колонтитула
