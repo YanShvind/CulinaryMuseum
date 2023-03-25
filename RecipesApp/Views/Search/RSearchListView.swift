@@ -25,7 +25,7 @@ final class RSearchListView: UIView {
         return searchBar
     }()
     
-    let spinner: UIActivityIndicatorView = {
+    lazy var spinner: UIActivityIndicatorView = {
         let spinner = UIActivityIndicatorView(style: .large)
         spinner.hidesWhenStopped = true
         spinner.translatesAutoresizingMaskIntoConstraints = false
@@ -116,7 +116,7 @@ extension RSearchListView: RSearchListViewViewModelDelegate {
         }
     }
     
-    func diSelectRecipes(_ recipe: RRecipe) {
+    func didSelectRecipes(_ recipe: RRecipe) {
         delegate?.rSearchListView(self, didSelectRecipe: recipe)
     }
     

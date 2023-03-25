@@ -1,8 +1,14 @@
 
 import UIKit
 
+protocol RHomeViewDelegate: AnyObject {
+    func rHomeView(_ recipeListView: RHomeView,
+                       didSelectRecipe recipe: RRecipe)
+}
+
 final class RHomeView: UIView {
     
+    public weak var delegate: RHomeViewDelegate?
     private let viewModel = RHomeViewViewModel()
     
     private let collectionView: UICollectionView = {
@@ -12,6 +18,13 @@ final class RHomeView: UIView {
         collectionView.bounces = false
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         return collectionView
+    }()
+    
+    lazy var spinner: UIActivityIndicatorView = {
+        let spinner = UIActivityIndicatorView(style: .large)
+        spinner.hidesWhenStopped = true
+        spinner.translatesAutoresizingMaskIntoConstraints = false
+        return spinner
     }()
     
     override init(frame: CGRect) {
@@ -49,13 +62,18 @@ final class RHomeView: UIView {
     }
     
     private func addConstraints() {
-        addSubview(collectionView)
+        addSubviews(collectionView, spinner)
         
         NSLayoutConstraint.activate([
             collectionView.topAnchor.constraint(equalTo: topAnchor),
             collectionView.leadingAnchor.constraint(equalTo: leadingAnchor),
             collectionView.trailingAnchor.constraint(equalTo: trailingAnchor),
-            collectionView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -10),
+            collectionView.bottomAnchor.constraint(equalTo: bottomAnchor),
+            
+            spinner.widthAnchor.constraint(equalToConstant: 100),
+            spinner.heightAnchor.constraint(equalToConstant: 100),
+            spinner.centerXAnchor.constraint(equalTo: centerXAnchor),
+            spinner.centerYAnchor.constraint(equalTo: centerYAnchor),
         ])
     }
 }
@@ -119,6 +137,10 @@ extension RHomeView {
 }
 
 extension RHomeView: RHomeViewViewModelDelegate {
+    func didSelectRecipes(_ recipe: RRecipe) {
+        delegate?.rHomeView(self, didSelectRecipe: recipe)
+    }
+    
     func didLoadInitialRecipes() {
         DispatchQueue.main.async {
             self.collectionView.reloadData()
