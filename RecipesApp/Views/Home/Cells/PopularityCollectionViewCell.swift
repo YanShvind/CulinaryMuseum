@@ -26,7 +26,7 @@ final class PopularityCollectionViewCell: UICollectionViewCell {
        popularView.readyInTimeLabel.text = "\(viewModel.recipeTime) min."
        popularView.imageView.image = nil
 
-       viewModel.fetchImage { [weak self] result in
+        viewModel.fetchImage { [weak self] result in
            switch result {
            case .success(let data):
                DispatchQueue.main.async { [weak self] in
@@ -36,6 +36,7 @@ final class PopularityCollectionViewCell: UICollectionViewCell {
                }
            case .failure(let error):
                print(String(describing: error))
+               break
            }
        }
 

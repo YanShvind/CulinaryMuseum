@@ -11,7 +11,7 @@ final class HealthyCollectionViewCell: UICollectionViewCell {
         contentView.backgroundColor = .secondarySystemBackground
         setUpView()
     }
-        
+    
     override func prepareForReuse() {
         super.prepareForReuse()
         healthyView.imageView.image = nil
@@ -26,18 +26,18 @@ final class HealthyCollectionViewCell: UICollectionViewCell {
         healthyView.imageView.image = nil
         
         viewModel.fetchImage { [weak self] result in
-            switch result {
-            case .success(let data):
-                DispatchQueue.main.async { [weak self] in
-                    guard let strongSelf = self else { return }
-                    strongSelf.healthyView.imageView.image = UIImage(data: data)
-                    strongSelf.healthyView.spinnerAnimating(animate: false)
-                }
-            case .failure(let error):
-                print(String(describing: error))
-                break
-            }
-        }
+           switch result {
+           case .success(let data):
+               DispatchQueue.main.async { [weak self] in
+                   guard let strongSelf = self else { return }
+                   strongSelf.healthyView.imageView.image = UIImage(data: data)
+                   strongSelf.healthyView.spinnerAnimating(animate: false)
+               }
+           case .failure(let error):
+               print(String(describing: error))
+               break
+           }
+       }
         
         if viewModel.isFavorite {
             healthyView.heartImageView.tintColor = .systemRed
