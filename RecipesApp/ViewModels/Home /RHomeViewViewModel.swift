@@ -165,6 +165,7 @@ extension RHomeViewViewModel: UICollectionViewDelegate, UICollectionViewDataSour
         case .healthy(_):
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "HealthyCollectionViewCell", for: indexPath) as? RHealthyCollectionViewCell
             else { return UICollectionViewCell() }
+            cell.healthyView.spinnerAnimating(animate: true)
             if !healthyRecipesCell.isEmpty {
                 cell.configure(viewModel: self.healthyRecipesCell[indexPath.row])
             }

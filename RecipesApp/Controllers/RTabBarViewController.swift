@@ -7,7 +7,7 @@ final class RTabBarViewController: UITabBarController {
         super.viewDidLoad()
         
         self.view.backgroundColor = .systemRed
-        self.tabBar.backgroundColor = .secondarySystemBackground
+        self.tabBar.backgroundImage = UIImage()
         setUpTabs()
     }
     
@@ -35,20 +35,19 @@ final class RTabBarViewController: UITabBarController {
                                        tag: 1)
         nav2.tabBarItem = UITabBarItem(title: "Search",
                                        image: UIImage(systemName: "magnifyingglass"),
-                                       tag: 1)
+                                       tag: 2)
         nav3.tabBarItem = UITabBarItem(title: "Categories",
                                        image: UIImage(systemName: "bookmark.fill"),
-                                       tag: 2)
+                                       tag: 3)
         nav4.tabBarItem = UITabBarItem(title: "Favorites",
                                        image: UIImage(systemName: "heart.fill"),
-                                       tag: 3)
+                                       tag: 4)
         nav5.tabBarItem = UITabBarItem(title: "New Recipe",
                                        image: UIImage(systemName: "plus"),
-                                       tag: 4)
+                                       tag: 5)
         
         for nav in [nav1, nav2, nav3, nav4, nav5] {
             nav.navigationBar.scrollEdgeAppearance = nav.navigationBar.standardAppearance
-            
         }
         
         setViewControllers([nav1, nav2, nav3, nav4, nav5], animated: true)

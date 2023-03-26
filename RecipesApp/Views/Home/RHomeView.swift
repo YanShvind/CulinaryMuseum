@@ -124,7 +124,7 @@ extension RHomeView {
                                           interGroupSpacing: 15,
                                           supplementaryItems: [supplementaryHeaderItem()],
                                           contentInsets: false)
-        section.contentInsets = .init(top: 0, leading: 10, bottom: 0, trailing: 0)
+        section.contentInsets = .init(top: 0, leading: 10, bottom: 10, trailing: 0)
         return section
     }
     
