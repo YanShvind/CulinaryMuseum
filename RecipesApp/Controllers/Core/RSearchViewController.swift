@@ -31,7 +31,7 @@ extension RSearchViewController: RSearchListViewDelegate {
         let detailVC = RRecipeDetailViewController(viewModel: viewModel)
         rSearchView.spinner.startAnimating()
         viewModel.fetchRecipeInformation(forId: recipe.id)
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
             self.rSearchView.spinner.stopAnimating()
             self.navigationController?.pushViewController(detailVC, animated: true)
         }

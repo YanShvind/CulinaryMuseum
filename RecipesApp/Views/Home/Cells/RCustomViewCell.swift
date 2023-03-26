@@ -1,7 +1,7 @@
 
 import UIKit
 
-final class CustomViewCell: UIView {
+final class RCustomViewCell: UIView {
     
     lazy var imageView: UIImageView = {
         let imageView = UIImageView()
@@ -56,6 +56,7 @@ final class CustomViewCell: UIView {
     
     lazy var spinner: UIActivityIndicatorView = {
         let spinner = UIActivityIndicatorView(style: .large)
+        spinner.color = .systemYellow
         spinner.hidesWhenStopped = true
         spinner.translatesAutoresizingMaskIntoConstraints = false
         return spinner
@@ -94,7 +95,7 @@ final class CustomViewCell: UIView {
     }
 }
 
-extension CustomViewCell {
+extension RCustomViewCell {
     // MARK: AddConstraints
     private func addConstraints() {
         NSLayoutConstraint.activate([

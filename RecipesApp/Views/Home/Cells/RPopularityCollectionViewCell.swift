@@ -1,9 +1,9 @@
 
 import UIKit
 
-final class PopularityCollectionViewCell: UICollectionViewCell {
+final class RPopularityCollectionViewCell: UICollectionViewCell {
     
-    lazy var popularView = CustomViewCell()
+    lazy var popularView = RCustomViewCell()
     
     override init(frame: CGRect) {
         super .init(frame: frame)

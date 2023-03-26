@@ -1,9 +1,9 @@
 
 import UIKit
 
-final class LowCalorieCollectionViewCell: UICollectionViewCell {
+final class RLowCalorieCollectionViewCell: UICollectionViewCell {
     
-    lazy var lowCalorieView = CustomViewCell()
+    lazy var lowCalorieView = RCustomViewCell()
     
     override init(frame: CGRect) {
         super .init(frame: frame)

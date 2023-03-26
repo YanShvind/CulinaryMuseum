@@ -1,7 +1,7 @@
 
 import UIKit
 
-final class HeaderCollectionReusableView: UICollectionReusableView {
+final class RHeaderCollectionReusableView: UICollectionReusableView {
     
     private let headerLabel: UILabel = {
         let label = UILabel ()

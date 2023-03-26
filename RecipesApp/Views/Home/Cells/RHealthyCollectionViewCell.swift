@@ -1,9 +1,9 @@
 
 import UIKit
 
-final class HealthyCollectionViewCell: UICollectionViewCell {
+final class RHealthyCollectionViewCell: UICollectionViewCell {
     
-    lazy var healthyView = CustomViewCell()
+    lazy var healthyView = RCustomViewCell()
     
     override init(frame: CGRect) {
         super .init(frame: frame)
