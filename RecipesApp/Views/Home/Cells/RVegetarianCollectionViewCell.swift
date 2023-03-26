@@ -1,9 +1,9 @@
 
 import UIKit
 
-final class VegetarianCollectionViewCell: UICollectionViewCell {
+final class RVegetarianCollectionViewCell: UICollectionViewCell {
     
-    lazy var vegetarianView = CustomViewCell()
+    lazy var vegetarianView = RCustomViewCell()
     
     override init(frame: CGRect) {
         super .init(frame: frame)

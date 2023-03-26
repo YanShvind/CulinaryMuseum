@@ -31,7 +31,7 @@ extension RHomeViewController: RHomeViewDelegate {
         let detailVC = RRecipeDetailViewController(viewModel: viewModel)
         rHomeView.spinner.startAnimating()
         viewModel.fetchRecipeInformation(forId: recipe.id)
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
             self.rHomeView.spinner.stopAnimating()
             self.navigationController?.pushViewController(detailVC, animated: true)
         }

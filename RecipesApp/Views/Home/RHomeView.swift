@@ -22,6 +22,7 @@ final class RHomeView: UIView {
     
     lazy var spinner: UIActivityIndicatorView = {
         let spinner = UIActivityIndicatorView(style: .large)
+        spinner.color = .systemYellow
         spinner.hidesWhenStopped = true
         spinner.translatesAutoresizingMaskIntoConstraints = false
         return spinner
@@ -38,17 +39,17 @@ final class RHomeView: UIView {
     }
     
     private func createCollectionView() {
-        collectionView.register(PopularityCollectionViewCell.self,
+        collectionView.register(RPopularityCollectionViewCell.self,
                                 forCellWithReuseIdentifier: "PopularityCollectionViewCell")
-        collectionView.register(VegetarianCollectionViewCell.self,
+        collectionView.register(RVegetarianCollectionViewCell.self,
                                 forCellWithReuseIdentifier: "VegetarianCollectionViewCell")
-        collectionView.register(ShortCookingTimeCollectionViewCell.self,
-                                forCellWithReuseIdentifier: "NutFreeCollectionViewCell")
-        collectionView.register(HealthyCollectionViewCell.self,
-                                forCellWithReuseIdentifier: "GlutenFreeCollectionViewCell")
-        collectionView.register(LowCalorieCollectionViewCell.self,
+        collectionView.register(RShortCookingTimeCollectionViewCell.self,
+                                forCellWithReuseIdentifier: "ShortCookingTimeCollectionViewCell")
+        collectionView.register(RHealthyCollectionViewCell.self,
+                                forCellWithReuseIdentifier: "HealthyCollectionViewCell")
+        collectionView.register(RLowCalorieCollectionViewCell.self,
                                 forCellWithReuseIdentifier: "LowCalorieCollectionViewCell")
-        collectionView.register(HeaderCollectionReusableView.self,
+        collectionView.register(RHeaderCollectionReusableView.self,
                                 forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
                                 withReuseIdentifier: "HeaderCollectionReusableView")
         collectionView.collectionViewLayout = createLayout()

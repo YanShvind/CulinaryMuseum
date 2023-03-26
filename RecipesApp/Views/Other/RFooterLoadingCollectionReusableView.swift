@@ -7,6 +7,7 @@ final class RFooterLoadingCollectionReusableView: UICollectionReusableView {
     
     private let spinner: UIActivityIndicatorView = {
         let spinner = UIActivityIndicatorView(style: .large)
+        spinner.color = .systemYellow
         spinner.hidesWhenStopped = true
         spinner.translatesAutoresizingMaskIntoConstraints = false
         return spinner

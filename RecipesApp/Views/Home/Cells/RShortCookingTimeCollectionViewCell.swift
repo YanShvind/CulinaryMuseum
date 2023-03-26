@@ -1,9 +1,9 @@
 
 import UIKit
 
-final class ShortCookingTimeCollectionViewCell: UICollectionViewCell {
+final class RShortCookingTimeCollectionViewCell: UICollectionViewCell {
     
-    lazy var shortCookingTimeView = CustomViewCell()
+    lazy var shortCookingTimeView = RCustomViewCell()
     
     override init(frame: CGRect) {
         super .init(frame: frame)

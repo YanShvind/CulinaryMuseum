@@ -92,7 +92,7 @@ final class RHomeViewViewModel: NSObject {
         }
         
         group.enter()
-        RService.shared.fetchRecipesByUrl(for: Constants.shared.shortCookingTime) { [weak self] results in
+        RService.shared.fetchRecipesByUrl(for: Constants.shared.shortCookingTimePath) { [weak self] results in
             guard let strongSelf = self else {
                 return
             }
@@ -101,7 +101,7 @@ final class RHomeViewViewModel: NSObject {
         }
         
         group.enter()
-        RService.shared.fetchRecipesByUrl(for: Constants.shared.healthyRecipes) { [weak self] results in
+        RService.shared.fetchRecipesByUrl(for: Constants.shared.healthyRecipesPath) { [weak self] results in
             guard let strongSelf = self else {
                 return
             }
@@ -136,7 +136,7 @@ extension RHomeViewViewModel: UICollectionViewDelegate, UICollectionViewDataSour
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         switch sections[indexPath.section]{
         case .popularity(_):
-            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PopularityCollectionViewCell", for: indexPath) as? PopularityCollectionViewCell
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PopularityCollectionViewCell", for: indexPath) as? RPopularityCollectionViewCell
             else { return UICollectionViewCell() }
             cell.popularView.spinnerAnimating(animate: true)
             if !popularRecipesCell.isEmpty {
@@ -145,7 +145,7 @@ extension RHomeViewViewModel: UICollectionViewDelegate, UICollectionViewDataSour
             return cell
             
         case .vegetarian(_):
-            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "VegetarianCollectionViewCell", for: indexPath) as? VegetarianCollectionViewCell
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "VegetarianCollectionViewCell", for: indexPath) as? RVegetarianCollectionViewCell
             else { return UICollectionViewCell() }
             cell.vegetarianView.spinnerAnimating(animate: true)
             if !vegetarianRecipesCell.isEmpty {
@@ -154,7 +154,7 @@ extension RHomeViewViewModel: UICollectionViewDelegate, UICollectionViewDataSour
             return cell
             
         case .shortCookingTime(_):
-            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "NutFreeCollectionViewCell", for: indexPath) as? ShortCookingTimeCollectionViewCell
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ShortCookingTimeCollectionViewCell", for: indexPath) as? RShortCookingTimeCollectionViewCell
             else { return UICollectionViewCell() }
             cell.shortCookingTimeView.spinnerAnimating(animate: true)
             if !shortCookingTimeRecipesCell.isEmpty {
@@ -163,7 +163,7 @@ extension RHomeViewViewModel: UICollectionViewDelegate, UICollectionViewDataSour
             return cell
             
         case .healthy(_):
-            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "GlutenFreeCollectionViewCell", for: indexPath) as? HealthyCollectionViewCell
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "HealthyCollectionViewCell", for: indexPath) as? RHealthyCollectionViewCell
             else { return UICollectionViewCell() }
             if !healthyRecipesCell.isEmpty {
                 cell.configure(viewModel: self.healthyRecipesCell[indexPath.row])
@@ -171,7 +171,7 @@ extension RHomeViewViewModel: UICollectionViewDelegate, UICollectionViewDataSour
             return cell
             
         case .lowCalorie(_):
-            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "LowCalorieCollectionViewCell", for: indexPath) as? LowCalorieCollectionViewCell
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "LowCalorieCollectionViewCell", for: indexPath) as? RLowCalorieCollectionViewCell
             else { return UICollectionViewCell() }
             cell.lowCalorieView.spinnerAnimating(animate: true)
             if !lowCalorieRecipesCell.isEmpty {
@@ -208,7 +208,7 @@ extension RHomeViewViewModel: UICollectionViewDelegate, UICollectionViewDataSour
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         switch kind {
         case UICollectionView.elementKindSectionHeader:
-            let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "HeaderCollectionReusableView", for: indexPath) as! HeaderCollectionReusableView
+            let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "HeaderCollectionReusableView", for: indexPath) as! RHeaderCollectionReusableView
             header.configureHeader(categoryName: sections[indexPath.section].title)
             return header
         default:
