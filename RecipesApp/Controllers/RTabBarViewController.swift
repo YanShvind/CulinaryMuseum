@@ -8,6 +8,7 @@ final class RTabBarViewController: UITabBarController {
         
         self.view.backgroundColor = .systemRed
         self.tabBar.backgroundImage = UIImage()
+        self.tabBar.backgroundColor = .secondarySystemBackground
         setUpTabs()
     }
     
