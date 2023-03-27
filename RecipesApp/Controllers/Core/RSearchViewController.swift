@@ -10,6 +10,7 @@ final class RSearchViewController: UIViewController {
         
         title = "Search"
         self.view.backgroundColor = .systemBackground
+        self.rSearchView.hideKeyboardWhenTappedAround()
         rSearchView.delegate = self
         setUpView()
     }
@@ -30,9 +31,11 @@ extension RSearchViewController: RSearchListViewDelegate {
         let viewModel = RRecipeDetailViewViewModel(recipe: recipe)
         let detailVC = RRecipeDetailViewController(viewModel: viewModel)
         rSearchView.spinner.startAnimating()
+        rSearchView.isUserInteractionEnabled = false
         viewModel.fetchRecipeInformation(forId: recipe.id)
         DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
             self.rSearchView.spinner.stopAnimating()
+            self.rSearchView.isUserInteractionEnabled = true
             self.navigationController?.pushViewController(detailVC, animated: true)
         }
     }

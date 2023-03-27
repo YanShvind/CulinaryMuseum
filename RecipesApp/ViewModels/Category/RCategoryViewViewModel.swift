@@ -5,6 +5,9 @@ import UIKit
 final class RCategoryViewViewModel: NSObject {
     
     private let categoriesArray = ["Breakfast", "Lunch", "Dinner", "Appetizers", "Bakery", "Beverages", "Desserts", "Main Course", "Soups"]
+    private let imagesCategoryArray: [UIImage] = ["breakfast", "lunch", "dinner", "appetizers", "bakery", "beverages", "dessert", "maincourse", "soup"].compactMap
+    { UIImage(named: $0) }
+    
 }
 
 extension RCategoryViewViewModel: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
@@ -17,6 +20,8 @@ extension RCategoryViewViewModel: UICollectionViewDelegate, UICollectionViewData
                                                             for: indexPath) as? RCategoryCollectionViewCell else {
             fatalError("Unsupported cell")
         }
+        
+        cell.configure(nameLabelText: categoriesArray[indexPath.row], categoryImage: imagesCategoryArray[indexPath.row])
         
         return cell
     }

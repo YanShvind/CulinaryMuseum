@@ -166,5 +166,6 @@ extension RSearchListViewViewModel: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         guard let searchText = searchBar.text else { return }
         self.fetchRecipes(for: searchText)
+        searchBar.endEditing(true)
     }
 }
