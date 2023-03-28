@@ -4,6 +4,7 @@ import UIKit
 final class RSearchViewController: UIViewController {
     
     private let rSearchView = RSearchListView()
+    var category = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -13,6 +14,11 @@ final class RSearchViewController: UIViewController {
         self.rSearchView.hideKeyboardWhenTappedAround()
         rSearchView.delegate = self
         setUpView()
+        
+        if !category.isEmpty {
+            rSearchView.searchBar.text = category
+            rSearchView.viewModel.fetchRecipes(for: category)
+        }
     }
     
     private func setUpView() {

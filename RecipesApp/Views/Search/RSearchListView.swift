@@ -10,9 +10,9 @@ final class RSearchListView: UIView {
     
     public weak var delegate: RSearchListViewDelegate?
     
-    private let viewModel = RSearchListViewViewModel()
+    lazy var viewModel = RSearchListViewViewModel()
     
-    private var searchBar: UISearchBar = {
+    var searchBar: UISearchBar = {
         let searchBar = UISearchBar()
         searchBar.backgroundColor = .systemBackground
         searchBar.searchTextField.backgroundColor = .systemGray5
@@ -58,7 +58,7 @@ final class RSearchListView: UIView {
 
         updateCell()
         spinner.startAnimating()
-        viewModel.fetchRecipes(for: "")
+        viewModel.fetchRecipes(for: viewModel.currentSearchText)
         viewModel.delegate = self
         setUpCollectionView()
     }
