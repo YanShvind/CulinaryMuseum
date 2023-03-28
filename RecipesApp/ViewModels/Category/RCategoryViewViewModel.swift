@@ -2,9 +2,15 @@
 import Foundation
 import UIKit
 
+protocol RCategoryViewViewModelDelegate: AnyObject {
+    func rCategoryViewViewModel(_ viewModel: RCategoryViewViewModel, didSelectCategory category: String)
+}
+
 final class RCategoryViewViewModel: NSObject {
     
-    private let categoriesArray = ["Breakfast", "Lunch", "Dinner", "Appetizers", "Bakery", "Beverages", "Desserts", "Main Course", "Soups"]
+    weak var delegate: RCategoryViewViewModelDelegate?
+    
+    private let categoriesArray = ["Breakfast", "Lunch", "Dinner", "Appetizers", "Bread", "Beverages", "Desserts", "Potato", "Soups"]
     private let imagesCategoryArray: [UIImage] = ["breakfast", "lunch", "dinner", "appetizers", "bakery", "beverages", "dessert", "maincourse", "soup"].compactMap
     { UIImage(named: $0) }
     
@@ -24,6 +30,11 @@ extension RCategoryViewViewModel: UICollectionViewDelegate, UICollectionViewData
         cell.configure(nameLabelText: categoriesArray[indexPath.row], categoryImage: imagesCategoryArray[indexPath.row])
         
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let selectedCategory = categoriesArray[indexPath.row]
+        delegate?.rCategoryViewViewModel(self, didSelectCategory: selectedCategory)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {

@@ -3,7 +3,7 @@ import UIKit
 
 final class RCategoryView: UIView {
     
-    private let viewModel = RCategoryViewViewModel()
+    lazy var viewModel = RCategoryViewViewModel()
     
     private var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -18,7 +18,7 @@ final class RCategoryView: UIView {
     
     lazy var spinner: UIActivityIndicatorView = {
         let spinner = UIActivityIndicatorView(style: .large)
-        spinner.color = .systemYellow
+        spinner.color = .systemBlue
         spinner.hidesWhenStopped = true
         spinner.translatesAutoresizingMaskIntoConstraints = false
         return spinner

@@ -30,9 +30,11 @@ extension RHomeViewController: RHomeViewDelegate {
         let viewModel = RRecipeDetailViewViewModel(recipe: recipe)
         let detailVC = RRecipeDetailViewController(viewModel: viewModel)
         rHomeView.spinner.startAnimating()
+        rHomeView.isUserInteractionEnabled = false
         viewModel.fetchRecipeInformation(forId: recipe.id)
         DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
             self.rHomeView.spinner.stopAnimating()
+            self.rHomeView.isUserInteractionEnabled = true
             self.navigationController?.pushViewController(detailVC, animated: true)
         }
     }

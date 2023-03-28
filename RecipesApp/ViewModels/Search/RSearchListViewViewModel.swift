@@ -13,7 +13,7 @@ final class RSearchListViewViewModel: NSObject {
     public weak var delegate: RSearchListViewViewModelDelegate?
     
     public var onDataUpdate: ((_ index: [IndexPath]) -> Void)? // наблюдатель для обновления ячейки
-    private var currentSearchText: String = ""
+    var currentSearchText: String = ""
     
     private var isLoadingMoreRecipes = false
     
