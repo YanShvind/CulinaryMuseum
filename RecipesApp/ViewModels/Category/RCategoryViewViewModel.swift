@@ -13,7 +13,6 @@ final class RCategoryViewViewModel: NSObject {
     private let categoriesArray = ["Breakfast", "Lunch", "Dinner", "Appetizers", "Bread", "Beverages", "Desserts", "Potato", "Soups"]
     private let imagesCategoryArray: [UIImage] = ["breakfast", "lunch", "dinner", "appetizers", "bakery", "beverages", "dessert", "maincourse", "soup"].compactMap
     { UIImage(named: $0) }
-    
 }
 
 extension RCategoryViewViewModel: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
