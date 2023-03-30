@@ -74,7 +74,7 @@ final class RHomeViewViewModel: NSObject {
         let group = DispatchGroup()
         
         group.enter()
-        RService.shared.fetchRecipesByUrl(for: Constants.shared.popularRecipesPath) { [weak self] results in
+        RService.shared.fetchRecipesByUrl(for: Constants.popularRecipesPath) { [weak self] results in
             guard let strongSelf = self else {
                 return
             }
@@ -83,7 +83,7 @@ final class RHomeViewViewModel: NSObject {
         }
         
         group.enter()
-        RService.shared.fetchRecipesByUrl(for: Constants.shared.vegetarianRecipesPath) { [weak self] results in
+        RService.shared.fetchRecipesByUrl(for: Constants.vegetarianRecipesPath) { [weak self] results in
             guard let strongSelf = self else {
                 return
             }
@@ -92,7 +92,7 @@ final class RHomeViewViewModel: NSObject {
         }
         
         group.enter()
-        RService.shared.fetchRecipesByUrl(for: Constants.shared.shortCookingTimePath) { [weak self] results in
+        RService.shared.fetchRecipesByUrl(for: Constants.shortCookingTimePath) { [weak self] results in
             guard let strongSelf = self else {
                 return
             }
@@ -101,7 +101,7 @@ final class RHomeViewViewModel: NSObject {
         }
         
         group.enter()
-        RService.shared.fetchRecipesByUrl(for: Constants.shared.healthyRecipesPath) { [weak self] results in
+        RService.shared.fetchRecipesByUrl(for: Constants.healthyRecipesPath) { [weak self] results in
             guard let strongSelf = self else {
                 return
             }
@@ -110,7 +110,7 @@ final class RHomeViewViewModel: NSObject {
         }
         
         group.enter()
-        RService.shared.fetchRecipesByUrl(for: Constants.shared.lowCalorieRecipesPath) { [weak self] results in
+        RService.shared.fetchRecipesByUrl(for: Constants.lowCalorieRecipesPath) { [weak self] results in
             guard let strongSelf = self else {
                 return
             }

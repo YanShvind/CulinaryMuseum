@@ -5,8 +5,8 @@ final class RService {
     
     static let shared = RService()
     
-    private let apiKey = Constants.shared.apiKey
-    private let baseURL = Constants.shared.baseUrl
+    private let apiKey = Constants.apiKey
+    private let baseURL = Constants.baseUrl
 
     // Запрос для поиска рецептов
     func fetchRecipes(for ingredients: String = "", random: Bool = false, completion: @escaping ([RRecipe]) -> Void) {

@@ -5,7 +5,7 @@ final class RSearchViewController: UIViewController {
     
     private let rSearchView = RSearchListView()
     var category = ""
-    
+ 
     override func viewDidLoad() {
         super.viewDidLoad()
         

@@ -31,7 +31,7 @@ extension RCategoriesViewController: RCategoryViewViewModelDelegate {
         searchVC.category = category
         rCategoryView.spinner.startAnimating()
         rCategoryView.isUserInteractionEnabled = false
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2.5) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
             self.rCategoryView.spinner.stopAnimating()
             self.rCategoryView.isUserInteractionEnabled = true
             self.navigationController?.pushViewController(searchVC, animated: true)
