@@ -1,7 +1,14 @@
 
 import UIKit
 
+protocol RCustomViewCellCellDelegate: AnyObject {
+    func didTapHeartButton(index indexPath: IndexPath)
+}
+
 final class RCustomViewCell: UIView {
+    
+    weak var delegate: RCustomViewCellCellDelegate?
+    var index: IndexPath?
     
     lazy var imageView: UIImageView = {
         let imageView = UIImageView()
@@ -79,7 +86,8 @@ final class RCustomViewCell: UIView {
     
     @objc
     private func heartTap(_ sender: UITapGestureRecognizer) {
-        print("DDD")
+        guard let index = index else { return }
+        delegate?.didTapHeartButton(index: index)
     }
     
     public func spinnerAnimating(animate: Bool) {

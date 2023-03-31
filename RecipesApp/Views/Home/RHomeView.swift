@@ -33,9 +33,21 @@ final class RHomeView: UIView {
         translatesAutoresizingMaskIntoConstraints = false
         
         viewModel.fetchRecipes()
+        updateCell()
         viewModel.delegate = self
         createCollectionView()
         addConstraints()
+    }
+    
+    private func updateCell() {
+        viewModel.onDataUpdate = { [weak self] index in
+            DispatchQueue.main.async {
+                self?.collectionView.performBatchUpdates({
+                    let indexPathsToUpdate = index
+                    self?.collectionView.reloadItems(at: indexPathsToUpdate)
+                }, completion: nil)
+            }
+        }
     }
     
     private func createCollectionView() {

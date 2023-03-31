@@ -21,8 +21,11 @@ final class RRecipeDetailViewController: UIViewController {
         super.viewDidLoad()
 
         view.backgroundColor = .systemBackground
-        //title = viewModel.title
-
+        downloadImage()
+        setUpView()
+    }
+    
+    private func downloadImage() {
         viewModel.downloadImage { result in
             switch result {
             case .success(let data):
@@ -33,7 +36,6 @@ final class RRecipeDetailViewController: UIViewController {
                 print("Error downloading image: \(error.localizedDescription)")
             }
         }
-        setUpView()
     }
     
     private func setUpView() {

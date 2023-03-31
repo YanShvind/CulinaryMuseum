@@ -17,6 +17,7 @@ final class RSearchViewController: UIViewController {
         
         if !category.isEmpty {
             rSearchView.searchBar.text = category
+            rSearchView.searchBar.isUserInteractionEnabled = false
             rSearchView.viewModel.fetchRecipes(for: category)
         } else {
             rSearchView.viewModel.fetchRecipes(for: rSearchView.viewModel.currentSearchText)
