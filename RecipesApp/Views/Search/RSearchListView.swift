@@ -33,7 +33,7 @@ final class RSearchListView: UIView {
         return spinner
     }()
     
-    private var collectionView: UICollectionView = {
+     var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
         layout.sectionInset = UIEdgeInsets(top: 0, left: 10, bottom: 10, right: 10)
@@ -58,7 +58,7 @@ final class RSearchListView: UIView {
 
         updateCell()
         spinner.startAnimating()
-        viewModel.fetchRecipes(for: viewModel.currentSearchText)
+       // viewModel.fetchRecipes(for: viewModel.currentSearchText)
         viewModel.delegate = self
         setUpCollectionView()
     }

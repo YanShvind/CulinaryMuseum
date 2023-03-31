@@ -18,6 +18,8 @@ final class RSearchViewController: UIViewController {
         if !category.isEmpty {
             rSearchView.searchBar.text = category
             rSearchView.viewModel.fetchRecipes(for: category)
+        } else {
+            rSearchView.viewModel.fetchRecipes(for: rSearchView.viewModel.currentSearchText)
         }
     }
     

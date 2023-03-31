@@ -33,11 +33,14 @@ final class RRecipeDetailView: UIView {
     
     private let tableView: UITableView = {
         let tableView = UITableView()
+        tableView.backgroundColor = .red
         tableView.rowHeight = 30
         tableView.layer.cornerRadius = 10
         tableView.translatesAutoresizingMaskIntoConstraints = false
         return tableView
     }()
+    
+    private var tableViewHeightConstraint: NSLayoutConstraint?
     
     init(frame: CGRect, viewModel: RRecipeDetailViewViewModel) {
         self.viewModel = viewModel
@@ -59,6 +62,7 @@ final class RRecipeDetailView: UIView {
     
     public func configureView(with data: Data) {
         imageView.image = UIImage(data: data)
+        tableView.reloadData()
     }
 }
 
@@ -86,7 +90,17 @@ extension RRecipeDetailView {
             tableView.topAnchor.constraint(equalTo: nameRecipeLabel.bottomAnchor, constant: 10),
             tableView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
             tableView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
-            tableView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -10)
         ])
+        tableViewHeightConstraint = tableView.heightAnchor.constraint(equalToConstant: 0)
+        tableViewHeightConstraint?.isActive = true
+        tableView.addObserver(self, forKeyPath: "contentSize", options: [.old, .new], context: nil)
+    }
+    
+    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+        if keyPath == "contentSize", let tableView = object as? UITableView {
+            tableView.removeObserver(self, forKeyPath: "contentSize")
+            tableViewHeightConstraint?.constant = tableView.contentSize.height
+            tableViewHeightConstraint?.isActive = true
+        }
     }
 }
