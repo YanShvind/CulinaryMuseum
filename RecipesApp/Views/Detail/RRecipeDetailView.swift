@@ -33,15 +33,21 @@ final class RRecipeDetailView: UIView {
     
     private let tableView: UITableView = {
         let tableView = UITableView()
-        tableView.backgroundColor = .red
+        tableView.backgroundColor = .systemYellow
         tableView.rowHeight = 30
         tableView.layer.cornerRadius = 10
         tableView.translatesAutoresizingMaskIntoConstraints = false
         return tableView
     }()
     
-    private var tableViewHeightConstraint: NSLayoutConstraint?
-    
+    private let infoButton: UIButton = {
+        let button = UIButton()
+        button.setTitle("Information", for: .normal)
+        button.backgroundColor = .systemYellow
+        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
+    }()
+        
     init(frame: CGRect, viewModel: RRecipeDetailViewViewModel) {
         self.viewModel = viewModel
         super.init(frame: frame)
@@ -53,7 +59,7 @@ final class RRecipeDetailView: UIView {
         tableView.dataSource = viewModel
         tableView.delegate = viewModel
         
-        addConstrants()
+        addConstraints()
     }
     
     required init?(coder: NSCoder) {
@@ -67,9 +73,9 @@ final class RRecipeDetailView: UIView {
 }
 
 extension RRecipeDetailView {
-    private func addConstrants() {
+    private func addConstraints() {
         addSubviews(imageView, view)
-        view.addSubviews(nameRecipeLabel, tableView)
+        view.addSubviews(nameRecipeLabel, tableView, infoButton)
         
         NSLayoutConstraint.activate([
             imageView.topAnchor.constraint(equalTo: topAnchor),
@@ -90,17 +96,12 @@ extension RRecipeDetailView {
             tableView.topAnchor.constraint(equalTo: nameRecipeLabel.bottomAnchor, constant: 10),
             tableView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
             tableView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
+            tableView.heightAnchor.constraint(equalToConstant: 150),
+            
+            infoButton.topAnchor.constraint(equalTo: tableView.bottomAnchor, constant: 20),
+            infoButton.centerXAnchor.constraint(equalTo: centerXAnchor),
+            infoButton.widthAnchor.constraint(equalToConstant: 200),
+            infoButton.heightAnchor.constraint(equalToConstant: 60)
         ])
-        tableViewHeightConstraint = tableView.heightAnchor.constraint(equalToConstant: 0)
-        tableViewHeightConstraint?.isActive = true
-        tableView.addObserver(self, forKeyPath: "contentSize", options: [.old, .new], context: nil)
-    }
-    
-    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
-        if keyPath == "contentSize", let tableView = object as? UITableView {
-            tableView.removeObserver(self, forKeyPath: "contentSize")
-            tableViewHeightConstraint?.constant = tableView.contentSize.height
-            tableViewHeightConstraint?.isActive = true
-        }
     }
 }

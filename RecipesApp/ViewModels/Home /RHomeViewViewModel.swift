@@ -10,21 +10,15 @@ protocol RHomeViewViewModelDelegate: AnyObject {
 final class RHomeViewViewModel: NSObject {
     
     public weak var delegate: RHomeViewViewModelDelegate?
+    public var onDataUpdate: ((_ index: [IndexPath]) -> Void)? // наблюдатель для обновления ячейки
     
     let sections = MockData.shared.sections
     
     private func convertToCollectionViewCellViewModels(recipes: [RRecipe]) -> [RCollectionViewCellViewModel] {
-        var cellViewModels: [RCollectionViewCellViewModel] = []
-        for recipe in recipes {
-            let viewModel = RCollectionViewCellViewModel(recipeName: recipe.title,
-                                                         recipeTime: recipe.readyInMinutes,
-                                                         recipeImageUrl: URL(string: recipe.image),
-                                                         isFavorite: false)
-            if !cellViewModels.contains(viewModel) {
-                cellViewModels.append(viewModel)
-            }
-        }
-        return cellViewModels
+        return recipes.map { RCollectionViewCellViewModel(recipeName: $0.title,
+                                                          recipeTime: $0.readyInMinutes,
+                                                          recipeImageUrl: URL(string: $0.image),
+                                                          isFavorite: false) }
     }
     
     //MARK: - Popularity
@@ -138,6 +132,8 @@ extension RHomeViewViewModel: UICollectionViewDelegate, UICollectionViewDataSour
         case .popularity(_):
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PopularityCollectionViewCell", for: indexPath) as? RPopularityCollectionViewCell
             else { return UICollectionViewCell() }
+            cell.popularView.delegate = self
+            cell.popularView.index = indexPath
             cell.popularView.spinnerAnimating(animate: true)
             if !popularRecipesCell.isEmpty {
                 cell.configure(viewModel: self.popularRecipesCell[indexPath.row])
@@ -147,6 +143,8 @@ extension RHomeViewViewModel: UICollectionViewDelegate, UICollectionViewDataSour
         case .vegetarian(_):
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "VegetarianCollectionViewCell", for: indexPath) as? RVegetarianCollectionViewCell
             else { return UICollectionViewCell() }
+            cell.vegetarianView.delegate = self
+            cell.vegetarianView.index = indexPath
             cell.vegetarianView.spinnerAnimating(animate: true)
             if !vegetarianRecipesCell.isEmpty {
                 cell.configure(viewModel: self.vegetarianRecipesCell[indexPath.row])
@@ -156,6 +154,8 @@ extension RHomeViewViewModel: UICollectionViewDelegate, UICollectionViewDataSour
         case .shortCookingTime(_):
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ShortCookingTimeCollectionViewCell", for: indexPath) as? RShortCookingTimeCollectionViewCell
             else { return UICollectionViewCell() }
+            cell.shortCookingTimeView.delegate = self
+            cell.shortCookingTimeView.index = indexPath
             cell.shortCookingTimeView.spinnerAnimating(animate: true)
             if !shortCookingTimeRecipesCell.isEmpty {
                 cell.configure(viewModel: self.shortCookingTimeRecipesCell[indexPath.row])
@@ -165,6 +165,8 @@ extension RHomeViewViewModel: UICollectionViewDelegate, UICollectionViewDataSour
         case .healthy(_):
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "HealthyCollectionViewCell", for: indexPath) as? RHealthyCollectionViewCell
             else { return UICollectionViewCell() }
+            cell.healthyView.delegate = self
+            cell.healthyView.index = indexPath
             cell.healthyView.spinnerAnimating(animate: true)
             if !healthyRecipesCell.isEmpty {
                 cell.configure(viewModel: self.healthyRecipesCell[indexPath.row])
@@ -174,6 +176,8 @@ extension RHomeViewViewModel: UICollectionViewDelegate, UICollectionViewDataSour
         case .lowCalorie(_):
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "LowCalorieCollectionViewCell", for: indexPath) as? RLowCalorieCollectionViewCell
             else { return UICollectionViewCell() }
+            cell.lowCalorieView.delegate = self
+            cell.lowCalorieView.index = indexPath
             cell.lowCalorieView.spinnerAnimating(animate: true)
             if !lowCalorieRecipesCell.isEmpty {
                 cell.configure(viewModel: self.lowCalorieRecipesCell[indexPath.row])
@@ -215,5 +219,15 @@ extension RHomeViewViewModel: UICollectionViewDelegate, UICollectionViewDataSour
         default:
             return UICollectionReusableView()
         }
+    }
+}
+
+extension RHomeViewViewModel: RCustomViewCellCellDelegate {
+    func didTapHeartButton(index indexPath: IndexPath) {
+        let array = [popularRecipesCell, vegetarianRecipesCell, shortCookingTimeRecipesCell, healthyRecipesCell, lowCalorieRecipesCell]
+        let ArrayCell = array[indexPath.section]
+        let cell = ArrayCell[indexPath.row]
+        cell.isFavorite = !cell.isFavorite
+        onDataUpdate?([indexPath])
     }
 }

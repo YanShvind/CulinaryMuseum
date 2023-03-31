@@ -18,7 +18,7 @@ final class RSearchListView: UIView {
         searchBar.searchTextField.backgroundColor = .systemGray5
         searchBar.searchTextField.textColor = .label
         searchBar.barStyle = .default
-        searchBar.placeholder = "Enter ingredients"
+        searchBar.placeholder = "Enter ingredient"
         searchBar.sizeToFit()
         searchBar.isTranslucent = false
         searchBar.backgroundImage = UIImage()
@@ -58,7 +58,6 @@ final class RSearchListView: UIView {
 
         updateCell()
         spinner.startAnimating()
-       // viewModel.fetchRecipes(for: viewModel.currentSearchText)
         viewModel.delegate = self
         setUpCollectionView()
     }
