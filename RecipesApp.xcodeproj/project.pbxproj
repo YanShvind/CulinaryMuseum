@@ -23,9 +23,13 @@
 		6D474D8029C4E8460089D5A4 /* RHealthyCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D474D7F29C4E8460089D5A4 /* RHealthyCollectionViewCell.swift */; };
 		6D474D8229C4E86F0089D5A4 /* RLowCalorieCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D474D8129C4E86F0089D5A4 /* RLowCalorieCollectionViewCell.swift */; };
 		6D54ACF229D75B250029F78D /* RRecipeDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D54ACF129D75B250029F78D /* RRecipeDataModel.swift */; };
+		6D54ACF529D7783E0029F78D /* ModelCoreData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 6D54ACF329D7783E0029F78D /* ModelCoreData.xcdatamodeld */; };
+		6D54ACF829D77C500029F78D /* RFavoriteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D54ACF729D77C500029F78D /* RFavoriteView.swift */; };
+		6D54ACFB29D77D1A0029F78D /* RFavoriteViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D54ACFA29D77D1A0029F78D /* RFavoriteViewViewModel.swift */; };
+		6D54ACFD29D77E7F0029F78D /* RFavoriteTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D54ACFC29D77E7F0029F78D /* RFavoriteTableViewCell.swift */; };
 		6D5EB2AA29A1710B009529D4 /* RService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D5EB2A929A1710B009529D4 /* RService.swift */; };
 		6D5EB2AC29A17418009529D4 /* RSearchListViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D5EB2AB29A17418009529D4 /* RSearchListViewViewModel.swift */; };
-		6D5EB2AE29A24A99009529D4 /* RSearchCollectionViewCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D5EB2AD29A24A99009529D4 /* RSearchCollectionViewCellViewModel.swift */; };
+		6D5EB2AE29A24A99009529D4 /* RCollectionViewCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D5EB2AD29A24A99009529D4 /* RCollectionViewCellViewModel.swift */; };
 		6D6E9E75299B7D2000A2A1D5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D6E9E74299B7D2000A2A1D5 /* AppDelegate.swift */; };
 		6D6E9E77299B7D2000A2A1D5 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D6E9E76299B7D2000A2A1D5 /* SceneDelegate.swift */; };
 		6D6E9E79299B7D2000A2A1D5 /* RTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D6E9E78299B7D2000A2A1D5 /* RTabBarViewController.swift */; };
@@ -68,9 +72,13 @@
 		6D474D7F29C4E8460089D5A4 /* RHealthyCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RHealthyCollectionViewCell.swift; sourceTree = "<group>"; };
 		6D474D8129C4E86F0089D5A4 /* RLowCalorieCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RLowCalorieCollectionViewCell.swift; sourceTree = "<group>"; };
 		6D54ACF129D75B250029F78D /* RRecipeDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RRecipeDataModel.swift; sourceTree = "<group>"; };
+		6D54ACF429D7783E0029F78D /* ModelCoreData.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ModelCoreData.xcdatamodel; sourceTree = "<group>"; };
+		6D54ACF729D77C500029F78D /* RFavoriteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RFavoriteView.swift; sourceTree = "<group>"; };
+		6D54ACFA29D77D1A0029F78D /* RFavoriteViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RFavoriteViewViewModel.swift; sourceTree = "<group>"; };
+		6D54ACFC29D77E7F0029F78D /* RFavoriteTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RFavoriteTableViewCell.swift; sourceTree = "<group>"; };
 		6D5EB2A929A1710B009529D4 /* RService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RService.swift; sourceTree = "<group>"; };
 		6D5EB2AB29A17418009529D4 /* RSearchListViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RSearchListViewViewModel.swift; sourceTree = "<group>"; };
-		6D5EB2AD29A24A99009529D4 /* RSearchCollectionViewCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RSearchCollectionViewCellViewModel.swift; sourceTree = "<group>"; };
+		6D5EB2AD29A24A99009529D4 /* RCollectionViewCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RCollectionViewCellViewModel.swift; sourceTree = "<group>"; };
 		6D6E9E71299B7D2000A2A1D5 /* RecipesApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RecipesApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6D6E9E74299B7D2000A2A1D5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6D6E9E76299B7D2000A2A1D5 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -206,9 +214,27 @@
 		6D54ACED29D7594D0029F78D /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
+				6D54ACF329D7783E0029F78D /* ModelCoreData.xcdatamodeld */,
 				6D54ACF129D75B250029F78D /* RRecipeDataModel.swift */,
 			);
 			path = CoreData;
+			sourceTree = "<group>";
+		};
+		6D54ACF629D77C0D0029F78D /* Favorite */ = {
+			isa = PBXGroup;
+			children = (
+				6D54ACF729D77C500029F78D /* RFavoriteView.swift */,
+				6D54ACFC29D77E7F0029F78D /* RFavoriteTableViewCell.swift */,
+			);
+			path = Favorite;
+			sourceTree = "<group>";
+		};
+		6D54ACF929D77CF20029F78D /* Favorite */ = {
+			isa = PBXGroup;
+			children = (
+				6D54ACFA29D77D1A0029F78D /* RFavoriteViewViewModel.swift */,
+			);
+			path = Favorite;
 			sourceTree = "<group>";
 		};
 		6D5EB2A729A170BA009529D4 /* ViewModels */ = {
@@ -218,6 +244,7 @@
 				6D4014A529C05E8C009CA206 /* Detail */,
 				6D4014A429C05E79009CA206 /* Search */,
 				6DEBC20529D0C365005E50BB /* Category */,
+				6D54ACF929D77CF20029F78D /* Favorite */,
 				6DE23CD229CDF96E0017E601 /* Cell */,
 			);
 			path = ViewModels;
@@ -300,6 +327,7 @@
 				6D4014A029BF6C20009CA206 /* Detail */,
 				6D40149529BF366C009CA206 /* Search */,
 				6DEBC20029CF5040005E50BB /* Category */,
+				6D54ACF629D77C0D0029F78D /* Favorite */,
 				6D0D7C4329C8438D000179F8 /* Other */,
 			);
 			path = Views;
@@ -308,8 +336,8 @@
 		6D6E9EEB29A030EC00A2A1D5 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				6D54ACED29D7594D0029F78D /* CoreData */,
 				6D54ACEC29D759390029F78D /* Recipe */,
+				6D54ACED29D7594D0029F78D /* CoreData */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -345,7 +373,7 @@
 		6DE23CD229CDF96E0017E601 /* Cell */ = {
 			isa = PBXGroup;
 			children = (
-				6D5EB2AD29A24A99009529D4 /* RSearchCollectionViewCellViewModel.swift */,
+				6D5EB2AD29A24A99009529D4 /* RCollectionViewCellViewModel.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -437,8 +465,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6D54ACFD29D77E7F0029F78D /* RFavoriteTableViewCell.swift in Sources */,
 				6D474D7C29C4892A0089D5A4 /* RHeaderCollectionReusableView.swift in Sources */,
 				6D9B5FBB29CB892000EDC90A /* RCustomViewCell.swift in Sources */,
+				6D54ACFB29D77D1A0029F78D /* RFavoriteViewViewModel.swift in Sources */,
 				6D4014A829C05F27009CA206 /* RHomeViewViewModel.swift in Sources */,
 				6D6E9E92299B7F7000A2A1D5 /* RNewRecipeViewController.swift in Sources */,
 				6D3ED97829C9977D00748004 /* MockData.swift in Sources */,
@@ -451,13 +481,14 @@
 				6DEBC20229CF5091005E50BB /* RCategoryView.swift in Sources */,
 				6D474D8029C4E8460089D5A4 /* RHealthyCollectionViewCell.swift in Sources */,
 				6D474D8229C4E86F0089D5A4 /* RLowCalorieCollectionViewCell.swift in Sources */,
-				6D5EB2AE29A24A99009529D4 /* RSearchCollectionViewCellViewModel.swift in Sources */,
+				6D5EB2AE29A24A99009529D4 /* RCollectionViewCellViewModel.swift in Sources */,
 				6D4014A229BF87A2009CA206 /* RRecipeDetailTableViewCell.swift in Sources */,
 				6D6E9E75299B7D2000A2A1D5 /* AppDelegate.swift in Sources */,
 				6D474D7E29C4E3E70089D5A4 /* RShortCookingTimeCollectionViewCell.swift in Sources */,
 				6D8732F629AA2C3E00AA8FE5 /* RFooterLoadingCollectionReusableView.swift in Sources */,
 				6D6E9EEF29A031DC00A2A1D5 /* RSearchResults.swift in Sources */,
 				6D413D6329C2607300848C53 /* RPopularityCollectionViewCell.swift in Sources */,
+				6D54ACF529D7783E0029F78D /* ModelCoreData.xcdatamodeld in Sources */,
 				6D8732F829AA2D1B00AA8FE5 /* RRecipeDetailView.swift in Sources */,
 				6D6E9EEA29A02DD900A2A1D5 /* Extensions.swift in Sources */,
 				6D40149F29BF5957009CA206 /* RRecipeInformation.swift in Sources */,
@@ -475,6 +506,7 @@
 				6D8732F029A3C63200AA8FE5 /* RRecipeDetailViewViewModel.swift in Sources */,
 				6D413D6529C2608800848C53 /* RVegetarianCollectionViewCell.swift in Sources */,
 				6D87331029B2934200AA8FE5 /* RImageManager.swift in Sources */,
+				6D54ACF829D77C500029F78D /* RFavoriteView.swift in Sources */,
 				6DEBC20929D0C3BF005E50BB /* RCategoryViewViewModel.swift in Sources */,
 				6D5EB2AA29A1710B009529D4 /* RService.swift in Sources */,
 			);
@@ -692,6 +724,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		6D54ACF329D7783E0029F78D /* ModelCoreData.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				6D54ACF429D7783E0029F78D /* ModelCoreData.xcdatamodel */,
+			);
+			currentVersion = 6D54ACF429D7783E0029F78D /* ModelCoreData.xcdatamodel */;
+			path = ModelCoreData.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 6D6E9E69299B7D2000A2A1D5 /* Project object */;
 }
