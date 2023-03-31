@@ -29,12 +29,6 @@ extension RCategoriesViewController: RCategoryViewViewModelDelegate {
     func rCategoryViewViewModel(_ viewModel: RCategoryViewViewModel, didSelectCategory category: String) {
         let searchVC = RSearchViewController()
         searchVC.category = category
-        rCategoryView.spinner.startAnimating()
-        rCategoryView.isUserInteractionEnabled = false
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-            self.rCategoryView.spinner.stopAnimating()
-            self.rCategoryView.isUserInteractionEnabled = true
-            self.navigationController?.pushViewController(searchVC, animated: true)
-        }
+        navigationController?.pushViewController(searchVC, animated: true)
     }
 }

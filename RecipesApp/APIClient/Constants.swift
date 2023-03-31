@@ -13,7 +13,7 @@ struct Constants {
     // static let apiKey = "2da9ac50090e42c3a10c7fb6cdb55e87"
     // static let apiKey = "bb0b8e0819f74955b6d4aea39369379f"
     
-    static let apiKey = "2da9ac50090e42c3a10c7fb6cdb55e87" 
+    static let apiKey = "063d1857a795427880770e2f44a84d4d"
     static let baseUrl = "https://api.spoonacular.com"
     
     static let popularRecipesPath = "\(baseUrl)/recipes/complexSearch?apiKey=\(apiKey)&addRecipeInformation=true&offset=\(Int.random(in: 0..<100))&number=10&sort=popularity"
