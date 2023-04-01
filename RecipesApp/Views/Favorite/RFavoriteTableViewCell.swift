@@ -78,4 +78,10 @@ final class RFavoriteTableViewCell: UITableViewCell {
             noteLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -5)
         ])
     }
+    
+    public func configure(name: String, time: Int32, image: Data) {
+        self.nameLabel.text = name
+        self.timeLabel.text = String("Cooking time: \(time) minutes.")
+        self.customImageView.image = UIImage(data: image)
+    }
 }

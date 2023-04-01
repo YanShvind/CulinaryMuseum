@@ -12,6 +12,7 @@ final class RCategoriesViewController: UIViewController {
         rCategoryView.viewModel.delegate = self
         self.view.backgroundColor = .systemBackground
         setUpView()
+        print(RRecipeDataModel.shared.getAllRecipes())
     }
     
     private func setUpView() {

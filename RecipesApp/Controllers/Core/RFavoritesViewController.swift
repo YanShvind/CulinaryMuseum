@@ -3,6 +3,7 @@ import UIKit
 
 final class RFavoritesViewController: UIViewController {
     
+    private let viewModel = RFavoriteViewViewModel()
     private let rFavoriteView = RFavoriteView()
 
     override func viewDidLoad() {
@@ -11,6 +12,12 @@ final class RFavoritesViewController: UIViewController {
         title = "Favorites"
         self.view.backgroundColor = .systemBackground
         setUpView()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        rFavoriteView.viewModel.recipes = RRecipeDataModel.shared.getAllRecipes()
+        rFavoriteView.tableView.reloadData()
     }
     
     private func setUpView() {

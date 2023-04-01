@@ -24,7 +24,6 @@ final class RRecipeDetailViewViewModel: NSObject {
             if let ingredients = recipeInfo?.extendedIngredients {
                 DispatchQueue.main.async { [weak self] in
                     self?.ingredients = ingredients.map { $0.original }
-                    print(self?.ingredients ?? []) // Проверяем, что ингредиенты добавлены в массив
                 }
             } else {
                 print("Error: Unable to fetch recipe information")
