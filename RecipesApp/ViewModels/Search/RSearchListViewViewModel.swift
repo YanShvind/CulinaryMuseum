@@ -154,10 +154,23 @@ extension RSearchListViewViewModel: UIScrollViewDelegate {
 
 extension RSearchListViewViewModel: RSearchCollectionViewCellDelegate {
     func didTapHeartButton(in indexPath: IndexPath) {
+        let favoriteVM = RFavoriteViewViewModel()
         let cell = cellViewModels[indexPath.row]
-        cell.isFavorite = !cell.isFavorite
+        if cell.isFavorite {
+            return // элемент уже сохранен, не нужно сохранять его снова
+        }
+        cell.isFavorite = true
         onDataUpdate?([indexPath])
-        print(recipes[indexPath.row].id) // ид по которому нужно сохранять рецепты
+        cell.fetchImage { result in
+            switch result {
+            case .success(let imageData):
+                let image = UIImage(data: imageData)
+                let savedRecipe = RRecipeDataModel.shared.saveRecipe(name: cell.recipeName, time: cell.recipeTime, image: image!)
+                favoriteVM.recipes.append(savedRecipe)
+            case .failure(let error):
+                print("Failed to fetch image: \(error.localizedDescription)")
+            }
+        }
     }
 }
 

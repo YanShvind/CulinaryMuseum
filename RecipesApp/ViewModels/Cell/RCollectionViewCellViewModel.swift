@@ -51,7 +51,8 @@ final class RCollectionViewCellViewModel: Hashable, Equatable {
             case .failure(let error):
                 complection(.failure(error))
             }
-        }    }
+        }
+    }
     
     // MARK: - Hashable
     static func == (lhs: RCollectionViewCellViewModel, rhs: RCollectionViewCellViewModel) -> Bool {
