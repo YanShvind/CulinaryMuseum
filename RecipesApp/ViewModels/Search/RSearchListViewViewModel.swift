@@ -31,8 +31,7 @@ final class RSearchListViewViewModel: NSObject {
             }
         }
     }
-    
-    private var cellViewModels: [RCollectionViewCellViewModel] = []
+    var cellViewModels: [RCollectionViewCellViewModel] = []
     
     public func fetchRecipes(for searchIngredient: String) {
         currentSearchText = searchIngredient

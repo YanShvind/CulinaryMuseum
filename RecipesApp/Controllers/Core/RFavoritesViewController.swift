@@ -30,3 +30,18 @@ final class RFavoritesViewController: UIViewController {
         ])
     }
 }
+
+extension RFavoritesViewController: RFavoriteViewDelegate {
+    func rFavoriteView(_ recipeListView: RFavoriteView, didSelectRecipe recipe: Recipes) {
+//        let viewModel = RRecipeDetailViewViewModel(recipe: recipe)
+//        let detailVC = RRecipeDetailViewController(viewModel: viewModel)
+//        //rFavoriteView.spinner.startAnimating()
+//        rFavoriteView.isUserInteractionEnabled = false
+//        viewModel.fetchRecipeInformation(forId: recipe.id)
+//        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+//          //  self.rFavoriteView.spinner.stopAnimating()
+//            self.rFavoriteView.isUserInteractionEnabled = true
+//            self.navigationController?.pushViewController(detailVC, animated: true)
+//        }
+    }
+}

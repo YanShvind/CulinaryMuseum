@@ -1,9 +1,15 @@
 
 import UIKit
 
+protocol RFavoriteViewDelegate: AnyObject {
+    func rFavoriteView(_ recipeListView: RFavoriteView,
+                       didSelectRecipe recipe: Recipes)
+}
+
 final class RFavoriteView: UIView {
     
-    let viewModel = RFavoriteViewViewModel()
+    public weak var delegate: RFavoriteViewDelegate?
+    lazy var viewModel = RFavoriteViewViewModel()
     
     let tableView: UITableView = {
         let tableView = UITableView()
@@ -40,5 +46,11 @@ final class RFavoriteView: UIView {
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+}
+
+extension RFavoriteView: RFavoriteViewViewModelelegate {
+    func didSelectRecipes(_ recipe: Recipes) {
+        delegate?.rFavoriteView(self, didSelectRecipe: recipe)
     }
 }

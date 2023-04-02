@@ -224,10 +224,24 @@ extension RHomeViewViewModel: UICollectionViewDelegate, UICollectionViewDataSour
 
 extension RHomeViewViewModel: RCustomViewCellCellDelegate {
     func didTapHeartButton(index indexPath: IndexPath) {
+        let favoriteVM = RFavoriteViewViewModel()
         let array = [popularRecipesCell, vegetarianRecipesCell, shortCookingTimeRecipesCell, healthyRecipesCell, lowCalorieRecipesCell]
         let ArrayCell = array[indexPath.section]
         let cell = ArrayCell[indexPath.row]
-        cell.isFavorite = !cell.isFavorite
+        if cell.isFavorite {
+            return // элемент уже сохранен, не нужно сохранять его снова
+        }
+        cell.isFavorite = true
         onDataUpdate?([indexPath])
+        cell.fetchImage { result in
+            switch result {
+            case .success(let imageData):
+                let image = UIImage(data: imageData)
+                let savedRecipe = RRecipeDataModel.shared.saveRecipe(name: cell.recipeName, time: cell.recipeTime, image: image!)
+                favoriteVM.recipes.append(savedRecipe)
+            case .failure(let error):
+                print("Failed to fetch image: \(error.localizedDescription)")
+            }
+        }
     }
 }
