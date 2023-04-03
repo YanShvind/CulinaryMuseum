@@ -8,7 +8,7 @@ final class RCollectionViewCellViewModel: Hashable, Equatable {
     public let recipeName: String
     public let recipeTime: Int
     public var isFavorite: Bool
-    private let recipeImageUrl: URL?
+    public let recipeImageUrl: URL?
     
     init(id: Int, recipeName: String, recipeTime: Int, recipeImageUrl: URL?, isFavorite: Bool) {
         self.id = id
