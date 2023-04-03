@@ -33,7 +33,6 @@ final class RRecipeDetailView: UIView {
     
     private let tableView: UITableView = {
         let tableView = UITableView()
-        tableView.backgroundColor = .systemYellow
         tableView.rowHeight = 30
         tableView.layer.cornerRadius = 10
         tableView.translatesAutoresizingMaskIntoConstraints = false

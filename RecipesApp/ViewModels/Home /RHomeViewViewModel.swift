@@ -19,7 +19,8 @@ final class RHomeViewViewModel: NSObject {
                                                           recipeName: $0.title,
                                                           recipeTime: $0.readyInMinutes,
                                                           recipeImageUrl: URL(string: $0.image),
-                                                          isFavorite: false) }
+                                                          isFavorite: false)
+        }
     }
     
     //MARK: - Popularity
