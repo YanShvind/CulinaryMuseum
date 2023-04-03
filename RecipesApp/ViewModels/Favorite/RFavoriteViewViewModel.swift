@@ -20,9 +20,10 @@ extension RFavoriteViewViewModel: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: RFavoriteTableViewCell.identifier, for: indexPath) as! RFavoriteTableViewCell
-        cell.configure(name: recipes[indexPath.row].name!,
-                       time: recipes[indexPath.row].time,
-                       image: recipes[indexPath.row].image!)
+        let recipe = recipes[indexPath.row]
+        cell.configure(name: recipe.name ?? "",
+                       time: recipe.time,
+                       image: recipe.image!)
         return cell
     }
     
