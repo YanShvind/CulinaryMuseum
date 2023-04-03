@@ -9,6 +9,7 @@ final class RFavoritesViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        rFavoriteView.delegate = self
         title = "Favorites"
         self.view.backgroundColor = .systemBackground
         setUpView()
@@ -28,5 +29,20 @@ final class RFavoritesViewController: UIViewController {
             rFavoriteView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
             rFavoriteView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
         ])
+    }
+}
+
+extension RFavoritesViewController: RFavoriteViewDelegate {
+    func rFavoriteView(_ recipeListView: RFavoriteView, didSelectRecipe recipe: Recipes) {
+        let viewModel = RRecipeDetailViewViewModel(recipes: recipe)
+        let detailVC = RRecipeDetailViewController(viewModel: viewModel)
+        //rFavoriteView.spinner.startAnimating()
+        rFavoriteView.isUserInteractionEnabled = false
+        viewModel.fetchRecipeInformation(forId: Int(recipe.id))
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+          //  self.rFavoriteView.spinner.stopAnimating()
+            self.rFavoriteView.isUserInteractionEnabled = true
+            self.navigationController?.pushViewController(detailVC, animated: true)
+        }
     }
 }

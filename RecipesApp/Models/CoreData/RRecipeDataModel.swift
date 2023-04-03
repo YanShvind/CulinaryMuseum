@@ -9,10 +9,11 @@ final class RRecipeDataModel {
     static let shared = RRecipeDataModel()
     private let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
-    func saveRecipe(name: String, time: Int, image: UIImage) -> Recipes {
+    func saveRecipe(id: Int, name: String, time: Int, image: UIImage) -> Recipes {
         let entity = NSEntityDescription.entity(forEntityName: "Recipes", in: context)!
         let recipe = NSManagedObject(entity: entity, insertInto: context) as! Recipes
         
+        recipe.id = Int32(id)
         recipe.name = name
         recipe.time = Int32(time)
         recipe.image = image.pngData()
