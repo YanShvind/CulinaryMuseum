@@ -238,7 +238,8 @@ extension RHomeViewViewModel: RCustomViewCellCellDelegate {
             switch result {
             case .success(let imageData):
                 let image = UIImage(data: imageData)
-                let savedRecipe = RRecipeDataModel.shared.saveRecipe(id: cell.id,
+                let savedRecipe = RRecipeDataModel.shared.saveRecipe(url: cell.recipeImageUrl!.absoluteString,
+                                                                     id: cell.id,
                                                                      name: cell.recipeName,
                                                                      time: cell.recipeTime,
                                                                      image: image!)

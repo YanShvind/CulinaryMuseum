@@ -12,13 +12,9 @@ final class RRecipeDetailViewViewModel: NSObject {
     }
     
     init(recipes: Recipes) {
-        let imageData = recipes.image!
-        let base64String = imageData.base64EncodedString()
-        
-        let utf8String = String(data: imageData, encoding: .utf8)
         self.recipe = RRecipe(id: Int(recipes.id),
                               title: recipes.name!,
-                              image: base64String,
+                              image: recipes.url!,
                               readyInMinutes: Int(recipes.time))
         self.ingredients = []
         super.init()
