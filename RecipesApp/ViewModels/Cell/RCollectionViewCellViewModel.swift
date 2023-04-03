@@ -4,12 +4,14 @@ import UIKit
 
 final class RCollectionViewCellViewModel: Hashable, Equatable {
     
+    public let id: Int
     public let recipeName: String
     public let recipeTime: Int
     public var isFavorite: Bool
     private let recipeImageUrl: URL?
     
-    init(recipeName: String, recipeTime: Int, recipeImageUrl: URL?, isFavorite: Bool) {
+    init(id: Int, recipeName: String, recipeTime: Int, recipeImageUrl: URL?, isFavorite: Bool) {
+        self.id = id
         self.recipeName = recipeName
         self.recipeTime = recipeTime
         self.isFavorite = isFavorite

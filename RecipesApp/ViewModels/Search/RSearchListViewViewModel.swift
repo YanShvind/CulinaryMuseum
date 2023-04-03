@@ -21,10 +21,11 @@ final class RSearchListViewViewModel: NSObject {
         didSet {
             cellViewModels = []
             for recipe in recipes {
-                let viewModel = RCollectionViewCellViewModel(recipeName: recipe.title,
-                                                                   recipeTime: recipe.readyInMinutes,
-                                                                   recipeImageUrl: URL(string: recipe.image),
-                                                                   isFavorite: false)
+                let viewModel = RCollectionViewCellViewModel(id: recipe.id,
+                                                             recipeName: recipe.title,
+                                                             recipeTime: recipe.readyInMinutes,
+                                                             recipeImageUrl: URL(string: recipe.image),
+                                                             isFavorite: false)
                 if !cellViewModels.contains(viewModel){
                     cellViewModels.append(viewModel)
                 }
@@ -164,7 +165,10 @@ extension RSearchListViewViewModel: RSearchCollectionViewCellDelegate {
             switch result {
             case .success(let imageData):
                 let image = UIImage(data: imageData)
-                let savedRecipe = RRecipeDataModel.shared.saveRecipe(name: cell.recipeName, time: cell.recipeTime, image: image!)
+                let savedRecipe = RRecipeDataModel.shared.saveRecipe(id: cell.id,
+                                                                     name: cell.recipeName,
+                                                                     time: cell.recipeTime,
+                                                                     image: image!)
                 favoriteVM.recipes.append(savedRecipe)
             case .failure(let error):
                 print("Failed to fetch image: \(error.localizedDescription)")

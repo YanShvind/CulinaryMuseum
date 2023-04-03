@@ -23,7 +23,8 @@ final class RFavoriteView: UIView {
         super.init(frame: frame)
         translatesAutoresizingMaskIntoConstraints = false
 
-        backgroundColor = .systemYellow
+        viewModel.delegate = self
+        backgroundColor = .systemBackground
         tableViewSettings()
         addConstraints()
     }
