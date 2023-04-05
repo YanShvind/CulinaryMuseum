@@ -2,6 +2,13 @@
 
 CulinaryMuseum is an iOS application that provides users with a comprehensive collection of recipes. The app supports fetching recipes from a remote server using URLSession, and it follows the MVVM architectural pattern. The app uses Hasher and Dispatch Group to ensure data consistency, while protocols and delegates are used for communication between components. The app also supports data persistence using CoreData, and it makes extensive use of composition, collection, table view, footer, and CoreImage to implement the user interface.
 
+* MVVM
+* URLSession
+* CoreData
+* Dispatch group, Hasher, CoreImage
+* Protocols, Delegates, Clusures
+* CompositionL, CollectionV, TableV
+
 # Features
 
 * The app allows users to browse a wide selection of recipes.
