@@ -30,6 +30,7 @@ The app provides a rich user interface, making use of composition, collection, t
 
 # Installation
 
-Clone the repository
-Open the CulinaryMuseum.xcodeproj file in Xcode
-Build and run the app
+* Clone the repository
+* Open the CulinaryMuseum.xcodeproj file in Xcode
+* Build and run the app
+* Шnsert your api key
