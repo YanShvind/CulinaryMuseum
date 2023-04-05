@@ -4,11 +4,11 @@ CulinaryMuseum is an iOS application that provides users with a comprehensive co
 
 # Features
 
-The app allows users to browse a wide selection of recipes.
-Detailed recipe information is provided, including a list of ingredients, preparation instructions, and nutritional information.
-The app allows users to save their favorite recipes for easy access later.
-Users can create and edit their own personal recipe collection.
-Recipe images are processed using CoreImage to improve their quality and make them more visually appealing.
+* The app allows users to browse a wide selection of recipes.
+* Detailed recipe information is provided, including a list of ingredients, preparation instructions, and nutritional information.
+* The app allows users to save their favorite recipes for easy access later.
+* Users can create and edit their own personal recipe collection.
+* Recipe images are processed using CoreImage to improve their quality and make them more visually appealing.
 
 # Architecture
 
@@ -24,9 +24,9 @@ The app provides a rich user interface, making use of composition, collection, t
 
 # Requirements
 
-iOS 15.0+
-Xcode 10.0+
-Swift 5+
+* iOS 15.0+
+* Xcode 10.0+
+* Swift 5+
 
 # Installation
 
