@@ -9,10 +9,9 @@ protocol RSearchListViewDelegate: AnyObject {
 final class RSearchListView: UIView {
     
     public weak var delegate: RSearchListViewDelegate?
-    
     lazy var viewModel = RSearchListViewViewModel()
     
-    var searchBar: UISearchBar = {
+    lazy var searchBar: UISearchBar = {
         let searchBar = UISearchBar()
         searchBar.backgroundColor = .systemBackground
         searchBar.searchTextField.backgroundColor = .systemGray5
@@ -33,7 +32,7 @@ final class RSearchListView: UIView {
         return spinner
     }()
     
-     var collectionView: UICollectionView = {
+     lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
         layout.sectionInset = UIEdgeInsets(top: 0, left: 10, bottom: 10, right: 10)

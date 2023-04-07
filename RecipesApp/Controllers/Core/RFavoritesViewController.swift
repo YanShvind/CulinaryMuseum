@@ -39,10 +39,10 @@ extension RFavoritesViewController: RFavoriteViewDelegate {
         rFavoriteView.spinner.startAnimating()
         rFavoriteView.isUserInteractionEnabled = false
         viewModel.fetchRecipeInformation(forId: Int(recipe.id))
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-            self.rFavoriteView.spinner.stopAnimating()
-            self.rFavoriteView.isUserInteractionEnabled = true
-            self.navigationController?.pushViewController(detailVC, animated: true)
+            DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+                self.rFavoriteView.spinner.stopAnimating()
+                self.rFavoriteView.isUserInteractionEnabled = true
+                self.navigationController?.pushViewController(detailVC, animated: true)
         }
     }
 }

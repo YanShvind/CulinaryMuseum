@@ -11,7 +11,7 @@ final class RFavoriteView: UIView {
     public weak var delegate: RFavoriteViewDelegate?
     lazy var viewModel = RFavoriteViewViewModel()
     
-    let tableView: UITableView = {
+    lazy var tableView: UITableView = {
         let tableView = UITableView()
         tableView.rowHeight = 180
         tableView.layer.cornerRadius = 10
@@ -38,7 +38,8 @@ final class RFavoriteView: UIView {
     }
     
     private func tableViewSettings() {
-        tableView.register(RFavoriteTableViewCell.self, forCellReuseIdentifier: RFavoriteTableViewCell.identifier)
+        tableView.register(RFavoriteTableViewCell.self,
+                           forCellReuseIdentifier: RFavoriteTableViewCell.identifier)
         tableView.delegate = viewModel
         tableView.dataSource = viewModel
     }

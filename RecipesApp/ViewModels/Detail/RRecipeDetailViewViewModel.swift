@@ -5,7 +5,7 @@ import UIKit
 final class RRecipeDetailViewViewModel: NSObject {
     
     private let recipe: RRecipe
-    private var ingredients: [String] = []
+    var ingredients: [String] = []
     
     init(recipe: RRecipe) {
         self.recipe = recipe

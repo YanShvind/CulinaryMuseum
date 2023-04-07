@@ -42,7 +42,7 @@ extension RSearchViewController: RSearchListViewDelegate {
         rSearchView.spinner.startAnimating()
         rSearchView.isUserInteractionEnabled = false
         viewModel.fetchRecipeInformation(forId: recipe.id)
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
             self.rSearchView.spinner.stopAnimating()
             self.rSearchView.isUserInteractionEnabled = true
             self.navigationController?.pushViewController(detailVC, animated: true)

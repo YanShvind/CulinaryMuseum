@@ -19,8 +19,10 @@ extension RFavoriteViewViewModel: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: RFavoriteTableViewCell.identifier, for: indexPath) as! RFavoriteTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: RFavoriteTableViewCell.identifier,
+                                                 for: indexPath) as! RFavoriteTableViewCell
         let recipe = recipes[indexPath.row]
+        cell.backgroundColor = .secondarySystemBackground
         cell.configure(name: recipe.name ?? "",
                        time: recipe.time,
                        image: recipe.image!)
