@@ -50,6 +50,9 @@
 		6D8732F829AA2D1B00AA8FE5 /* RRecipeDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D8732F729AA2D1B00AA8FE5 /* RRecipeDetailView.swift */; };
 		6D87331029B2934200AA8FE5 /* RImageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D87330F29B2934200AA8FE5 /* RImageManager.swift */; };
 		6D9B5FBB29CB892000EDC90A /* RCustomViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D9B5FBA29CB892000EDC90A /* RCustomViewCell.swift */; };
+		6DCC3CFF29E0CCCA00FF9C2D /* RNewRecipeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DCC3CFE29E0CCCA00FF9C2D /* RNewRecipeView.swift */; };
+		6DCC3D0129E0CD4B00FF9C2D /* RNewRecipeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DCC3D0029E0CD4B00FF9C2D /* RNewRecipeTableViewCell.swift */; };
+		6DCC3D0429E0CDDE00FF9C2D /* RNewRecipeViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DCC3D0329E0CDDE00FF9C2D /* RNewRecipeViewViewModel.swift */; };
 		6DEBC20229CF5091005E50BB /* RCategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DEBC20129CF5091005E50BB /* RCategoryView.swift */; };
 		6DEBC20429D0C009005E50BB /* RCategoryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DEBC20329D0C009005E50BB /* RCategoryCollectionViewCell.swift */; };
 		6DEBC20929D0C3BF005E50BB /* RCategoryViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DEBC20829D0C3BF005E50BB /* RCategoryViewViewModel.swift */; };
@@ -101,6 +104,9 @@
 		6D8732F729AA2D1B00AA8FE5 /* RRecipeDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RRecipeDetailView.swift; sourceTree = "<group>"; };
 		6D87330F29B2934200AA8FE5 /* RImageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RImageManager.swift; sourceTree = "<group>"; };
 		6D9B5FBA29CB892000EDC90A /* RCustomViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RCustomViewCell.swift; sourceTree = "<group>"; };
+		6DCC3CFE29E0CCCA00FF9C2D /* RNewRecipeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RNewRecipeView.swift; sourceTree = "<group>"; };
+		6DCC3D0029E0CD4B00FF9C2D /* RNewRecipeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RNewRecipeTableViewCell.swift; sourceTree = "<group>"; };
+		6DCC3D0329E0CDDE00FF9C2D /* RNewRecipeViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RNewRecipeViewViewModel.swift; sourceTree = "<group>"; };
 		6DEBC20129CF5091005E50BB /* RCategoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RCategoryView.swift; sourceTree = "<group>"; };
 		6DEBC20329D0C009005E50BB /* RCategoryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RCategoryCollectionViewCell.swift; sourceTree = "<group>"; };
 		6DEBC20829D0C3BF005E50BB /* RCategoryViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RCategoryViewViewModel.swift; sourceTree = "<group>"; };
@@ -245,6 +251,7 @@
 				6D4014A429C05E79009CA206 /* Search */,
 				6DEBC20529D0C365005E50BB /* Category */,
 				6D54ACF929D77CF20029F78D /* Favorite */,
+				6DCC3D0229E0CDBF00FF9C2D /* NewRecipe */,
 				6DE23CD229CDF96E0017E601 /* Cell */,
 			);
 			path = ViewModels;
@@ -328,6 +335,7 @@
 				6D40149529BF366C009CA206 /* Search */,
 				6DEBC20029CF5040005E50BB /* Category */,
 				6D54ACF629D77C0D0029F78D /* Favorite */,
+				6DCC3CFD29E0CC9000FF9C2D /* NewRecipe */,
 				6D0D7C4329C8438D000179F8 /* Other */,
 			);
 			path = Views;
@@ -368,6 +376,23 @@
 				6D87330F29B2934200AA8FE5 /* RImageManager.swift */,
 			);
 			path = Managers;
+			sourceTree = "<group>";
+		};
+		6DCC3CFD29E0CC9000FF9C2D /* NewRecipe */ = {
+			isa = PBXGroup;
+			children = (
+				6DCC3CFE29E0CCCA00FF9C2D /* RNewRecipeView.swift */,
+				6DCC3D0029E0CD4B00FF9C2D /* RNewRecipeTableViewCell.swift */,
+			);
+			path = NewRecipe;
+			sourceTree = "<group>";
+		};
+		6DCC3D0229E0CDBF00FF9C2D /* NewRecipe */ = {
+			isa = PBXGroup;
+			children = (
+				6DCC3D0329E0CDDE00FF9C2D /* RNewRecipeViewViewModel.swift */,
+			);
+			path = NewRecipe;
 			sourceTree = "<group>";
 		};
 		6DE23CD229CDF96E0017E601 /* Cell */ = {
@@ -475,10 +500,12 @@
 				6D3ED97829C9977D00748004 /* MockData.swift in Sources */,
 				6D6E9E8E299B7F1800A2A1D5 /* RCategoriesViewController.swift in Sources */,
 				6D54ACF229D75B250029F78D /* RRecipeDataModel.swift in Sources */,
+				6DCC3D0129E0CD4B00FF9C2D /* RNewRecipeTableViewCell.swift in Sources */,
 				6D40149729BF3692009CA206 /* RHomeView.swift in Sources */,
 				6D6E9E79299B7D2000A2A1D5 /* RTabBarViewController.swift in Sources */,
 				6D6E9EED29A0312000A2A1D5 /* RRecipe.swift in Sources */,
 				6DEBC20429D0C009005E50BB /* RCategoryCollectionViewCell.swift in Sources */,
+				6DCC3CFF29E0CCCA00FF9C2D /* RNewRecipeView.swift in Sources */,
 				6DEBC20229CF5091005E50BB /* RCategoryView.swift in Sources */,
 				6D474D8029C4E8460089D5A4 /* RHealthyCollectionViewCell.swift in Sources */,
 				6D474D8229C4E86F0089D5A4 /* RLowCalorieCollectionViewCell.swift in Sources */,
@@ -489,6 +516,7 @@
 				6D8732F629AA2C3E00AA8FE5 /* RFooterLoadingCollectionReusableView.swift in Sources */,
 				6D6E9EEF29A031DC00A2A1D5 /* RSearchResults.swift in Sources */,
 				6D413D6329C2607300848C53 /* RPopularityCollectionViewCell.swift in Sources */,
+				6DCC3D0429E0CDDE00FF9C2D /* RNewRecipeViewViewModel.swift in Sources */,
 				6D8732F829AA2D1B00AA8FE5 /* RRecipeDetailView.swift in Sources */,
 				6D6E9EEA29A02DD900A2A1D5 /* Extensions.swift in Sources */,
 				6D40149F29BF5957009CA206 /* RRecipeInformation.swift in Sources */,
