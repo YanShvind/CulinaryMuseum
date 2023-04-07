@@ -40,4 +40,4 @@ The app provides a rich user interface, making use of composition, collection, t
 * Clone the repository
 * Open the CulinaryMuseum.xcodeproj file in Xcode
 * Build and run the app
-* Insert your api key
+* Insert your api key(https://spoonacular.com/food-api)
