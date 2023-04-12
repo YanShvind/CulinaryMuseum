@@ -74,7 +74,8 @@ final class RCustomViewCell: UIView {
         translatesAutoresizingMaskIntoConstraints = false
         backgroundColor = .secondarySystemBackground
         
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(heartTap))
+        let tapGesture = UITapGestureRecognizer(target: self,
+                                                action: #selector(heartTap))
         viewBackgroundHeart.addGestureRecognizer(tapGesture)
         
         addSubviews(imageView, nameLabel, viewBackgroundHeart, viewBackgroundTime, spinner)

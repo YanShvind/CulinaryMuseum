@@ -4,6 +4,7 @@ import UIKit
 final class RNewRecipeView: UIView {
     
     private let viewModel = RNewRecipeViewViewModel()
+    public weak var delegate: RNewRecipeViewViewModelDelegate?
 
     lazy var tableView: UITableView = {
         let tableView = UITableView()
@@ -44,7 +45,7 @@ final class RNewRecipeView: UIView {
     }
     
     @objc private func addRecipeButtonPressed() {
-        delegate?.didAddNewRecipePressed()
+        delegate?.didTapNewRecipeButton()
     }
     
     private func addConstraints() {
