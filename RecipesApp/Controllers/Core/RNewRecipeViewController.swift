@@ -4,12 +4,14 @@ import UIKit
 final class RNewRecipeViewController: UIViewController {
     
     private let rNewRecipeView = RNewRecipeView()
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        title = "New Recipe"
-        self.view.backgroundColor = .systemBackground
+        
+        title = "Your Recipes"
+        navigationController?.navigationBar.prefersLargeTitles = true
+        view.backgroundColor = .systemBackground
+        rNewRecipeView.delegate = self
         setUpView()
     }
     
@@ -21,5 +23,13 @@ final class RNewRecipeViewController: UIViewController {
             rNewRecipeView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
             rNewRecipeView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
         ])
+    }
+}
+
+extension RNewRecipeViewController: RNewRecipeViewViewModelDelegate {
+    func didTapNewRecipeButton() {
+        let vc = RAddRecipeViewController()
+        navigationController?.pushViewController(vc,
+                                                 animated: true)
     }
 }

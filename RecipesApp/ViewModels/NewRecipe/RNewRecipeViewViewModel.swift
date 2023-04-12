@@ -2,6 +2,10 @@
 import Foundation
 import UIKit
 
+protocol RNewRecipeViewViewModelDelegate: AnyObject {
+    func didTapNewRecipeButton()
+}
+
 final class RNewRecipeViewViewModel: NSObject {
     
 }
