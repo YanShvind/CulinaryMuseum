@@ -1,7 +1,14 @@
 
 import UIKit
 
+protocol RPopupViewDelegate: AnyObject {
+    func didChooseImageButtonTapped()
+    func didDeleteButtonTapped()
+}
+
 final class RPopupView: UIView {
+    
+    public weak var delegate: RPopupViewDelegate?
     
     private let container: UIView = {
         let view = UIView()
@@ -38,7 +45,7 @@ final class RPopupView: UIView {
         return button
     }()
     
-    private let chooseFileButton: RButtonExtension = {
+    private let chooseImageButton: RButtonExtension = {
         let button = RButtonExtension()
         button.setTitle("Your gallery", for: .normal)
         button.setImage(UIImage(systemName: "photo.on.rectangle.angled"), for: .normal)
@@ -62,12 +69,18 @@ final class RPopupView: UIView {
         self.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(animateOut)))
         self.backgroundColor = UIColor.systemGray.withAlphaComponent(0.6)
         self.frame = UIScreen.main.bounds
+        chooseImageButton.addTarget(self,
+                                    action: #selector(chooseImageButtonTapped),
+                                    for: .touchUpInside)
+        deleteButton.addTarget(self,
+                               action: #selector(deleteButtonTapped),
+                               for: .touchUpInside)
         configureViewComponents()
         animateIn()
     }
     
     @objc
-    private func animateOut() {
+    public func animateOut() {
         UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 1, options: .curveEaseIn, animations: {
             self.container.transform = CGAffineTransform(translationX: 0, y: -self.frame.height)
             self.alpha = 0
@@ -89,6 +102,16 @@ final class RPopupView: UIView {
         }
     }
     
+    @objc
+    private func chooseImageButtonTapped() {
+        delegate?.didChooseImageButtonTapped()
+    }
+    
+    @objc
+    private func deleteButtonTapped() {
+        delegate?.didDeleteButtonTapped()
+    }
+    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -97,7 +120,7 @@ final class RPopupView: UIView {
 extension RPopupView {
     private func configureViewComponents() {
         addSubview(container)
-        container.addSubviews(topLabel, lineImageView, takePhotoButton, chooseFileButton, deleteButton)
+        container.addSubviews(topLabel, lineImageView, takePhotoButton, chooseImageButton, deleteButton)
         
         NSLayoutConstraint.activate([
             container.centerYAnchor.constraint(equalTo: centerYAnchor),
@@ -120,12 +143,12 @@ extension RPopupView {
             takePhotoButton.trailingAnchor.constraint(equalTo: container.trailingAnchor,constant: -15),
             takePhotoButton.heightAnchor.constraint(equalTo: container.heightAnchor, multiplier: 0.2),
             
-            chooseFileButton.topAnchor.constraint(equalTo: takePhotoButton.bottomAnchor, constant: 7),
-            chooseFileButton.leadingAnchor.constraint(equalTo: container.leadingAnchor, constant: 15),
-            chooseFileButton.trailingAnchor.constraint(equalTo: container.trailingAnchor,constant: -15),
-            chooseFileButton.heightAnchor.constraint(equalTo: container.heightAnchor, multiplier: 0.2),
+            chooseImageButton.topAnchor.constraint(equalTo: takePhotoButton.bottomAnchor, constant: 7),
+            chooseImageButton.leadingAnchor.constraint(equalTo: container.leadingAnchor, constant: 15),
+            chooseImageButton.trailingAnchor.constraint(equalTo: container.trailingAnchor,constant: -15),
+            chooseImageButton.heightAnchor.constraint(equalTo: container.heightAnchor, multiplier: 0.2),
             
-            deleteButton.topAnchor.constraint(equalTo: chooseFileButton.bottomAnchor, constant: 7),
+            deleteButton.topAnchor.constraint(equalTo: chooseImageButton.bottomAnchor, constant: 7),
             deleteButton.leadingAnchor.constraint(equalTo: container.leadingAnchor, constant: 15),
             deleteButton.trailingAnchor.constraint(equalTo: container.trailingAnchor,constant: -15),
             deleteButton.heightAnchor.constraint(equalTo: container.heightAnchor, multiplier: 0.2)

@@ -43,7 +43,7 @@ final class RTabBarViewController: UITabBarController {
         nav4.tabBarItem = UITabBarItem(title: "Favorites",
                                        image: UIImage(systemName: "heart.fill"),
                                        tag: 4)
-        nav5.tabBarItem = UITabBarItem(title: "New Recipe",
+        nav5.tabBarItem = UITabBarItem(title: "Your Recipes",
                                        image: UIImage(systemName: "plus"),
                                        tag: 5)
         

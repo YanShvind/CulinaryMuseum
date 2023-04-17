@@ -47,8 +47,8 @@ extension RAddNewRecipeView {
         NSLayoutConstraint.activate([
             imageView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 17),
             imageView.centerXAnchor.constraint(equalTo: centerXAnchor),
-            imageView.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.2),
-            imageView.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.5),
+            imageView.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.3),
+            imageView.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.6),
         ])
     }
 }

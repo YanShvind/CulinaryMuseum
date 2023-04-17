@@ -4,8 +4,6 @@ import UIKit
 
 final class RRecipeDataModel {
     
-    private var viewModel = RFavoriteViewViewModel()
-    
     static let shared = RRecipeDataModel()
     private let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
@@ -21,7 +19,6 @@ final class RRecipeDataModel {
         
         do {
             try context.save()
-            viewModel.recipes.append(recipe)
             return recipe
         } catch let error as NSError {
             print("Could not save. \(error), \(error.userInfo)")
