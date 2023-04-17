@@ -11,6 +11,8 @@ final class RAddRecipeViewController: UIViewController {
 
         title = "Create recipe"
         rAddNewRecipeView.delegate = self
+        rAddNewRecipeView.recipeDescriptionTextView.delegate = self
+        rAddNewRecipeView.recipeNameTextView.delegate = self
         popView?.delegate = self
         setUpView()
     }
@@ -72,5 +74,30 @@ extension RAddRecipeViewController: UIImagePickerControllerDelegate, UINavigatio
     
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         picker.dismiss(animated: true)
+    }
+}
+
+//MARK: - TextViewsDelegate
+extension RAddRecipeViewController: UITextViewDelegate {
+    func textViewDidChange(_ textView: UITextView) {
+        let size = CGSize(width: textView.frame.width,
+                          height: .infinity)
+        let estimatedSize = textView.sizeThatFits(size)
+        
+        guard textView.contentSize.height < 130.0 else { textView.isScrollEnabled = true; return }
+        
+        textView.isScrollEnabled = false
+        textView.constraints.forEach { (constraint) in
+            if constraint.firstAttribute == .height {
+                constraint.constant = estimatedSize.height
+            }
+        }
+    }
+    
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        if textView.textColor == .systemGray2 {
+            textView.text = nil
+            textView.textColor = .label
+        }
     }
 }
