@@ -9,7 +9,6 @@ final class RNewRecipeViewController: UIViewController {
         super.viewDidLoad()
         
         title = "Your Recipes"
-        navigationController?.navigationBar.prefersLargeTitles = true
         view.backgroundColor = .systemBackground
         rNewRecipeView.delegate = self
         setUpView()

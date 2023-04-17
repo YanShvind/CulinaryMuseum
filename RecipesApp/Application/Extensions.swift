@@ -29,3 +29,13 @@ enum ImageError: Error {
     case filterApplicationFailed
     case createCGImageFromCIContextFailed
 }
+
+// меняем рахмер изображения
+extension UIImage {
+    func resized(to newSize: CGSize) -> UIImage {
+        guard self.size != newSize else { return self }
+        return UIGraphicsImageRenderer(size: newSize).image { _ in
+            self.draw(in: CGRect(origin: .zero, size: newSize))
+        }
+    }
+}
