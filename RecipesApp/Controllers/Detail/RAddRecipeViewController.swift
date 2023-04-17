@@ -39,6 +39,13 @@ extension RAddRecipeViewController: RAddNewRecipeViewDelegate {
 
 //MARK: - PopupButtonsTapped
 extension RAddRecipeViewController: RPopupViewDelegate {
+    func didtakePhotoButtonTapped() {
+        let picker = UIImagePickerController()
+        picker.sourceType = .camera
+        picker.delegate = self
+        present(picker, animated: true)
+    }
+    
     func didChooseImageButtonTapped() {
         let imagePicker = UIImagePickerController()
         imagePicker.delegate = self
@@ -59,7 +66,11 @@ extension RAddRecipeViewController: UIImagePickerControllerDelegate, UINavigatio
             let resizedImage = originalImage.resized(to: CGSize(width: 700, height: 700))
             rAddNewRecipeView.imageView.image = resizedImage
         }
-        dismiss(animated: true, completion: nil)
+        picker.dismiss(animated: true)
         popView?.animateOut()
+    }
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        picker.dismiss(animated: true)
     }
 }

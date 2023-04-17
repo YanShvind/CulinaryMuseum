@@ -2,6 +2,7 @@
 import UIKit
 
 protocol RPopupViewDelegate: AnyObject {
+    func didtakePhotoButtonTapped()
     func didChooseImageButtonTapped()
     func didDeleteButtonTapped()
 }
@@ -66,17 +67,25 @@ final class RPopupView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
+        setUpView()
+        configureViewComponents()
+        animateIn()
+    }
+    
+    private func setUpView() {
         self.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(animateOut)))
         self.backgroundColor = UIColor.systemGray.withAlphaComponent(0.6)
         self.frame = UIScreen.main.bounds
+        
+        takePhotoButton.addTarget(self,
+                                  action: #selector(takePhotoButtonTapped),
+                                  for: .touchUpInside)
         chooseImageButton.addTarget(self,
                                     action: #selector(chooseImageButtonTapped),
                                     for: .touchUpInside)
         deleteButton.addTarget(self,
                                action: #selector(deleteButtonTapped),
                                for: .touchUpInside)
-        configureViewComponents()
-        animateIn()
     }
     
     @objc
@@ -100,6 +109,11 @@ final class RPopupView: UIView {
             self.alpha = 1
         }) {(complete) in
         }
+    }
+        
+    @objc
+    private func takePhotoButtonTapped() {
+        delegate?.didtakePhotoButtonTapped()
     }
     
     @objc

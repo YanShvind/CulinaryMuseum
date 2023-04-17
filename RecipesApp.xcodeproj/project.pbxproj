@@ -702,6 +702,7 @@
 				DEVELOPMENT_TEAM = LVNA3L38CZ;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = RecipesApp/Info.plist;
+				INFOPLIST_KEY_NSCameraUsageDescription = "Please allow access to take a picture.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
@@ -733,6 +734,7 @@
 				DEVELOPMENT_TEAM = LVNA3L38CZ;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = RecipesApp/Info.plist;
+				INFOPLIST_KEY_NSCameraUsageDescription = "Please allow access to take a picture.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
