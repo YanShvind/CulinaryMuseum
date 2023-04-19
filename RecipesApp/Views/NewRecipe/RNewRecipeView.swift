@@ -3,7 +3,7 @@ import UIKit
 
 final class RNewRecipeView: UIView {
     
-    private let viewModel = RNewRecipeViewViewModel()
+    public let viewModel = RNewRecipeViewViewModel()
     public weak var delegate: RNewRecipeViewViewModelDelegate?
 
     lazy var tableView: UITableView = {

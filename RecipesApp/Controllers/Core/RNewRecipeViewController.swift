@@ -5,6 +5,12 @@ final class RNewRecipeViewController: UIViewController {
     
     private let rNewRecipeView = RNewRecipeView()
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        rNewRecipeView.viewModel.recipes = RNewRecipeDataModel.shared.getAllRecipes()
+        rNewRecipeView.tableView.reloadData()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         

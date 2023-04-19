@@ -9,6 +9,7 @@ protocol RAddNewRecipeViewDelegate: AnyObject {
 final class RAddNewRecipeView: UIView {
     
     public weak var delegate: RAddNewRecipeViewDelegate?
+    private let rAddVC: RAddRecipeViewController
     
     lazy var imageView: UIImageView = {
         let imageView = UIImageView()
@@ -23,7 +24,7 @@ final class RAddNewRecipeView: UIView {
     lazy var recipeNameTextView: UITextView = {
         let textView = UITextView()
         textView.font = UIFont.systemFont(ofSize: 18)
-        textView.text = "Enter description..."
+        textView.text = "Enter name..."
         textView.textColor = .systemGray2
         textView.backgroundColor = .systemGray5
         textView.layer.cornerRadius = 8
@@ -46,15 +47,19 @@ final class RAddNewRecipeView: UIView {
         return textView
     }()
     
-    override init(frame: CGRect) {
+    init(frame: CGRect, rAddVC: RAddRecipeViewController) {
+        self.rAddVC = rAddVC
         super.init(frame: frame)
         translatesAutoresizingMaskIntoConstraints = false
-        
+
         backgroundColor = .systemBackground
         imageView.isUserInteractionEnabled = true
         let gesture = UITapGestureRecognizer(target: self, action: #selector(didTapImage))
         imageView.addGestureRecognizer(gesture)
         addConstraints()
+        
+        self.delegate = rAddVC
+        rAddVC.delegate = self
     }
     
     @objc
@@ -86,5 +91,14 @@ extension RAddNewRecipeView {
             recipeDescriptionTextView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -7),
             recipeDescriptionTextView.heightAnchor.constraint(equalToConstant: 38),
         ])
+    }
+}
+
+extension RAddNewRecipeView: RAddRecipeViewControllerDelegate {
+    func didSaveTapped() {
+        let image = imageView.image
+        _ = RNewRecipeDataModel.shared.saveRecipe(name: recipeNameTextView.text,
+                                              description: recipeDescriptionTextView.text,
+                                              image: image!)
     }
 }

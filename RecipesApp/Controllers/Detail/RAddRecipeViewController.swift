@@ -1,30 +1,59 @@
 
 import UIKit
 
+protocol RAddRecipeViewControllerDelegate: AnyObject {
+    func didSaveTapped()
+}
+
 final class RAddRecipeViewController: UIViewController {
     
-    private let rAddNewRecipeView = RAddNewRecipeView()
+    weak var delegate: RAddRecipeViewControllerDelegate?
+    
+    private lazy var recipeView: RAddNewRecipeView = {
+        let view = RAddNewRecipeView(frame: .zero, rAddVC: self)
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+
     private var popView: RPopupView?
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         title = "Create recipe"
-        rAddNewRecipeView.delegate = self
-        rAddNewRecipeView.recipeDescriptionTextView.delegate = self
-        rAddNewRecipeView.recipeNameTextView.delegate = self
-        popView?.delegate = self
+        let saveButton = UIBarButtonItem(title: "Save", style: .done, target: self, action: #selector(saveButtonTapped))
+        navigationItem.rightBarButtonItem = saveButton
+        setDelegates()
         setUpView()
     }
     
+    private func setDelegates() {
+        recipeView.delegate = self
+        recipeView.recipeDescriptionTextView.delegate = self
+        recipeView.recipeNameTextView.delegate = self
+        popView?.delegate = self
+    }
+    
     private func setUpView() {
-        view.addSubview(rAddNewRecipeView)
+        view.addSubview(recipeView)
         NSLayoutConstraint.activate([
-            rAddNewRecipeView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            rAddNewRecipeView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
-            rAddNewRecipeView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
-            rAddNewRecipeView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+            recipeView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            recipeView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+            recipeView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
+            recipeView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
         ])
+    }
+    
+    @objc
+    private func saveButtonTapped() {
+        delegate?.didSaveTapped()
+        
+        let alert = UIAlertController(title: "Success", message: nil, preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "OK", style: .default) { (action) in
+            self.navigationController?.popViewController(animated: true)
+        }
+        alert.addAction(okAction)
+        present(alert, animated: true)
     }
 }
 
@@ -56,7 +85,7 @@ extension RAddRecipeViewController: RPopupViewDelegate {
     }
     
     func didDeleteButtonTapped() {
-        rAddNewRecipeView.imageView.image = UIImage(systemName: "photo.artframe")
+        recipeView.imageView.image = UIImage(systemName: "photo.artframe")
         popView?.animateOut()
     }
 }
@@ -66,7 +95,7 @@ extension RAddRecipeViewController: UIImagePickerControllerDelegate, UINavigatio
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         if let originalImage = info[.originalImage] as? UIImage {
             let resizedImage = originalImage.resized(to: CGSize(width: 700, height: 700))
-            rAddNewRecipeView.imageView.image = resizedImage
+            recipeView.imageView.image = resizedImage
         }
         picker.dismiss(animated: true)
         popView?.animateOut()
