@@ -4,7 +4,7 @@ import UIKit
 
 final class RRecipeDetailViewViewModel: NSObject {
     
-    private let recipe: RRecipe
+    public let recipe: RRecipe
     var ingredients: [String] = []
     var ingrName: [String] = []
     var ingrImage: [URL] = []
@@ -41,7 +41,7 @@ final class RRecipeDetailViewViewModel: NSObject {
                 DispatchQueue.main.async { [weak self] in
                     self?.ingredients = ingredients.map { $0.original }
                     self?.ingrName = ingredients.map { $0.name }
-                    self?.ingrImage = ingredients.map { URL(string: $0.image!)! }
+                    self?.ingrImage = ingredients.map { URL(string: $0.image ?? "default")! }
                     print(ingredients.map { URL(string: $0.image!)! })
                 }
             } else {

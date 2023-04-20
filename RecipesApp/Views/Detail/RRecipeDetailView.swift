@@ -1,8 +1,13 @@
 
 import UIKit
 
+protocol RRecipeDetailViewDelegate: AnyObject {
+    func didInfoButtonTapped()
+}
+
 final class RRecipeDetailView: UIView {
     
+    public weak var delegate: RRecipeDetailViewDelegate?
     private let viewModel: RRecipeDetailViewViewModel
     
     private let imageView: UIImageView = {
@@ -73,6 +78,10 @@ final class RRecipeDetailView: UIView {
     private func setView() {
         nameRecipeLabel.text = viewModel.title
         
+        infoButton.addTarget(self,
+                             action: #selector(infoButtonTapped),
+                             for: .touchUpInside)
+        
         tableView.register(RRecipeDetailTableViewCell.self,
                            forCellReuseIdentifier: RRecipeDetailTableViewCell.cellIdentifier)
         collectionView.register(RDetailIngredCollectionViewCell.self, forCellWithReuseIdentifier:
@@ -84,13 +93,18 @@ final class RRecipeDetailView: UIView {
         collectionView.dataSource = viewModel
     }
     
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+    @objc
+    private func infoButtonTapped() {
+        delegate?.didInfoButtonTapped()
     }
     
     public func configureView(with data: Data) {
         imageView.image = UIImage(data: data)
         tableView.reloadData()
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
 }
 
