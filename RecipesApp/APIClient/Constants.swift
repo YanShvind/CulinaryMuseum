@@ -12,8 +12,10 @@ struct Constants {
     // static let apiKey = "9ad0375acd614e2ebdceb11bddcaf4e6"
     // static let apiKey = "2da9ac50090e42c3a10c7fb6cdb55e87"
     // static let apiKey = "bb0b8e0819f74955b6d4aea39369379f"
+    // static let apiKey = "b7d3acc52a0c4055a402dba556564503"
+    // static let apiKey = "b7ca7001f0ea4607add6eec8873b6f6f"
     
-    static let apiKey = "73fd55a714424229b20abc76421fc3b1"
+    static let apiKey = "2a964edc542441099fe1af93337df65d"
     static let baseUrl = "https://api.spoonacular.com"
     
     static let popularRecipesPath = "\(baseUrl)/recipes/complexSearch?apiKey=\(apiKey)&addRecipeInformation=true&offset=\(Int.random(in: 0..<100))&number=10&sort=popularity"

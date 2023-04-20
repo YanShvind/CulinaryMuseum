@@ -58,11 +58,7 @@ final class RSearchListViewViewModel: NSObject {
             }
             let moreResults = results
             
-            let originalCount = strongSelf.recipes.count
-            let newCount = moreResults.count
-            let total = originalCount + newCount
-            let startingIndex = total - newCount
-            let indexPathsToAdd: [IndexPath] = Array(startingIndex..<(startingIndex + newCount)).compactMap {
+            let indexPathsToAdd: [IndexPath] = Array(arrayLiteral: 9).compactMap {
                 return IndexPath(row: $0, section: 0)
             }
             
