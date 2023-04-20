@@ -7,7 +7,7 @@ CulinaryMuseum is an iOS application that provides users with a comprehensive co
 * CoreData
 * Dispatch group, Hasher, CoreImage
 * Protocols, Delegates, Clusures
-* CompositionL, CollectionV, TableV
+* CompositionLayout, CollectionView, TableView
 
 # Features
 
