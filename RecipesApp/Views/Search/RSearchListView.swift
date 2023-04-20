@@ -113,9 +113,9 @@ final class RSearchListView: UIView {
 
 extension RSearchListView: RSearchListViewViewModelDelegate {
     func didLoadMoreRecipes(with newIndexPaths: [IndexPath]) {
-        collectionView.performBatchUpdates {
-            self.collectionView.insertItems(at: newIndexPaths)
-        }
+        collectionView.performBatchUpdates({
+            collectionView.insertItems(at: newIndexPaths)
+        }, completion: nil)
     }
     
     func didSelectRecipes(_ recipe: RRecipe) {
