@@ -21,6 +21,7 @@ final class RRecipeDetailViewController: UIViewController {
         super.viewDidLoad()
 
         view.backgroundColor = .systemBackground
+        rRecipeDetailView.delegate = self
         downloadImage()
         setUpView()
     }
@@ -46,5 +47,15 @@ final class RRecipeDetailViewController: UIViewController {
             rRecipeDetailView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
             rRecipeDetailView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
         ])
+    }
+}
+
+extension RRecipeDetailViewController: RRecipeDetailViewDelegate {
+    func didInfoButtonTapped() {
+        let name = viewModel.recipe.title.replacingOccurrences(of: " ", with: "-")
+        let id = viewModel.recipe.id
+        if let url = URL(string: "https://spoonacular.com/recipes/\(name)-\(id)") {
+            UIApplication.shared.open(url)
+        }
     }
 }
