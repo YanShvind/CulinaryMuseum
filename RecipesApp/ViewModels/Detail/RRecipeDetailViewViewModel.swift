@@ -6,6 +6,8 @@ final class RRecipeDetailViewViewModel: NSObject {
     
     private let recipe: RRecipe
     var ingredients: [String] = []
+    var ingrName: [String] = []
+    var ingrImage: [URL] = []
     
     init(recipe: RRecipe) {
         self.recipe = recipe
@@ -38,6 +40,9 @@ final class RRecipeDetailViewViewModel: NSObject {
             if let ingredients = recipeInfo?.extendedIngredients {
                 DispatchQueue.main.async { [weak self] in
                     self?.ingredients = ingredients.map { $0.original }
+                    self?.ingrName = ingredients.map { $0.name }
+                    self?.ingrImage = ingredients.map { URL(string: $0.image!)! }
+                    print(ingredients.map { URL(string: $0.image!)! })
                 }
             } else {
                 print("Error: Unable to fetch recipe information")
@@ -46,6 +51,7 @@ final class RRecipeDetailViewViewModel: NSObject {
     }
 }
 
+//MARK: - TableView
 extension RRecipeDetailViewViewModel: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return ingredients.count
@@ -56,5 +62,31 @@ extension RRecipeDetailViewViewModel: UITableViewDelegate, UITableViewDataSource
         cell.backgroundColor = .secondarySystemBackground
         cell.textLabel?.text = ingredients[indexPath.row]
         return cell
+    }
+}
+
+//MARK: - CollectionView
+extension RRecipeDetailViewViewModel: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        ingredients.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: RDetailIngredCollectionViewCell.identifier,
+                                                            for: indexPath) as? RDetailIngredCollectionViewCell else {
+            fatalError("Unable to dequeue SearchCollectionViewCell.")
+        }
+        cell.layer.cornerRadius = 17
+        cell.layer.borderWidth = 1
+        cell.backgroundColor = .systemBackground
+
+        cell.configure(name: ingrName[indexPath.row],
+                       image: ingrImage[indexPath.row])
+        return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let width = ((collectionView.frame.width - 15) / 4)
+        return CGSize(width: width, height: 110)
     }
 }

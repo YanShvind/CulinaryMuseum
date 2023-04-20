@@ -6,5 +6,4 @@ struct RRecipe: Codable {
     let title: String
     let image: String
     let readyInMinutes: Int
-    //var isFavoirite: Bool?
 }

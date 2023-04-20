@@ -9,7 +9,7 @@ final class RRecipeDetailView: UIView {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
-        imageView.backgroundColor = .red
+        imageView.backgroundColor = .systemBackground
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
@@ -20,6 +20,18 @@ final class RRecipeDetailView: UIView {
         view.layer.cornerRadius = 15
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
+    }()
+    
+    private let collectionView: UICollectionView = {
+        let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .horizontal
+        let cv = UICollectionView(frame: .zero,
+                                  collectionViewLayout: layout)
+        cv.backgroundColor = .systemBackground
+        cv.showsHorizontalScrollIndicator = false
+        cv.translatesAutoresizingMaskIntoConstraints = false
+        cv.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "cell")
+        return cv
     }()
     
     private let nameRecipeLabel: UILabel = {
@@ -43,6 +55,8 @@ final class RRecipeDetailView: UIView {
         let button = UIButton()
         button.setTitle("Information", for: .normal)
         button.backgroundColor = .systemYellow
+        button.titleLabel?.font = .systemFont(ofSize: 25, weight: .medium)
+        button.layer.cornerRadius = 7
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
@@ -52,13 +66,22 @@ final class RRecipeDetailView: UIView {
         super.init(frame: frame)
         translatesAutoresizingMaskIntoConstraints = false
         
+        setView()
+        addConstraints()
+    }
+    
+    private func setView() {
         nameRecipeLabel.text = viewModel.title
         
-        tableView.register(RRecipeDetailTableViewCell.self, forCellReuseIdentifier: RRecipeDetailTableViewCell.cellIdentifier)
+        tableView.register(RRecipeDetailTableViewCell.self,
+                           forCellReuseIdentifier: RRecipeDetailTableViewCell.cellIdentifier)
+        collectionView.register(RDetailIngredCollectionViewCell.self, forCellWithReuseIdentifier:
+                                    RDetailIngredCollectionViewCell.identifier)
+        
         tableView.dataSource = viewModel
         tableView.delegate = viewModel
-        
-        addConstraints()
+        collectionView.delegate = viewModel
+        collectionView.dataSource = viewModel
     }
     
     required init?(coder: NSCoder) {
@@ -74,7 +97,7 @@ final class RRecipeDetailView: UIView {
 extension RRecipeDetailView {
     private func addConstraints() {
         addSubviews(imageView, view)
-        view.addSubviews(nameRecipeLabel, tableView, infoButton)
+        view.addSubviews(collectionView ,nameRecipeLabel, tableView, infoButton)
         
         NSLayoutConstraint.activate([
             imageView.topAnchor.constraint(equalTo: topAnchor),
@@ -92,7 +115,12 @@ extension RRecipeDetailView {
             nameRecipeLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
             nameRecipeLabel.heightAnchor.constraint(equalToConstant: 50),
             
-            tableView.topAnchor.constraint(equalTo: nameRecipeLabel.bottomAnchor, constant: 10),
+            collectionView.topAnchor.constraint(equalTo: nameRecipeLabel.bottomAnchor, constant: 4),
+            collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 15),
+            collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10),
+            collectionView.heightAnchor.constraint(equalToConstant: 120),
+            
+            tableView.topAnchor.constraint(equalTo: collectionView.bottomAnchor, constant: 10),
             tableView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
             tableView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
             tableView.heightAnchor.constraint(equalToConstant: 150),
@@ -100,7 +128,7 @@ extension RRecipeDetailView {
             infoButton.topAnchor.constraint(equalTo: tableView.bottomAnchor, constant: 20),
             infoButton.centerXAnchor.constraint(equalTo: centerXAnchor),
             infoButton.widthAnchor.constraint(equalToConstant: 200),
-            infoButton.heightAnchor.constraint(equalToConstant: 60)
+            infoButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -20)
         ])
     }
 }
