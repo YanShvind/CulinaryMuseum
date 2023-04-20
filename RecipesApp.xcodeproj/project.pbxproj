@@ -32,6 +32,7 @@
 		6D54ACFD29D77E7F0029F78D /* RFavoriteTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D54ACFC29D77E7F0029F78D /* RFavoriteTableViewCell.swift */; };
 		6D54AD0329D860C90029F78D /* RercipeCoreDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 6D54AD0129D860C90029F78D /* RercipeCoreDataModel.xcdatamodeld */; };
 		6D5D876F29EFDFEB00C793D1 /* RNewRecipeDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D5D876E29EFDFEB00C793D1 /* RNewRecipeDataModel.swift */; };
+		6D5D877129EFEDC000C793D1 /* RDescriptionPopup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D5D877029EFEDC000C793D1 /* RDescriptionPopup.swift */; };
 		6D5EB2AA29A1710B009529D4 /* RService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D5EB2A929A1710B009529D4 /* RService.swift */; };
 		6D5EB2AC29A17418009529D4 /* RSearchListViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D5EB2AB29A17418009529D4 /* RSearchListViewViewModel.swift */; };
 		6D5EB2AE29A24A99009529D4 /* RCollectionViewCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D5EB2AD29A24A99009529D4 /* RCollectionViewCellViewModel.swift */; };
@@ -89,6 +90,7 @@
 		6D54ACFC29D77E7F0029F78D /* RFavoriteTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RFavoriteTableViewCell.swift; sourceTree = "<group>"; };
 		6D54AD0229D860C90029F78D /* RercipeCoreDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = RercipeCoreDataModel.xcdatamodel; sourceTree = "<group>"; };
 		6D5D876E29EFDFEB00C793D1 /* RNewRecipeDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RNewRecipeDataModel.swift; sourceTree = "<group>"; };
+		6D5D877029EFEDC000C793D1 /* RDescriptionPopup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RDescriptionPopup.swift; sourceTree = "<group>"; };
 		6D5EB2A929A1710B009529D4 /* RService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RService.swift; sourceTree = "<group>"; };
 		6D5EB2AB29A17418009529D4 /* RSearchListViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RSearchListViewViewModel.swift; sourceTree = "<group>"; };
 		6D5EB2AD29A24A99009529D4 /* RCollectionViewCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RCollectionViewCellViewModel.swift; sourceTree = "<group>"; };
@@ -406,6 +408,7 @@
 			children = (
 				6DCC3CFE29E0CCCA00FF9C2D /* RNewRecipeView.swift */,
 				6DCC3D0029E0CD4B00FF9C2D /* RNewRecipeTableViewCell.swift */,
+				6D5D877029EFEDC000C793D1 /* RDescriptionPopup.swift */,
 			);
 			path = NewRecipe;
 			sourceTree = "<group>";
@@ -532,6 +535,7 @@
 				6D6E9EED29A0312000A2A1D5 /* RRecipe.swift in Sources */,
 				6DEBC20429D0C009005E50BB /* RCategoryCollectionViewCell.swift in Sources */,
 				6DCC3CFF29E0CCCA00FF9C2D /* RNewRecipeView.swift in Sources */,
+				6D5D877129EFEDC000C793D1 /* RDescriptionPopup.swift in Sources */,
 				6DEBC20229CF5091005E50BB /* RCategoryView.swift in Sources */,
 				6D474D8029C4E8460089D5A4 /* RHealthyCollectionViewCell.swift in Sources */,
 				6D474D8229C4E86F0089D5A4 /* RLowCalorieCollectionViewCell.swift in Sources */,

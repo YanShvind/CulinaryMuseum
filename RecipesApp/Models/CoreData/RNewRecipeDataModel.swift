@@ -13,8 +13,8 @@ final class RNewRecipeDataModel {
         
         recipe.name = name
         recipe.descriptionn = description
-        recipe.image = image.pngData()
-        
+        recipe.image = image.jpegData(compressionQuality: 0.8)
+
         do {
             try context.save()
             return recipe

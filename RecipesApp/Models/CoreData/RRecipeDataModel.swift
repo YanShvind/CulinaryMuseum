@@ -15,7 +15,7 @@ final class RRecipeDataModel {
         recipe.id = Int32(id)
         recipe.name = name
         recipe.time = Int32(time)
-        recipe.image = image.pngData()
+        recipe.image = image.jpegData(compressionQuality: 0.8)
         
         do {
             try context.save()
