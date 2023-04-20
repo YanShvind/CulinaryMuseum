@@ -4,9 +4,13 @@ import UIKit
 
 protocol RNewRecipeViewViewModelDelegate: AnyObject {
     func didTapNewRecipeButton()
+    func didDescriptionButtonTappedL(indexPath: IndexPath)
 }
 
 final class RNewRecipeViewViewModel: NSObject {
+    
+    public weak var delegate: RNewRecipeViewViewModelDelegate?
+    
     var recipes: [NewRecipe] = []
 }
 
@@ -19,6 +23,9 @@ extension RNewRecipeViewViewModel: UITableViewDelegate, UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: RNewRecipeTableViewCell.identifier,
                                                  for: indexPath) as! RNewRecipeTableViewCell
         cell.backgroundColor = .secondarySystemBackground
+        cell.selectionStyle = .none
+        cell.delegate = self
+        cell.index = indexPath
         cell.configure(name: recipes[indexPath.row].name ?? "",
                        image: recipes[indexPath.row].image!)
         return cell
@@ -33,5 +40,11 @@ extension RNewRecipeViewViewModel: UITableViewDelegate, UITableViewDataSource {
             tableView.deleteRows(at: [indexPath], with: .fade)
         }
         return UISwipeActionsConfiguration(actions: [deleteAction])
+    }
+}
+
+extension RNewRecipeViewViewModel: RNewRecipeTableViewCellDelegate {
+    func didDescriptionButtonTapped(indexPath: IndexPath) {
+        delegate?.didDescriptionButtonTappedL(indexPath: indexPath)
     }
 }

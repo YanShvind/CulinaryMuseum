@@ -17,6 +17,7 @@ final class RNewRecipeViewController: UIViewController {
         title = "Your Recipes"
         view.backgroundColor = .systemBackground
         rNewRecipeView.delegate = self
+        rNewRecipeView.viewModel.delegate = self
         setUpView()
     }
     
@@ -36,5 +37,13 @@ extension RNewRecipeViewController: RNewRecipeViewViewModelDelegate {
         let vc = RAddRecipeViewController()
         navigationController?.pushViewController(vc,
                                                  animated: true)
+    }
+
+    func didDescriptionButtonTappedL(indexPath: IndexPath) {
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.1) {
+            let popup = RDescriptionPopup()
+            popup.index = indexPath.row
+            self.view.addSubview(popup)
+        }
     }
 }
