@@ -29,6 +29,8 @@ The app uses CoreData to provide data persistence, providing users with the abil
 
 The app provides a rich user interface, making use of composition, collection, table view, footer, and CoreImage to provide users with a visually engaging and intuitive experience.
 
+![1](https://user-images.githubusercontent.com/58136391/233355679-2d78b748-4f66-4560-84d2-7eea0be026ff.png)
+
 # Requirements
 
 * iOS 13.0+
