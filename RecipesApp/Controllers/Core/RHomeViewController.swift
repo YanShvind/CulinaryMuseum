@@ -10,8 +10,23 @@ final class RHomeViewController: UIViewController {
 
         title = "Home"
         view.backgroundColor = .systemBackground
+        checkInternetConnection()
         rHomeView.delegate = self
         setUpView()
+    }
+    
+    private func checkInternetConnection() {
+        let checkInternet = RInternetConnection.shared.checkInternet()
+        if checkInternet {
+           print("You are connected to the internet")
+        } else {
+            let alertController = UIAlertController(title: "You are not connected to the internet", message: "Please check your network connection", preferredStyle: .alert)
+            
+            let okAction = UIAlertAction(title: "ОК", style: .default, handler: nil)
+            alertController.addAction(okAction)
+            
+            present(alertController, animated: true, completion: nil)
+        }
     }
     
     private func setUpView() {

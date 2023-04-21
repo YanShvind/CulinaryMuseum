@@ -137,8 +137,10 @@ extension RHomeViewViewModel: UICollectionViewDelegate, UICollectionViewDataSour
             cell.popularView.delegate = self
             cell.popularView.index = indexPath
             cell.popularView.spinnerAnimating(animate: true)
+            cell.isUserInteractionEnabled = false
             if !popularRecipesCell.isEmpty {
                 cell.configure(viewModel: self.popularRecipesCell[indexPath.row])
+                cell.isUserInteractionEnabled = true
             }
             return cell
             
@@ -148,8 +150,10 @@ extension RHomeViewViewModel: UICollectionViewDelegate, UICollectionViewDataSour
             cell.vegetarianView.delegate = self
             cell.vegetarianView.index = indexPath
             cell.vegetarianView.spinnerAnimating(animate: true)
+            cell.isUserInteractionEnabled = false
             if !vegetarianRecipesCell.isEmpty {
                 cell.configure(viewModel: self.vegetarianRecipesCell[indexPath.row])
+                cell.isUserInteractionEnabled = true
             }
             return cell
             
@@ -159,8 +163,10 @@ extension RHomeViewViewModel: UICollectionViewDelegate, UICollectionViewDataSour
             cell.shortCookingTimeView.delegate = self
             cell.shortCookingTimeView.index = indexPath
             cell.shortCookingTimeView.spinnerAnimating(animate: true)
+            cell.isUserInteractionEnabled = false
             if !shortCookingTimeRecipesCell.isEmpty {
                 cell.configure(viewModel: self.shortCookingTimeRecipesCell[indexPath.row])
+                cell.isUserInteractionEnabled = true
             }
             return cell
             
@@ -170,8 +176,10 @@ extension RHomeViewViewModel: UICollectionViewDelegate, UICollectionViewDataSour
             cell.healthyView.delegate = self
             cell.healthyView.index = indexPath
             cell.healthyView.spinnerAnimating(animate: true)
+            cell.isUserInteractionEnabled = false
             if !healthyRecipesCell.isEmpty {
                 cell.configure(viewModel: self.healthyRecipesCell[indexPath.row])
+                cell.isUserInteractionEnabled = true
             }
             return cell
             
@@ -181,8 +189,10 @@ extension RHomeViewViewModel: UICollectionViewDelegate, UICollectionViewDataSour
             cell.lowCalorieView.delegate = self
             cell.lowCalorieView.index = indexPath
             cell.lowCalorieView.spinnerAnimating(animate: true)
+            cell.isUserInteractionEnabled = false
             if !lowCalorieRecipesCell.isEmpty {
                 cell.configure(viewModel: self.lowCalorieRecipesCell[indexPath.row])
+                cell.isUserInteractionEnabled = true
             }
             return cell
         }
