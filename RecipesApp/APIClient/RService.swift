@@ -10,7 +10,7 @@ final class RService {
 
     // Запрос для поиска рецептов
     func fetchRecipes(for ingredients: String = "", random: Bool = false, completion: @escaping ([RRecipe]) -> Void) {
-        var apiUrlStringForSearch = "\(baseURL)/recipes/complexSearch?query=\(ingredients)&apiKey=\(apiKey)&addRecipeInformation=true&number=10"
+        var apiUrlStringForSearch = "\(baseURL)/recipes/complexSearch?query=\(ingredients)&apiKey=\(apiKey)&addRecipeInformation=true&number=50"
         
         if random {
             apiUrlStringForSearch += "&offset=\(Int.random(in: 0..<100))"
