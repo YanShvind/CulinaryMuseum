@@ -5,7 +5,7 @@ import UIKit
 protocol RSearchListViewViewModelDelegate: AnyObject {
     func didLoadInitialRecipes()
     func didSelectRecipes(_ recipe: RRecipe)
-    func didLoadMoreRecipes(with newIndexPaths: [IndexPath])
+    func didLoadMoreRecipes()
 }
 
 final class RSearchListViewViewModel: NSObject {
@@ -14,7 +14,9 @@ final class RSearchListViewViewModel: NSObject {
     
     public var onDataUpdate: ((_ index: [IndexPath]) -> Void)? // наблюдатель для обновления ячейки
     var currentSearchText: String = ""
-    
+
+    private let timerInterval = 1.0
+    private var timer: Timer?
     private var isLoadingMoreRecipes = false
     
     private var recipes: [RRecipe] = [] {
@@ -37,7 +39,7 @@ final class RSearchListViewViewModel: NSObject {
     public func fetchRecipes(for searchIngredient: String) {
         currentSearchText = searchIngredient
         RService.shared.fetchRecipes(for: searchIngredient, random: true) { [weak self] results in
-            guard let strongSelf = self else {
+            guard let strongSelf = self, !results.isEmpty else {
                 return
             }
             strongSelf.recipes = results
@@ -45,33 +47,8 @@ final class RSearchListViewViewModel: NSObject {
         }
     }
     
-    // добавление дополнительных рецептов, когда пользователь прокрутит вниз
-    public func fetchAddicationalRecipes() {
-        guard !isLoadingMoreRecipes else {
-            return
-        }
-        isLoadingMoreRecipes = true
-        
-        RService.shared.fetchRecipes(for: currentSearchText, random: true) { [weak self] results in
-            guard let strongSelf = self else {
-                return
-            }
-            let moreResults = results
-            
-            let indexPathsToAdd: [IndexPath] = Array(arrayLiteral: 9).compactMap {
-                return IndexPath(row: $0, section: 0)
-            }
-            
-            strongSelf.recipes.append(contentsOf: moreResults)
-            DispatchQueue.main.async {
-                strongSelf.delegate?.didLoadMoreRecipes(with: indexPathsToAdd)
-                strongSelf.isLoadingMoreRecipes = false
-            }
-        }
-    }
-    
     public var shouldShowLoadMoreIndicator: Bool {
-        return true
+        return !isLoadingMoreRecipes && !recipes.isEmpty
     }
 }
 
@@ -100,8 +77,11 @@ extension RSearchListViewViewModel: UICollectionViewDelegate, UICollectionViewDa
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         collectionView.deselectItem(at: indexPath, animated: true)
-        let recipe = recipes[indexPath.row]
-        delegate?.didSelectRecipes(recipe)
+        let recipe = recipes.first(where: { $0.id == cellViewModels[indexPath.row].id })
+        guard let selectedRecipe = recipe else {
+            return
+        }
+        delegate?.didSelectRecipes(selectedRecipe)
     }
     
     // Настройка нижнего колонтитула
@@ -129,21 +109,32 @@ extension RSearchListViewViewModel: UICollectionViewDelegate, UICollectionViewDa
 // находимся ли мы внизу?
 extension RSearchListViewViewModel: UIScrollViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        guard shouldShowLoadMoreIndicator,
-              !cellViewModels.isEmpty,
-              !isLoadingMoreRecipes else {
+        guard shouldShowLoadMoreIndicator, !cellViewModels.isEmpty, !isLoadingMoreRecipes else {
             return
         }
         
-        Timer.scheduledTimer(withTimeInterval: 0.2, repeats: false) { [weak self] timer in
-            let offset = scrollView.contentOffset.y
-            let totalContentHeight = scrollView.contentSize.height
-            let totalScrollViewFixedHeight = scrollView.frame.size.height
-            
-            if offset >= (totalContentHeight - totalScrollViewFixedHeight - 120) {
-                self?.fetchAddicationalRecipes()
+        let offset = scrollView.contentOffset.y
+        let totalContentHeight = scrollView.contentSize.height
+        let totalScrollViewFixedHeight = scrollView.frame.size.height
+        
+        if offset >= (totalContentHeight - totalScrollViewFixedHeight - 120) {
+            guard !self.isLoadingMoreRecipes else {
+                return
             }
-            timer.invalidate()
+            self.isLoadingMoreRecipes = true
+            
+            timer?.invalidate()
+            timer = Timer.scheduledTimer(withTimeInterval: timerInterval, repeats: false) { [weak self] _ in
+                guard let self = self else { return }
+                
+                RService.shared.fetchRecipes(for: self.currentSearchText, random: true) { [weak self] results in
+                    guard let strongSelf = self else { return }
+                    
+                    strongSelf.recipes.append(contentsOf: results)
+                    strongSelf.isLoadingMoreRecipes = false
+                    strongSelf.delegate?.didLoadMoreRecipes()
+                }
+            }
         }
     }
 }

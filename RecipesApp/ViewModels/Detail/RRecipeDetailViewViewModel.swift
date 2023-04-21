@@ -42,7 +42,7 @@ final class RRecipeDetailViewViewModel: NSObject {
                     self?.ingredients = ingredients.map { $0.original }
                     self?.ingrName = ingredients.map { $0.name }
                     self?.ingrImage = ingredients.map { URL(string: $0.image ?? "default")! }
-                    print(ingredients.map { URL(string: $0.image!)! })
+                    print(ingredients.map { URL(string: $0.image ?? "default")! })
                 }
             } else {
                 print("Error: Unable to fetch recipe information")
