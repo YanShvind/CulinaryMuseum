@@ -33,7 +33,7 @@ The app provides a rich user interface, making use of composition, collection, t
 
 # Requirements
 
-* iOS 15.0+
+* iOS 13.0+
 * Xcode 10.0+
 * Swift 5+
 
